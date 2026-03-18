@@ -63,7 +63,10 @@ class ConverterScreen extends StatelessWidget {
       ),
       floatingActionButton: Consumer<ConverterViewModel>(
         builder: (context, vm, _) {
-          return PickImageFab(onPressed: vm.pickImage);
+          return PickImageFab(
+            onPressed: vm.pickImage,
+            isLoading: vm.isPicking,
+          );
         },
       ),
     );

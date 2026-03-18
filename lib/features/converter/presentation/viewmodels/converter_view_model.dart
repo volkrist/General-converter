@@ -23,24 +23,35 @@ class ConverterViewModel extends ChangeNotifier {
   ImageAsset? _selectedImage;
   ImageFormat _targetFormat = ImageFormat.png;
   ConversionResult? _result;
+  bool _isPicking = false;
   bool _isConverting = false;
   String? _error;
 
   ImageAsset? get selectedImage => _selectedImage;
   ImageFormat get targetFormat => _targetFormat;
   ConversionResult? get result => _result;
+  bool get isPicking => _isPicking;
   bool get isConverting => _isConverting;
   String? get error => _error;
   bool get canConvert => _selectedImage != null && !_isConverting;
 
   Future<void> pickImage() async {
+    if (_isPicking) return;
+
+    _isPicking = true;
     _error = null;
+    notifyListeners();
+
     try {
-      _selectedImage = await _pickImageUseCase();
-      _result = null;
-      notifyListeners();
+      final picked = await _pickImageUseCase();
+      if (picked != null) {
+        _selectedImage = picked;
+        _result = null;
+      }
     } catch (e) {
       _error = 'Failed to pick image: $e';
+    } finally {
+      _isPicking = false;
       notifyListeners();
     }
   }

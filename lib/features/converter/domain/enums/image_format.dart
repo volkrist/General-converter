@@ -14,8 +14,14 @@ enum ImageFormat {
   final String extension;
   final String mimeType;
 
+  static const _aliases = {
+    'jpeg': 'jpg',
+    'tif': 'tiff',
+  };
+
   static ImageFormat? fromExtension(String ext) {
-    final normalized = ext.toLowerCase().replaceAll('.', '');
+    final normalized = _aliases[ext.toLowerCase().replaceAll('.', '')] ??
+        ext.toLowerCase().replaceAll('.', '');
     return ImageFormat.values.cast<ImageFormat?>().firstWhere(
           (f) => f!.extension == normalized,
           orElse: () => null,
