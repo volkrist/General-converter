@@ -1,3 +1,4 @@
+
 abstract final class AppStrings {
   static const String appName = 'General Converter';
   static const String pickImage = 'Pick image';
@@ -11,5 +12,7 @@ abstract final class AppStrings {
   static const String saveFailed = 'Failed to save';
   static const String pickFailed = 'Failed to pick image';
   static const String tapToPick = 'Tap to pick image';
+  static const String toggleTheme = 'Toggle theme';
+
 
 }
