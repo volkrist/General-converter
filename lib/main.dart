@@ -1,3 +1,3 @@
-import 'app/bootstrap.dart';
+import 'bootstrap.dart';
 
 void main() => bootstrap();
