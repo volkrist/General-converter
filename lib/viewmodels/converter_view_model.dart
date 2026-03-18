@@ -20,20 +20,41 @@ class ConverterViewModel extends ChangeNotifier {
   final ConvertImageUseCase _convertImageUseCase;
   final SaveResultUseCase _saveResultUseCase;
 
+  // --------------- state ---------------
+
   ImageAsset? _selectedImage;
   ImageFormat _targetFormat = ImageFormat.png;
   ConversionResult? _result;
+
   bool _isPicking = false;
   bool _isConverting = false;
+  bool _isSaving = false;
+
   String? _error;
+  String? _savedPath;
+
+  // --------------- getters ---------------
 
   ImageAsset? get selectedImage => _selectedImage;
   ImageFormat get targetFormat => _targetFormat;
   ConversionResult? get result => _result;
+
   bool get isPicking => _isPicking;
   bool get isConverting => _isConverting;
+  bool get isSaving => _isSaving;
+  bool get isBusy => _isPicking || _isConverting || _isSaving;
+
   String? get error => _error;
-  bool get canConvert => _selectedImage != null && !_isConverting;
+  String? get savedPath => _savedPath;
+
+  bool get canConvert =>
+      _selectedImage != null &&
+      !_isConverting &&
+      _selectedImage!.format != _targetFormat;
+
+  bool get canSave => _result != null && !_isSaving;
+
+  // --------------- actions ---------------
 
   Future<void> pickImage() async {
     if (_isPicking) return;
@@ -47,6 +68,7 @@ class ConverterViewModel extends ChangeNotifier {
       if (picked != null) {
         _selectedImage = picked;
         _result = null;
+        _savedPath = null;
       }
     } catch (e) {
       _error = 'Failed to pick image: $e';
@@ -57,17 +79,20 @@ class ConverterViewModel extends ChangeNotifier {
   }
 
   void setTargetFormat(ImageFormat format) {
+    if (format == _targetFormat) return;
     _targetFormat = format;
     _result = null;
+    _savedPath = null;
     notifyListeners();
   }
 
   Future<void> convert() async {
-    if (_selectedImage == null) return;
+    if (!canConvert) return;
 
     _isConverting = true;
     _error = null;
     _result = null;
+    _savedPath = null;
     notifyListeners();
 
     try {
@@ -81,19 +106,38 @@ class ConverterViewModel extends ChangeNotifier {
   }
 
   Future<void> saveResult() async {
-    if (_result == null) return;
+    if (!canSave) return;
 
+    _isSaving = true;
     _error = null;
+    notifyListeners();
+
     try {
-      await _saveResultUseCase(_result!);
+      _savedPath = await _saveResultUseCase(_result!);
     } catch (e) {
       _error = 'Failed to save: $e';
+    } finally {
+      _isSaving = false;
       notifyListeners();
     }
   }
 
+  void reset() {
+    _selectedImage = null;
+    _result = null;
+    _savedPath = null;
+    _error = null;
+    _targetFormat = ImageFormat.png;
+    notifyListeners();
+  }
+
   void clearError() {
     _error = null;
+    notifyListeners();
+  }
+
+  void clearSavedPath() {
+    _savedPath = null;
     notifyListeners();
   }
 }

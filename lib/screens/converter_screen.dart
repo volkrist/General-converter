@@ -51,6 +51,8 @@ class ConverterScreen extends StatelessWidget {
                         ResultPreviewCard(
                           result: vm.result!,
                           onSave: vm.saveResult,
+                          isSaving: vm.isSaving,
+                          isSaved: vm.savedPath != null,
                         ),
                       ],
                     ],
