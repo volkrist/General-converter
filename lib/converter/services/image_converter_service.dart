@@ -13,7 +13,7 @@ class ImageConverterService {
 
     final image = img.decodeImage(bytes);
     if (image == null) {
-      throw Exception('Failed to decode image');
+      throw Exception('Invalid or unsupported image file');
     }
 
     late List<int> convertedBytes;
@@ -42,7 +42,7 @@ class ImageConverterService {
       case ImageFormat.webp:
       case ImageFormat.heic:
       case ImageFormat.avif:
-        throw Exception('Format not supported yet');
+        throw Exception('Format ${targetFormat.name} is not supported');
     }
 
     final newPath = _buildOutputPath(inputFile.path, targetFormat);
