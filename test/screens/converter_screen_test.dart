@@ -20,7 +20,7 @@ void main() {
     testWidgets('empty state hint is shown when no image selected',
         (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
-      expect(find.text('Tap + to pick an image'), findsOneWidget);
+      expect(find.text('Tap to pick image'), findsOneWidget);
     });
 
     testWidgets('format dropdown is present with all formats', (tester) async {

@@ -9,6 +9,7 @@ import 'usecases/convert_image_usecase.dart';
 import 'usecases/pick_image_usecase.dart';
 import 'usecases/save_result_usecase.dart';
 import 'viewmodels/converter_view_model.dart';
+import 'theme_view_model.dart';
 
 List<SingleChildWidget> get appProviders {
   final pickerService = ImagePickerService();
@@ -26,6 +27,9 @@ List<SingleChildWidget> get appProviders {
   final saveResultUseCase = SaveResultUseCase(repository);
 
   return [
+    ChangeNotifierProvider<ThemeViewModel>(
+      create: (_) => ThemeViewModel(),
+    ),
     ChangeNotifierProvider<ConverterViewModel>(
       create: (_) => ConverterViewModel(
         pickImageUseCase: pickImageUseCase,

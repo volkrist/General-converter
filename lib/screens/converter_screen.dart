@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/app_strings.dart';
+import '../theme_view_model.dart';
 import '../viewmodels/converter_view_model.dart';
 import '../widgets/conversion_status_banner.dart';
 import '../widgets/convert_button.dart';
@@ -14,8 +16,23 @@ class ConverterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('General Converter')),
+      appBar: AppBar(
+        title: const Text(AppStrings.appName),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+              context.read<ThemeViewModel>().toggleTheme();
+            },
+            tooltip: AppStrings.toggleTheme,
+          ),
+        ],
+      ),
       body: Consumer<ConverterViewModel>(
         builder: (context, vm, _) {
           return Column(
@@ -92,7 +109,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Tap + to pick an image',
+            AppStrings.tapToPick,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
