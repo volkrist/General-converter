@@ -9,12 +9,14 @@ class ResultPreviewCard extends StatelessWidget {
     super.key,
     required this.result,
     required this.onSave,
+    this.onShare,
     this.isSaving = false,
     this.isSaved = false,
   });
 
   final ConversionResult result;
   final VoidCallback onSave;
+  final VoidCallback? onShare;
   final bool isSaving;
   final bool isSaved;
 
@@ -46,6 +48,13 @@ class ResultPreviewCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
+                if (onShare != null)
+                  IconButton(
+                    onPressed: onShare,
+                    icon: const Icon(Icons.share),
+                    tooltip: 'Share',
+                  ),
+                const SizedBox(width: 8),
                 if (isSaved)
                   const Chip(
                     avatar: Icon(Icons.check_circle, size: 18),

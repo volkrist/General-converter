@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../constants/app_strings.dart';
 import '../theme_view_model.dart';
@@ -68,6 +69,14 @@ class ConverterScreen extends StatelessWidget {
                         ResultPreviewCard(
                           result: vm.result!,
                           onSave: vm.saveResult,
+                          onShare: () {
+                            SharePlus.instance.share(
+                              ShareParams(
+                                files: [XFile(vm.result!.outputPath)],
+                                subject: 'Converted with General Converter',
+                              ),
+                            );
+                          },
                           isSaving: vm.isSaving,
                           isSaved: vm.savedPath != null,
                         ),
