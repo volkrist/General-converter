@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../models/image_asset.dart';
-
 class SelectedFileCard extends StatelessWidget {
-  const SelectedFileCard({super.key, required this.image});
+  const SelectedFileCard({super.key, required this.file});
 
-  final ImageAsset image;
+  final File file;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class SelectedFileCard extends StatelessWidget {
               height: 72,
               color: theme.colorScheme.surfaceContainerHighest,
               child: Image.file(
-                File(image.path),
+                file,
                 fit: BoxFit.cover,
                 errorBuilder: (_, error, stack) =>
                     const Icon(Icons.broken_image),
@@ -40,17 +38,10 @@ class SelectedFileCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  image.name,
+                  file.path.split(Platform.pathSeparator).last,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${image.format?.label ?? 'Unknown'} · ${image.sizeLabel}',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
                 ),
               ],
             ),

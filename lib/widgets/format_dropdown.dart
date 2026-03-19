@@ -14,6 +14,16 @@ class FormatDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = ImageFormat.values.where((format) {
+      // webp/heic/avif пока не поддерживаются core-конвертером
+      return switch (format) {
+        ImageFormat.webp => false,
+        ImageFormat.heic => false,
+        ImageFormat.avif => false,
+        _ => true,
+      };
+    }).toList();
+
     return DropdownButtonFormField<ImageFormat>(
       initialValue: selectedFormat,
       decoration: const InputDecoration(
@@ -21,7 +31,7 @@ class FormatDropdown extends StatelessWidget {
         border: OutlineInputBorder(),
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
-      items: ImageFormat.values.map((format) {
+      items: items.map((format) {
         return DropdownMenuItem(
           value: format,
           child: Text(format.label),
