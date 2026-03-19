@@ -5,11 +5,11 @@ import '../models/image_format.dart';
 class FormatDropdown extends StatelessWidget {
   const FormatDropdown({
     super.key,
-    required this.selectedFormat,
+    required this.value,
     required this.onChanged,
   });
 
-  final ImageFormat selectedFormat;
+  final ImageFormat value;
   final ValueChanged<ImageFormat> onChanged;
 
   @override
@@ -25,7 +25,7 @@ class FormatDropdown extends StatelessWidget {
     }).toList();
 
     return DropdownButtonFormField<ImageFormat>(
-      initialValue: selectedFormat,
+      initialValue: value,
       decoration: const InputDecoration(
         labelText: 'Target format',
         border: OutlineInputBorder(),

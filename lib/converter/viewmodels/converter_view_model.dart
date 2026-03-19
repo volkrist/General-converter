@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../models/image_format.dart';
-import '../models/conversion_result.dart';
+import '../models/converted_file.dart';
 import '../services/image_converter_service.dart';
 import '../services/image_picker_service.dart';
 import '../services/image_save_service.dart';
@@ -25,7 +25,7 @@ class ConverterViewModel extends ChangeNotifier {
   bool isPicking = false;
   bool isConverting = false;
 
-  ConversionResult? result;
+  ConvertedFile? result;
   String? error;
 
   Future<void> pickImage() async {
@@ -60,7 +60,7 @@ class ConverterViewModel extends ChangeNotifier {
         targetFormat: selectedFormat,
       );
 
-      result = ConversionResult(file: output);
+      result = ConvertedFile(file: output);
     } catch (e) {
       error = e.toString();
     } finally {

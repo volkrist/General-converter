@@ -75,7 +75,7 @@ Widget _buildBody(ConverterViewModel vm) {
                 const _EmptyState(),
               const SizedBox(height: 16),
               FormatDropdown(
-                selectedFormat: vm.selectedFormat,
+                value: vm.selectedFormat,
                 onChanged: vm.setFormat,
               ),
               const SizedBox(height: 24),
