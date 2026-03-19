@@ -8,6 +8,12 @@ import '../services/image_converter_service.dart';
 import '../services/image_picker_service.dart';
 import '../services/image_save_service.dart';
 
+/// Главный ViewModel для экрана конвертера.
+///
+/// Отвечает только за связь между UI и "core"‑сервисами:
+/// - выбор файла (ImagePickerService)
+/// - конвертация (ImageConverterService)
+/// - сохранение (ImageSaveService)
 class ConverterViewModel extends ChangeNotifier {
   ConverterViewModel(
     this._picker,
@@ -15,16 +21,22 @@ class ConverterViewModel extends ChangeNotifier {
     this._saver,
   );
 
+  // Сервисы "core" слоя — сюда вся бизнес‑логика конвертации.
   final ImagePickerService _picker;
   final ImageConverterService _converter;
   final ImageSaveService _saver;
 
+  /// Текущий выбранный исходный файл.
   File? selectedImage;
+
+  /// Выбранный пользователем целевой формат.
   ImageFormat selectedFormat = ImageFormat.png;
 
+  /// Флаги загрузки для блокировки UI.
   bool isPicking = false;
   bool isConverting = false;
 
+  /// Результат последней конвертации и сообщение об ошибке (если было).
   ConvertedFile? result;
   String? error;
 
