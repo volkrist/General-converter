@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ResultPreviewCard extends StatelessWidget {
@@ -21,14 +22,23 @@ class ResultPreviewCard extends StatelessWidget {
         children: [
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 240),
-            child: Image.file(
-              file,
-              fit: BoxFit.contain,
-              errorBuilder: (_, error, stack) => const SizedBox(
-                height: 120,
-                child: Center(child: Icon(Icons.broken_image, size: 48)),
-              ),
-            ),
+            child: kIsWeb
+                ? Image.network(
+                    file.path,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, error, stack) => const SizedBox(
+                      height: 120,
+                      child: Center(child: Icon(Icons.broken_image, size: 48)),
+                    ),
+                  )
+                : Image.file(
+                    file,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, error, stack) => const SizedBox(
+                      height: 120,
+                      child: Center(child: Icon(Icons.broken_image, size: 48)),
+                    ),
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(12),

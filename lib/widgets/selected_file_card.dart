@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SelectedFileCard extends StatelessWidget {
@@ -24,12 +25,19 @@ class SelectedFileCard extends StatelessWidget {
               width: 72,
               height: 72,
               color: theme.colorScheme.surfaceContainerHighest,
-              child: Image.file(
-                file,
-                fit: BoxFit.cover,
-                errorBuilder: (_, error, stack) =>
-                    const Icon(Icons.broken_image),
-              ),
+              child: kIsWeb
+                  ? Image.network(
+                      file.path,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, error, stack) =>
+                          const Icon(Icons.broken_image),
+                    )
+                  : Image.file(
+                      file,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, error, stack) =>
+                          const Icon(Icons.broken_image),
+                    ),
             ),
           ),
           const SizedBox(width: 12),
