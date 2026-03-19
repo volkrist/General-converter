@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../constants/app_strings.dart';
 import '../theme_view_model.dart';
-import '../viewmodels/converter_view_model.dart';
+import '../converter/viewmodels/converter_view_model.dart';
 import '../widgets/conversion_status_banner.dart';
 import '../widgets/convert_button.dart';
 import '../widgets/format_dropdown.dart';
@@ -16,83 +16,93 @@ class ConverterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _ConverterView();
+  }
+}
+
+class _ConverterView extends StatelessWidget {
+  const _ConverterView();
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.appName),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () {
-              context.read<ThemeViewModel>().toggleTheme();
-            },
-            tooltip: AppStrings.toggleTheme,
-          ),
-        ],
-      ),
-      body: Consumer<ConverterViewModel>(
-        builder: (context, vm, _) {
-          return Column(
-            children: [
-              if (vm.error != null)
-                ConversionStatusBanner(
-                  message: vm.error!,
-                  isError: true,
-                  onDismiss: vm.clearError,
-                ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: ListView(
-                    children: [
-                      if (vm.selectedImage != null)
-                        SelectedFileCard(image: vm.selectedImage!)
-                      else
-                        _EmptyState(),
-                      const SizedBox(height: 16),
-                      FormatDropdown(
-                        selectedFormat: vm.targetFormat,
-                        onChanged: vm.setTargetFormat,
-                      ),
-                      const SizedBox(height: 24),
-                      ConvertButton(
-                        onPressed: vm.convert,
-                        isLoading: vm.isConverting,
-                        enabled: vm.canConvert,
-                      ),
-                      if (vm.result != null) ...[
-                        const SizedBox(height: 24),
-                        ResultPreviewCard(
-                          result: vm.result!,
-                          onSave: vm.saveResult,
-                          isSaving: vm.isSaving,
-                          isSaved: vm.savedPath != null,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
+    return Consumer<ConverterViewModel>(
+      builder: (context, vm, _) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text(AppStrings.appName),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                onPressed: () {
+                  context.read<ThemeViewModel>().toggleTheme();
+                },
+                tooltip: AppStrings.toggleTheme,
               ),
             ],
-          );
-        },
-      ),
-      floatingActionButton: Consumer<ConverterViewModel>(
-        builder: (context, vm, _) {
-          return PickImageFab(
+          ),
+          body: _buildBody(vm),
+          floatingActionButton: PickImageFab(
             onPressed: vm.pickImage,
             isLoading: vm.isPicking,
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
 
+Widget _buildBody(ConverterViewModel vm) {
+  return Column(
+    children: [
+      if (vm.error != null)
+        ConversionStatusBanner(
+          message: vm.error!,
+          isError: true,
+          onDismiss: vm.clearError,
+        ),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: ListView(
+            children: [
+              if (vm.selectedImage != null)
+                SelectedFileCard(file: vm.selectedImage!)
+              else
+                const _EmptyState(),
+              const SizedBox(height: 16),
+              FormatDropdown(
+                value: vm.selectedFormat,
+                onChanged: vm.setFormat,
+              ),
+              const SizedBox(height: 24),
+              ConvertButton(
+                onPressed:
+                    vm.selectedImage != null ? () => vm.convert() : null,
+                isLoading: vm.isConverting,
+                enabled: vm.selectedImage != null && !vm.isConverting,
+              ),
+              if (vm.result != null) ...[
+                const SizedBox(height: 24),
+                ResultPreviewCard(
+                  file: vm.result!.file,
+                  onSave: vm.save,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

@@ -1,13 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../models/image_asset.dart';
-
 class SelectedFileCard extends StatelessWidget {
-  const SelectedFileCard({super.key, required this.image});
+  const SelectedFileCard({super.key, required this.file});
 
-  final ImageAsset image;
+  final File file;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +25,19 @@ class SelectedFileCard extends StatelessWidget {
               width: 72,
               height: 72,
               color: theme.colorScheme.surfaceContainerHighest,
-              child: Image.file(
-                File(image.path),
-                fit: BoxFit.cover,
-                errorBuilder: (_, error, stack) =>
-                    const Icon(Icons.broken_image),
-              ),
+              child: kIsWeb
+                  ? Image.network(
+                      file.path,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, error, stack) =>
+                          const Icon(Icons.broken_image),
+                    )
+                  : Image.file(
+                      file,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, error, stack) =>
+                          const Icon(Icons.broken_image),
+                    ),
             ),
           ),
           const SizedBox(width: 12),
@@ -40,17 +46,10 @@ class SelectedFileCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  image.name,
+                  file.path.split(Platform.pathSeparator).last,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${image.format?.label ?? 'Unknown'} · ${image.sizeLabel}',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
                 ),
               ],
             ),

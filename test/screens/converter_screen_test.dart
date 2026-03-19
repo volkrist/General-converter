@@ -47,7 +47,17 @@ void main() {
       await tester.tap(find.byType(DropdownButtonFormField<ImageFormat>));
       await tester.pumpAndSettle();
 
-      for (final format in ImageFormat.values) {
+      // dropdown должен показывать только поддерживаемые форматы
+      final supported = ImageFormat.values.where((format) {
+        return switch (format) {
+          ImageFormat.webp => false,
+          ImageFormat.heic => false,
+          ImageFormat.avif => false,
+          _ => true,
+        };
+      });
+
+      for (final format in supported) {
         expect(find.text(format.label), findsWidgets);
       }
     });

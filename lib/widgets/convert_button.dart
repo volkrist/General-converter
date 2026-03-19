@@ -8,7 +8,7 @@ class ConvertButton extends StatelessWidget {
     required this.enabled,
   });
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
   final bool enabled;
 
