@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:general_converter/constants/app_strings.dart';
 
 class PickImageFab extends StatelessWidget {
   const PickImageFab({
@@ -14,14 +15,15 @@ class PickImageFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: isLoading ? null : onPressed,
-      tooltip: 'Pick image',
+      tooltip: AppStrings.pickImage,
+      shape: const CircleBorder(),
       child: isLoading
           ? const SizedBox(
               width: 24,
               height: 24,
               child: CircularProgressIndicator(strokeWidth: 2.5),
             )
-          : const Icon(Icons.add_photo_alternate_outlined),
+          : const Icon(Icons.add),
     );
   }
 }

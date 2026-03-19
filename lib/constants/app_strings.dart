@@ -13,6 +13,4 @@ abstract final class AppStrings {
   static const String pickFailed = 'Failed to pick image';
   static const String tapToPick = 'Tap to pick image';
   static const String toggleTheme = 'Toggle theme';
-
-
 }
