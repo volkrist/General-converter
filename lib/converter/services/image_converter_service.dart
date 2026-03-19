@@ -35,21 +35,24 @@ class ImageConverterService {
         convertedBytes = img.encodeTiff(image);
         break;
 
-      case ImageFormat.webp:
-      case ImageFormat.heic:
-      case ImageFormat.avif:
-        convertedBytes = img.encodePng(image);
-        break;
-
       case ImageFormat.gif:
         convertedBytes = img.encodeGif(image);
         break;
+
+      case ImageFormat.webp:
+      case ImageFormat.heic:
+      case ImageFormat.avif:
+        throw Exception('Format not supported yet');
     }
 
     final newPath = _buildOutputPath(inputFile.path, targetFormat);
 
     final outputFile = File(newPath);
-    await outputFile.writeAsBytes(convertedBytes);
+    try {
+      await outputFile.writeAsBytes(convertedBytes);
+    } catch (e) {
+      throw Exception('Failed to save file');
+    }
 
     return outputFile;
   }
@@ -59,7 +62,7 @@ class ImageConverterService {
     final base =
         dotIndex != -1 ? originalPath.substring(0, dotIndex) : originalPath;
 
-    return '$base.${format.name}';
+    return '${base}_${DateTime.now().millisecondsSinceEpoch}.${format.name}';
   }
 }
 
