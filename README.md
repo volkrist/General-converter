@@ -20,33 +20,18 @@ Pick an image, choose a target format, convert, and save the result.
 
 ```
 lib/
-  main.dart                         # Entry point
-  app/                              # App-level setup
-    app.dart                        # MaterialApp widget
-    bootstrap.dart                  # Initialization
-    router.dart                     # Route definitions
-    theme/app_theme.dart            # Material 3 theme
-    di/providers.dart               # Dependency injection (provider)
-  features/
-    converter/                      # Core feature
-      domain/                       # Business logic contracts
-        entities/                   # ImageAsset, ConversionResult
-        enums/                      # ImageFormat enum
-        repositories/               # Abstract ConverterRepository
-        usecases/                   # PickImage, ConvertImage, SaveResult
-      data/                         # Implementation layer
-        services/                   # ImagePicker, Converter, Save services
-        repositories/               # ConverterRepositoryImpl
-        mappers/                    # Data mapping helpers
-      presentation/                 # UI layer
-        viewmodels/                 # ConverterViewModel (ChangeNotifier)
-        screens/                    # ConverterScreen
-        widgets/                    # FAB, dropdown, convert button, cards
-  shared/                           # Reusable across features
-    constants/                      # Sizes, strings
-    utils/                          # File helpers, logger, Result type
-    widgets/                        # Generic UI components
+  main.dart, app.dart, bootstrap.dart, providers.dart
+  converter/                        # Core converter (single feature module)
+    models/                         # ConvertedFile
+    services/                       # ImagePickerService, ImageConverterService, ImageSaveService
+    viewmodels/                     # ConverterViewModel (ChangeNotifier)
+  models/                           # ImageFormat
+  screens/                          # ConverterScreen
+  widgets/                          # FAB, dropdown, convert button, cards, …
+  constants/, theme, router, utils/
 ```
+
+UI → `ConverterViewModel` → `lib/converter/services/*`.
 
 ## Getting Started
 
@@ -92,5 +77,6 @@ git push -u origin feature/<number>-<short-name>
 
 - **Flutter** 3.41+ / Dart 3.11+
 - **State management:** provider + ChangeNotifier
-- **Architecture:** feature-first with data / domain / presentation layers
-- **Key packages:** image_picker, image, path_provider, saver_gallery
+- **Architecture:** UI + `ConverterViewModel` + converter services (no duplicate legacy services under `lib/services/`)
+- **Key packages:** `file_picker` (изображения + PDF), `image` (растры), `pdf` (image→PDF), `pdf_render` (PDF→image, 1-я страница), `flutter_avif`, `flutter_image_compress`, `heif_converter`, path_provider, saver_gallery
+- **Android `minSdk`:** 28 (HEIC encode через системный HEIF writer)

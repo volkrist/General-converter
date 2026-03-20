@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/image_format.dart';
+import '../converter/converter_capabilities.dart';
+import '../converter/models/image_format.dart';
 
 class FormatDropdown extends StatelessWidget {
   const FormatDropdown({
@@ -14,15 +15,7 @@ class FormatDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = ImageFormat.values.where((format) {
-      // webp/heic/avif пока не поддерживаются core-конвертером
-      return switch (format) {
-        ImageFormat.webp => false,
-        ImageFormat.heic => false,
-        ImageFormat.avif => false,
-        _ => true,
-      };
-    }).toList();
+    final items = ConverterCapabilities.supportedOutputFormats;
 
     return DropdownButtonFormField<ImageFormat>(
       initialValue: value,

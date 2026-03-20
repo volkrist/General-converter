@@ -11,6 +11,7 @@ class SelectedFileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isPdf = file.path.toLowerCase().endsWith('.pdf');
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -25,19 +26,25 @@ class SelectedFileCard extends StatelessWidget {
               width: 72,
               height: 72,
               color: theme.colorScheme.surfaceContainerHighest,
-              child: kIsWeb
-                  ? Image.network(
-                      file.path,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, error, stack) =>
-                          const Icon(Icons.broken_image),
+              child: isPdf
+                  ? Icon(
+                      Icons.picture_as_pdf,
+                      size: 40,
+                      color: theme.colorScheme.error,
                     )
-                  : Image.file(
-                      file,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, error, stack) =>
-                          const Icon(Icons.broken_image),
-                    ),
+                  : kIsWeb
+                      ? Image.network(
+                          file.path,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, error, stack) =>
+                              const Icon(Icons.broken_image),
+                        )
+                      : Image.file(
+                          file,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, error, stack) =>
+                              const Icon(Icons.broken_image),
+                        ),
             ),
           ),
           const SizedBox(width: 12),

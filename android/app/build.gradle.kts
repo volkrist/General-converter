@@ -24,7 +24,8 @@ android {
         applicationId = "com.volkrist.general_converter"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        // HEIC encode (flutter_image_compress) needs API 28+ on Android.
+        minSdk = maxOf(flutter.minSdkVersion, 28)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

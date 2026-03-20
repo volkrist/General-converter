@@ -1,4 +1,3 @@
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -17,8 +16,7 @@ import 'theme_view_model.dart';
 /// - ConverterViewModel — новый core‑слой конвертера (File‑based)
 List<SingleChildWidget> get appProviders {
   // Инициализируем core‑сервисы один раз на всё приложение.
-  final pickerService =
-      core_picker_service.ImagePickerService(ImagePicker());
+  final pickerService = core_picker_service.ImagePickerService();
   final converterService = core_converter_service.ImageConverterService();
   final saveService = core_save_service.ImageSaveService();
 

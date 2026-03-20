@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:general_converter/app.dart';
+import 'package:general_converter/converter/converter_capabilities.dart';
 import 'package:general_converter/models/image_format.dart';
 
 void main() {
@@ -14,13 +15,13 @@ void main() {
     testWidgets('FAB is present with correct icon', (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
       expect(find.byType(FloatingActionButton), findsOneWidget);
-      expect(find.byIcon(Icons.add_photo_alternate_outlined), findsWidgets);
+      expect(find.byIcon(Icons.add), findsOneWidget);
     });
 
     testWidgets('empty state hint is shown when no image selected',
         (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
-      expect(find.text('Tap to pick image'), findsOneWidget);
+      expect(find.text('Tap to pick a file'), findsOneWidget);
     });
 
     testWidgets('format dropdown is present with all formats', (tester) async {
@@ -47,28 +48,20 @@ void main() {
       await tester.tap(find.byType(DropdownButtonFormField<ImageFormat>));
       await tester.pumpAndSettle();
 
-      // dropdown должен показывать только поддерживаемые форматы
-      final supported = ImageFormat.values.where((format) {
-        return switch (format) {
-          ImageFormat.webp => false,
-          ImageFormat.heic => false,
-          ImageFormat.avif => false,
-          _ => true,
-        };
-      });
-
-      for (final format in supported) {
+      for (final format in ConverterCapabilities.supportedOutputFormats) {
         expect(find.text(format.label), findsWidgets);
       }
     });
 
-    testWidgets('tapping FAB does not crash', (tester) async {
+    testWidgets('tapping FAB opens pick source sheet', (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
 
       await tester.tap(find.byType(FloatingActionButton));
-      await tester.pump();
+      await tester.pumpAndSettle();
 
-      expect(find.text('General Converter'), findsOneWidget);
+      expect(find.text('Choose source'), findsOneWidget);
+      expect(find.text('Gallery'), findsOneWidget);
+      expect(find.text('Files'), findsOneWidget);
     });
   });
 }

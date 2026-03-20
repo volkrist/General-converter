@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../../models/image_format.dart';
+import '../../constants/app_strings.dart';
 import '../models/converted_file.dart';
+import '../models/image_format.dart';
 import '../services/image_converter_service.dart';
 import '../services/image_picker_service.dart';
 import '../services/image_save_service.dart';
@@ -21,40 +23,83 @@ class ConverterViewModel extends ChangeNotifier {
     this._saver,
   );
 
-  // Сервисы "core" слоя — сюда вся бизнес‑логика конвертации.
+  static const int warningFileSizeBytes = 20 * 1024 * 1024;
+
   final ImagePickerService _picker;
   final ImageConverterService _converter;
   final ImageSaveService _saver;
 
-  /// Текущий выбранный исходный файл.
   File? selectedImage;
-
-  /// Выбранный пользователем целевой формат.
   ImageFormat selectedFormat = ImageFormat.png;
 
-  /// Флаги загрузки для блокировки UI.
   bool isPicking = false;
   bool isConverting = false;
   bool isSaving = false;
   bool isSaved = false;
 
-  /// Результат последней конвертации и сообщение об ошибке (если было).
   ConvertedFile? result;
   String? error;
 
-  Future<void> pickImage() async {
-    try {
-      isPicking = true;
-      notifyListeners();
+  bool isLargeFile = false;
+  String? warningMessage;
 
-      final file = await _picker.pickImage();
-      if (file != null) {
-        selectedImage = file;
-        result = null;
-        error = null;
-      }
+  int conversionElapsedSeconds = 0;
+  Timer? _conversionTimer;
+
+  String get convertingProgressLabel =>
+      '${AppStrings.converting} $conversionElapsedLabel';
+
+  String get conversionElapsedLabel {
+    final minutes = conversionElapsedSeconds ~/ 60;
+    final seconds = conversionElapsedSeconds % 60;
+    final mm = minutes.toString().padLeft(2, '0');
+    final ss = seconds.toString().padLeft(2, '0');
+    return '$mm:$ss';
+  }
+
+  Future<void> pickFromGallery() async {
+    await _pickWith(_picker.pickFromGallery);
+  }
+
+  Future<void> pickFromFiles() async {
+    await _pickWith(_picker.pickFromFiles);
+  }
+
+  /// Файл из «Поделиться» / «Открыть в приложении» (Android/iOS).
+  void applyIncomingFile(File file) {
+    try {
+      _updateFileWarnings(file);
+      selectedImage = file;
+      result = null;
+      isSaved = false;
+      error = null;
     } catch (e) {
-      error = 'Failed to pick image';
+      error = e.toString();
+    }
+    notifyListeners();
+  }
+
+  Future<void> _pickWith(Future<File?> Function() pick) async {
+    isPicking = true;
+    error = null;
+    notifyListeners();
+
+    try {
+      final file = await pick();
+      if (file == null) {
+        isPicking = false;
+        notifyListeners();
+        return;
+      }
+
+      _updateFileWarnings(file);
+
+      selectedImage = file;
+      result = null;
+      isSaved = false;
+      error = null;
+    } catch (e) {
+      error = e.toString();
     } finally {
       isPicking = false;
       notifyListeners();
@@ -64,21 +109,22 @@ class ConverterViewModel extends ChangeNotifier {
   Future<void> convert() async {
     if (selectedImage == null) return;
 
-    try {
-      isConverting = true;
-      error = null;
-      isSaved = false;
-      notifyListeners();
+    isConverting = true;
+    error = null;
+    result = null;
+    isSaved = false;
+    _startConversionTimer();
+    notifyListeners();
 
-      final output = await _converter.convert(
+    try {
+      result = await _converter.convert(
         inputFile: selectedImage!,
         targetFormat: selectedFormat,
       );
-
-      result = ConvertedFile(file: output);
     } catch (e) {
       error = e.toString();
     } finally {
+      _stopConversionTimer();
       isConverting = false;
       notifyListeners();
     }
@@ -110,7 +156,13 @@ class ConverterViewModel extends ChangeNotifier {
     selectedImage = null;
     result = null;
     error = null;
+    isPicking = false;
+    isConverting = false;
+    isSaving = false;
     isSaved = false;
+    conversionElapsedSeconds = 0;
+    _stopConversionTimer();
+    _clearFileWarnings();
     notifyListeners();
   }
 
@@ -118,5 +170,49 @@ class ConverterViewModel extends ChangeNotifier {
     error = null;
     notifyListeners();
   }
-}
 
+  void clearWarning() {
+    _clearFileWarnings();
+    notifyListeners();
+  }
+
+  void _updateFileWarnings(File file) {
+    final size = file.lengthSync();
+
+    if (size > ImageConverterService.maxFileSizeBytes) {
+      throw Exception(AppStrings.fileTooLarge100);
+    }
+
+    if (size > warningFileSizeBytes) {
+      isLargeFile = true;
+      warningMessage = AppStrings.largeFileWarning;
+    } else {
+      _clearFileWarnings();
+    }
+  }
+
+  void _clearFileWarnings() {
+    isLargeFile = false;
+    warningMessage = null;
+  }
+
+  void _startConversionTimer() {
+    conversionElapsedSeconds = 0;
+    _conversionTimer?.cancel();
+    _conversionTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      conversionElapsedSeconds++;
+      notifyListeners();
+    });
+  }
+
+  void _stopConversionTimer() {
+    _conversionTimer?.cancel();
+    _conversionTimer = null;
+  }
+
+  @override
+  void dispose() {
+    _conversionTimer?.cancel();
+    super.dispose();
+  }
+}

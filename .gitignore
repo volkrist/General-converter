@@ -43,3 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local emulator screenshots (not for repo)
+emulator-screen*.png

@@ -24,6 +24,46 @@ class ConverterScreen extends StatelessWidget {
 class _ConverterView extends StatelessWidget {
   const _ConverterView();
 
+  void _showPickSourceSheet(BuildContext context, ConverterViewModel vm) {
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Text(
+                AppStrings.pickFileTitle,
+                style: Theme.of(ctx).textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_library_outlined),
+              title: Text(AppStrings.pickFromGallery),
+              onTap: () {
+                Navigator.pop(ctx);
+                vm.pickFromGallery();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder_open_outlined),
+              title: Text(AppStrings.pickFromFiles),
+              onTap: () {
+                Navigator.pop(ctx);
+                vm.pickFromFiles();
+              },
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -47,7 +87,7 @@ class _ConverterView extends StatelessWidget {
           ),
           body: _buildBody(vm),
           floatingActionButton: PickImageFab(
-            onPressed: vm.pickImage,
+            onPressed: () => _showPickSourceSheet(context, vm),
             isLoading: vm.isPicking,
           ),
         );
@@ -64,6 +104,12 @@ Widget _buildBody(ConverterViewModel vm) {
           message: vm.error!,
           isError: true,
           onDismiss: vm.clearError,
+        ),
+      if (vm.warningMessage != null)
+        ConversionStatusBanner(
+          message: vm.warningMessage!,
+          isWarning: true,
+          onDismiss: vm.clearWarning,
         ),
       Expanded(
         child: Padding(
@@ -84,13 +130,14 @@ Widget _buildBody(ConverterViewModel vm) {
                 onPressed:
                     vm.selectedImage != null ? () => vm.convert() : null,
                 isLoading: vm.isConverting,
-                enabled: vm.selectedImage != null && !vm.isConverting,
+                enabled: vm.selectedImage != null,
+                loadingLabel: vm.convertingProgressLabel,
               ),
               if (vm.result != null) ...[
                 const SizedBox(height: 24),
                 ResultPreviewCard(
                   file: vm.result!.file,
-                  formatLabel: vm.selectedFormat.label,
+                  formatLabel: vm.result!.format.label,
                   onSave: vm.save,
                   onShare: () {
                     SharePlus.instance.share(
