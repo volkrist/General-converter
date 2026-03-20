@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../constants/app_strings.dart';
-import '../theme_view_model.dart';
 import '../converter/viewmodels/converter_view_model.dart';
+import '../theme_view_model.dart';
 import '../widgets/conversion_status_banner.dart';
 import '../widgets/convert_button.dart';
 import '../widgets/format_dropdown.dart';
@@ -89,7 +90,18 @@ Widget _buildBody(ConverterViewModel vm) {
                 const SizedBox(height: 24),
                 ResultPreviewCard(
                   file: vm.result!.file,
+                  formatLabel: vm.selectedFormat.label,
                   onSave: vm.save,
+                  onShare: () {
+                    SharePlus.instance.share(
+                      ShareParams(
+                        files: [XFile(vm.result!.file.path)],
+                        subject: AppStrings.appName,
+                      ),
+                    );
+                  },
+                  isSaving: vm.isSaving,
+                  isSaved: vm.isSaved,
                 ),
               ],
             ],

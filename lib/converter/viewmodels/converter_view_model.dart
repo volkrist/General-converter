@@ -35,6 +35,8 @@ class ConverterViewModel extends ChangeNotifier {
   /// Флаги загрузки для блокировки UI.
   bool isPicking = false;
   bool isConverting = false;
+  bool isSaving = false;
+  bool isSaved = false;
 
   /// Результат последней конвертации и сообщение об ошибке (если было).
   ConvertedFile? result;
@@ -65,6 +67,7 @@ class ConverterViewModel extends ChangeNotifier {
     try {
       isConverting = true;
       error = null;
+      isSaved = false;
       notifyListeners();
 
       final output = await _converter.convert(
@@ -85,9 +88,15 @@ class ConverterViewModel extends ChangeNotifier {
     if (result == null) return;
 
     try {
+      isSaving = true;
+      notifyListeners();
       await _saver.save(result!.file);
+      isSaved = true;
     } catch (e) {
       error = 'Failed to save file';
+      notifyListeners();
+    } finally {
+      isSaving = false;
       notifyListeners();
     }
   }
@@ -101,6 +110,7 @@ class ConverterViewModel extends ChangeNotifier {
     selectedImage = null;
     result = null;
     error = null;
+    isSaved = false;
     notifyListeners();
   }
 

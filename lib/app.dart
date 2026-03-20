@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'constants/app_strings.dart';
 import 'providers.dart';
 import 'router.dart';
 import 'app_theme.dart';
@@ -16,7 +17,7 @@ class GeneralConverterApp extends StatelessWidget {
       child: Consumer<ThemeViewModel>(
         builder: (context, themeVm, _) {
           return MaterialApp(
-            title: 'General Converter',
+            title: AppStrings.appName,
             theme: AppTheme.light(),
             darkTheme: AppTheme.dark(),
             themeMode: themeVm.themeMode,
