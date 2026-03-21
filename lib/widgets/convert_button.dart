@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_strings.dart';
+
 class ConvertButton extends StatelessWidget {
   const ConvertButton({
     super.key,
     required this.onPressed,
     required this.isLoading,
     required this.enabled,
+    this.loadingLabel,
   });
 
   final VoidCallback? onPressed;
   final bool isLoading;
   final bool enabled;
+
+  /// Текст во время конвертации (например с секундомером `Converting... 00:03`).
+  final String? loadingLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,11 @@ class ConvertButton extends StatelessWidget {
                 ),
               )
             : const Icon(Icons.transform),
-        label: Text(isLoading ? 'Converting...' : 'Convert'),
+        label: Text(
+          isLoading
+              ? (loadingLabel ?? AppStrings.converting)
+              : AppStrings.convert,
+        ),
       ),
     );
   }

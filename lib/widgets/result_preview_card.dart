@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as p;
 
 import '../constants/app_strings.dart';
 
@@ -12,6 +13,7 @@ class ResultPreviewCard extends StatelessWidget {
     required this.formatLabel,
     required this.onSave,
     this.onShare,
+    this.onOpen,
     this.isSaving = false,
     this.isSaved = false,
   });
@@ -20,11 +22,28 @@ class ResultPreviewCard extends StatelessWidget {
   final String formatLabel;
   final VoidCallback onSave;
   final VoidCallback? onShare;
+  final VoidCallback? onOpen;
   final bool isSaving;
   final bool isSaved;
 
+  /// Android [Image.file] часто не умеет TIFF/HEIC/PDF — показываем заглушку.
+  bool get _usePlatformImagePreview {
+    if (kIsWeb) return false;
+    final ext = p.extension(file.path).toLowerCase();
+    const noPreview = {
+      '.tiff',
+      '.tif',
+      '.heic',
+      '.heif',
+      '.avif',
+      '.pdf',
+    };
+    return !noPreview.contains(ext);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final name = p.basename(file.path);
     final details = kIsWeb
         ? formatLabel
         : '$formatLabel · ${(file.lengthSync() / 1024).toStringAsFixed(1)} KB';
@@ -45,25 +64,44 @@ class ResultPreviewCard extends StatelessWidget {
                       child: Center(child: Icon(Icons.broken_image, size: 48)),
                     ),
                   )
-                : Image.file(
-                    file,
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, error, stack) => const SizedBox(
-                      height: 120,
-                      child: Center(child: Icon(Icons.broken_image, size: 48)),
-                    ),
-                  ),
+                : _usePlatformImagePreview
+                    ? Image.file(
+                        file,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, error, stack) =>
+                            _NoPreviewPlaceholder(formatLabel: formatLabel),
+                      )
+                    : _NoPreviewPlaceholder(formatLabel: formatLabel),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Text(
-                    details,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        details,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
                   ),
                 ),
+                if (onOpen != null)
+                  IconButton(
+                    onPressed: onOpen,
+                    icon: const Icon(Icons.open_in_new),
+                    tooltip: AppStrings.open,
+                  ),
                 if (onShare != null)
                   IconButton(
                     onPressed: onShare,
@@ -94,6 +132,49 @@ class ResultPreviewCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _NoPreviewPlaceholder extends StatelessWidget {
+  const _NoPreviewPlaceholder({required this.formatLabel});
+
+  final String formatLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return SizedBox(
+      height: 160,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.image_not_supported_outlined,
+                size: 48,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                formatLabel,
+                style: theme.textTheme.titleSmall,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                AppStrings.previewNotAvailable,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

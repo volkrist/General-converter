@@ -29,8 +29,24 @@ void main() {
       expect(ImageFormat.fromExtension('HEIC'), ImageFormat.heic);
     });
 
+    test('resolves heif alias to heic', () {
+      expect(ImageFormat.fromExtension('heif'), ImageFormat.heic);
+    });
+
+    group('ImageFormat.fromPath', () {
+      test('detects by suffix', () {
+        expect(ImageFormat.fromPath('/tmp/x.JPEG'), ImageFormat.jpg);
+        expect(ImageFormat.fromPath(r'C:\a\b\file.HEIF'), ImageFormat.heic);
+        expect(ImageFormat.fromPath('photo.avif'), ImageFormat.avif);
+      });
+    });
+
     test('returns null for unknown extension', () {
       expect(ImageFormat.fromExtension('xyz'), isNull);
+    });
+
+    test('resolves pdf', () {
+      expect(ImageFormat.fromExtension('pdf'), ImageFormat.pdf);
     });
   });
 }

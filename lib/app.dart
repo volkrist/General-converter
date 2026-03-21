@@ -6,6 +6,7 @@ import 'providers.dart';
 import 'router.dart';
 import 'app_theme.dart';
 import 'theme_view_model.dart';
+import 'widgets/incoming_shared_files_listener.dart';
 
 class GeneralConverterApp extends StatelessWidget {
   const GeneralConverterApp({super.key});
@@ -23,6 +24,9 @@ class GeneralConverterApp extends StatelessWidget {
             themeMode: themeVm.themeMode,
             onGenerateRoute: AppRouter.onGenerateRoute,
             debugShowCheckedModeBanner: false,
+            builder: (context, child) => IncomingSharedFilesListener(
+              child: child ?? const SizedBox.shrink(),
+            ),
           );
         },
       ),
