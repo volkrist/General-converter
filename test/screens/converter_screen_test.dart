@@ -27,7 +27,7 @@ void main() {
     testWidgets('format dropdown is present with all formats', (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
 
-      final dropdownFinder = find.byType(DropdownButtonFormField<ImageFormat>);
+      final dropdownFinder = find.byType(DropdownButton<ImageFormat>);
       expect(dropdownFinder, findsOneWidget);
     });
 
@@ -45,7 +45,7 @@ void main() {
     testWidgets('dropdown opens and shows all format options', (tester) async {
       await tester.pumpWidget(const GeneralConverterApp());
 
-      await tester.tap(find.byType(DropdownButtonFormField<ImageFormat>));
+      await tester.tap(find.byType(DropdownButton<ImageFormat>));
       await tester.pumpAndSettle();
 
       for (final format in ConverterCapabilities.supportedOutputFormats) {

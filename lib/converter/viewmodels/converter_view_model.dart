@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:open_file/open_file.dart';
 
 import '../../constants/app_strings.dart';
+import '../converter_capabilities.dart';
+import '../conversion_matrix.dart';
 import '../models/converted_file.dart';
 import '../models/image_format.dart';
 import '../services/image_converter_service.dart';
 import '../services/image_picker_service.dart';
 import '../services/image_save_service.dart';
+import '../user_error_mapper.dart';
 
 /// Главный ViewModel для экрана конвертера.
 ///
@@ -73,8 +77,9 @@ class ConverterViewModel extends ChangeNotifier {
       result = null;
       isSaved = false;
       error = null;
+      _clampFormatToAllowed();
     } catch (e) {
-      error = e.toString();
+      error = UserErrorMapper.message(e, fallback: AppStrings.pickFailed);
     }
     notifyListeners();
   }
@@ -98,8 +103,9 @@ class ConverterViewModel extends ChangeNotifier {
       result = null;
       isSaved = false;
       error = null;
+      _clampFormatToAllowed();
     } catch (e) {
-      error = e.toString();
+      error = UserErrorMapper.message(e, fallback: AppStrings.pickFailed);
     } finally {
       isPicking = false;
       notifyListeners();
@@ -117,12 +123,13 @@ class ConverterViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
+      _clampFormatToAllowed();
       result = await _converter.convert(
         inputFile: selectedImage!,
         targetFormat: selectedFormat,
       );
     } catch (e) {
-      error = e.toString();
+      error = UserErrorMapper.message(e, fallback: AppStrings.conversionFailed);
     } finally {
       _stopConversionTimer();
       isConverting = false;
@@ -139,7 +146,7 @@ class ConverterViewModel extends ChangeNotifier {
       await _saver.save(result!.file);
       isSaved = true;
     } catch (e) {
-      error = 'Failed to save file';
+      error = UserErrorMapper.message(e, fallback: AppStrings.saveFailed);
       notifyListeners();
     } finally {
       isSaving = false;
@@ -150,6 +157,51 @@ class ConverterViewModel extends ChangeNotifier {
   void setFormat(ImageFormat format) {
     selectedFormat = format;
     notifyListeners();
+  }
+
+  ImageFormat? get selectedInputFormat =>
+      selectedImage == null ? null : ImageFormat.fromPath(selectedImage!.path);
+
+  /// Единственный источник списка целей для UI (dropdown не считает форматы сам).
+  List<ImageFormat> get allowedTargetFormats {
+    final inFmt = selectedInputFormat;
+    if (inFmt == null) {
+      return List<ImageFormat>.from(ConverterCapabilities.supportedOutputFormats);
+    }
+    return ConversionMatrix.allowedOutputsFor(inFmt);
+  }
+
+  void _clampFormatToAllowed() {
+    final inFmt = selectedInputFormat;
+    if (inFmt == null) return;
+    final allowed = ConversionMatrix.allowedOutputsFor(inFmt);
+    if (allowed.isEmpty) return;
+    if (!allowed.contains(selectedFormat)) {
+      selectedFormat = allowed.first;
+    }
+  }
+
+  /// Открыть результат во внешнем приложении ([open_file]).
+  ///
+  /// Ручная проверка на Android рекомендуется: TIFF/PDF/HEIC/AVIF, нет viewer —
+  /// ожидаем [AppStrings.openFileFailed] (тип результата ≠ done).
+  Future<void> openResultExternally() async {
+    if (result == null) return;
+    if (kIsWeb) {
+      error = AppStrings.openFileUnavailableWeb;
+      notifyListeners();
+      return;
+    }
+    try {
+      final r = await OpenFile.open(result!.file.path);
+      if (r.type != ResultType.done) {
+        error = AppStrings.openFileFailed;
+        notifyListeners();
+      }
+    } catch (e) {
+      error = UserErrorMapper.message(e, fallback: AppStrings.openFileFailed);
+      notifyListeners();
+    }
   }
 
   void reset() {
@@ -180,7 +232,7 @@ class ConverterViewModel extends ChangeNotifier {
     final size = file.lengthSync();
 
     if (size > ImageConverterService.maxFileSizeBytes) {
-      throw Exception(AppStrings.fileTooLarge100);
+      throw Exception(AppStrings.fileTooLarge);
     }
 
     if (size > warningFileSizeBytes) {

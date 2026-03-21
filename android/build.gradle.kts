@@ -1,7 +1,25 @@
+import com.android.build.gradle.BaseExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+}
+
+// Плагины (pdf_render, receive_sharing_intent и др.) часто тянут Java 1.8 и Kotlin 21 — выравниваем под приложение.
+subprojects {
+    afterEvaluate {
+        extensions.findByType<BaseExtension>()?.compileOptions?.apply {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+        tasks.withType<KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            }
+        }
     }
 }
 

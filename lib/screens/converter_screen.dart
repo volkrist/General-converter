@@ -123,6 +123,7 @@ Widget _buildBody(ConverterViewModel vm) {
               const SizedBox(height: 16),
               FormatDropdown(
                 value: vm.selectedFormat,
+                allowedFormats: vm.allowedTargetFormats,
                 onChanged: vm.setFormat,
               ),
               const SizedBox(height: 24),
@@ -139,6 +140,7 @@ Widget _buildBody(ConverterViewModel vm) {
                   file: vm.result!.file,
                   formatLabel: vm.result!.format.label,
                   onSave: vm.save,
+                  onOpen: vm.openResultExternally,
                   onShare: () {
                     SharePlus.instance.share(
                       ShareParams(

@@ -7,10 +7,10 @@ abstract final class AppStrings {
   static const String targetFormat = 'Target format';
   static const String convert = 'Convert';
   static const String converting = 'Converting...';
-  static const String fileTooLarge100 =
-      'File is too large. Maximum supported size is 100 MB.';
+  static const String fileTooLarge =
+      'File is too large (max 50 MB on this device).';
   static const String largeFileWarning =
-      'Large file. Conversion may take longer. On weak devices it may be slow.';
+      'Large file — it will be scaled down so the app does not run out of memory.';
   static const String notEnoughMemory =
       'Not enough memory to process this file. Try a smaller image or close other apps.';
   static const String save = 'Save';
@@ -27,5 +27,33 @@ abstract final class AppStrings {
       'The file is not a valid image or appears to be damaged.';
   static const String invalidImageDimensions =
       'The image has invalid size (empty or zero dimensions).';
+  /// Короткое сообщение для баннера (см. также [heicDecodeFailed]).
+  static const String failedToDecodeHeic = 'Failed to decode HEIC';
+  static const String heicDecodeFailed = failedToDecodeHeic;
+  static const String failedToEncodeHeic = 'Failed to encode HEIC';
+
+  static const String previewNotAvailable =
+      'Preview is not available for this format';
+
+  static const String failedToEncodeAvif = 'Failed to encode AVIF';
+  static const String avifEncodeFailed = failedToEncodeAvif;
+
+  static const String formatPairNotSupported =
+      'Format pair is not supported yet';
+
+  static const String pdfRenderUnavailable =
+      'PDF could not be rendered on this device';
+
+  static const String savePdfFailed = 'Failed to save PDF';
+
+  static const String unsupportedInputFormat =
+      'This file type is not supported';
+
+  static const String open = 'Open';
+  static const String openFileFailed = 'Could not open file with another app';
+  static const String openFileUnavailableWeb =
+      'Opening files in another app is not available on web';
+  static const String outputFileEmpty =
+      'Output file is empty — conversion failed. Try another format or a smaller image.';
   static const String toggleTheme = 'Toggle theme';
 }
