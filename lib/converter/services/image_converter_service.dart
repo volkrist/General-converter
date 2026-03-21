@@ -12,7 +12,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart' show PdfPageFormat;
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pdf_render/pdf_render.dart';
+import 'package:pdfx/pdfx.dart';
 
 import '../../constants/app_strings.dart';
 import '../conversion_matrix.dart';
@@ -468,16 +468,17 @@ class ImageConverterService {
     }
   }
 
-  /// PDF → растр: только **первая страница** ([pdf_render]).
+  /// PDF → растр: только **первая страница** ([pdfx]).
   Future<Uint8List> _decodePdfToPngBytes(File file) async {
     PdfDocument? doc;
     PdfPageImage? pageImage;
     try {
       doc = await PdfDocument.openFile(file.path);
-      if (doc.pageCount < 1) {
+      if (doc.pagesCount < 1) {
         throw Exception(AppStrings.invalidOrCorruptImage);
       }
       final page = await doc.getPage(1);
+      
       var w = page.width;
       var h = page.height;
       const maxSide = 2048.0;
@@ -490,28 +491,33 @@ class ImageConverterService {
       final hi = h.ceil().clamp(1, 8192);
 
       pageImage = await page.render(
-        width: wi,
-        height: hi,
-        fullWidth: page.width,
-        fullHeight: page.height,
+        width: wi.toDouble(),
+        height: hi.toDouble(),
+        format: PdfPageImageFormat.png,
+        quality: 100,
       );
-      final pixels = Uint8List.fromList(pageImage.pixels);
+      
+      if (pageImage == null) {
+        throw Exception(AppStrings.invalidOrCorruptImage);
+      }
+
+      final pixels = pageImage.bytes;
       final pw = pageImage.width;
       final ph = pageImage.height;
+      
       try {
         if (kIsWeb) {
-          return workerPdfRgbaToPng(pixels, pw, ph);
+          return workerImportEncodedPng(pixels);
         }
-        return await Isolate.run(() => workerPdfRgbaToPng(pixels, pw, ph));
+        return await Isolate.run(() => workerImportEncodedPng(pixels));
       } on FormatException catch (e) {
         throw _exceptionFromWorkerFormat(e);
       }
     } on MissingPluginException {
       throw Exception(AppStrings.pdfRenderUnavailable);
     } finally {
-      pageImage?.dispose();
       if (doc != null) {
-        await doc.dispose();
+        await doc.close();
       }
     }
   }
