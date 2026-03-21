@@ -17,6 +17,8 @@ abstract final class UserErrorMapper {
     AppStrings.failedToEncodeAvif,
     AppStrings.pdfRenderUnavailable,
     AppStrings.outputFileEmpty,
+    AppStrings.outputEncodeRoundTripFailed,
+    AppStrings.policyPreShrinkNoWritableDir,
     AppStrings.savePdfFailed,
     AppStrings.saveFailed,
   };

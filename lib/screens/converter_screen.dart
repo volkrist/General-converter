@@ -85,7 +85,7 @@ class _ConverterView extends StatelessWidget {
               ),
             ],
           ),
-          body: _buildBody(vm),
+          body: _buildBody(context, vm),
           floatingActionButton: PickImageFab(
             onPressed: () => _showPickSourceSheet(context, vm),
             isLoading: vm.isPicking,
@@ -96,7 +96,8 @@ class _ConverterView extends StatelessWidget {
   }
 }
 
-Widget _buildBody(ConverterViewModel vm) {
+Widget _buildBody(BuildContext context, ConverterViewModel vm) {
+  final theme = Theme.of(context);
   return Column(
     children: [
       if (vm.error != null)
@@ -126,6 +127,15 @@ Widget _buildBody(ConverterViewModel vm) {
                 allowedFormats: vm.allowedTargetFormats,
                 onChanged: vm.setFormat,
               ),
+              if (vm.conversionTimeHint != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  vm.conversionTimeHint!,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                ),
+              ],
               const SizedBox(height: 24),
               ConvertButton(
                 onPressed:

@@ -15,6 +15,9 @@ abstract final class OutputFileValidator {
       throw Exception(AppStrings.outputFileEmpty);
     }
     if (len <= 0) {
+      try {
+        await file.delete();
+      } catch (_) {}
       throw Exception(AppStrings.outputFileEmpty);
     }
   }

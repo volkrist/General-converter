@@ -3,23 +3,37 @@ import 'package:general_converter/converter/conversion_matrix.dart';
 import 'package:general_converter/converter/models/image_format.dart';
 
 void main() {
-  test('PDF → PDF blocked before any heavy work', () {
+  test('PDF → PDF blocked', () {
     expect(
-      ConversionMatrix.isAllowed(ImageFormat.pdf, ImageFormat.pdf),
+      ConversionMatrix.isAllowed(input: ImageFormat.pdf, target: ImageFormat.pdf),
       isFalse,
     );
   });
 
   test('AVIF → PDF blocked', () {
     expect(
-      ConversionMatrix.isAllowed(ImageFormat.avif, ImageFormat.pdf),
+      ConversionMatrix.isAllowed(input: ImageFormat.avif, target: ImageFormat.pdf),
+      isFalse,
+    );
+  });
+
+  test('HEIC → TIFF allowed', () {
+    expect(
+      ConversionMatrix.isAllowed(input: ImageFormat.heic, target: ImageFormat.tiff),
+      isTrue,
+    );
+  });
+
+  test('AVIF → GIF blocked', () {
+    expect(
+      ConversionMatrix.isAllowed(input: ImageFormat.avif, target: ImageFormat.gif),
       isFalse,
     );
   });
 
   test('HEIC → JPG allowed', () {
     expect(
-      ConversionMatrix.isAllowed(ImageFormat.heic, ImageFormat.jpg),
+      ConversionMatrix.isAllowed(input: ImageFormat.heic, target: ImageFormat.jpg),
       isTrue,
     );
   });

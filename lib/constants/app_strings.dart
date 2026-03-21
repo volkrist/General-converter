@@ -7,10 +7,9 @@ abstract final class AppStrings {
   static const String targetFormat = 'Target format';
   static const String convert = 'Convert';
   static const String converting = 'Converting...';
-  static const String fileTooLarge =
-      'File is too large (max 50 MB on this device).';
+  static const String fileTooLarge = 'File is too large';
   static const String largeFileWarning =
-      'Large file — it will be scaled down so the app does not run out of memory.';
+      'Large file detected. Conversion may reduce image size for stability.';
   static const String notEnoughMemory =
       'Not enough memory to process this file. Try a smaller image or close other apps.';
   static const String save = 'Save';
@@ -39,21 +38,33 @@ abstract final class AppStrings {
   static const String avifEncodeFailed = failedToEncodeAvif;
 
   static const String formatPairNotSupported =
-      'Format pair is not supported yet';
+      'This format pair is not supported';
 
   static const String pdfRenderUnavailable =
       'PDF could not be rendered on this device';
 
   static const String savePdfFailed = 'Failed to save PDF';
 
-  static const String unsupportedInputFormat =
-      'This file type is not supported';
+  static const String unsupportedInputFormat = 'Unsupported input format';
 
   static const String open = 'Open';
   static const String openFileFailed = 'Could not open file with another app';
   static const String openFileUnavailableWeb =
       'Opening files in another app is not available on web';
-  static const String outputFileEmpty =
-      'Output file is empty — conversion failed. Try another format or a smaller image.';
+  static const String outputFileEmpty = 'Output file is empty';
+  static const String outputEncodeRoundTripFailed =
+      'Output file was not readable after save';
   static const String toggleTheme = 'Toggle theme';
+
+  /// Нет доступного каталога для служебного JPEG pre-shrink (temp и рядом с файлом).
+  static const String policyPreShrinkNoWritableDir =
+      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+
+  /// Подсказки по длительности (без точного ETA).
+  static const String conversionHintQuick =
+      'Usually finishes in a few seconds.';
+  static const String conversionHintHeavy =
+      'Large file — conversion may take ~10–30 seconds.';
+  static const String conversionHintPdf =
+      'PDF export may take longer (~10–30 seconds).';
 }

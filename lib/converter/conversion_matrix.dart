@@ -1,25 +1,30 @@
+import 'converter_capabilities.dart';
 import 'models/image_format.dart';
 
-/// Минимальный список **подтверждённо плохих** пар вход → выход.
-/// Остальное не перечисляем: иначе таблица разрастается и ломается от любого нового формата.
+// Keep blocked pairs minimal. Add only combinations confirmed unstable on real Android.
+
+/// Минимальный список **подтверждённо плохих** пар вход → выход (ключ `input.name->target.name`).
 abstract final class ConversionMatrix {
-  static const _blockedPairs = <({ImageFormat in_, ImageFormat out})>{
-    (in_: ImageFormat.pdf, out: ImageFormat.pdf),
-    (in_: ImageFormat.avif, out: ImageFormat.pdf),
+  static const Set<String> _blockedPairs = {
+    'pdf->pdf',
+    'avif->pdf',
+    'avif->tiff',
+    'avif->gif',
+    'avif->bmp',
   };
 
-  static bool isAllowed(ImageFormat input, ImageFormat output) {
-    for (final p in _blockedPairs) {
-      if (p.in_ == input && p.out == output) {
-        return false;
-      }
-    }
-    return true;
+  static bool isAllowed({
+    required ImageFormat input,
+    required ImageFormat target,
+  }) {
+    final key = '${input.name}->${target.name}';
+    return !_blockedPairs.contains(key);
   }
 
+  /// Цели для UI — пересечение [ConverterCapabilities.supportedOutputFormats] с матрицей.
   static List<ImageFormat> allowedOutputsFor(ImageFormat input) {
-    return ImageFormat.values
-        .where((o) => isAllowed(input, o))
+    return ConverterCapabilities.supportedOutputFormats
+        .where((t) => isAllowed(input: input, target: t))
         .toList(growable: false);
   }
 }

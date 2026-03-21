@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:general_converter/converter/services/image_pure_worker.dart';
 import 'package:general_converter/converter/services/simple_tiff_encoder.dart';
 
 void main() {
@@ -20,5 +21,6 @@ void main() {
     expect(tiff[0], 0x49); // I
     expect(tiff[1], 0x49); // I
     expect(tiff.length, greaterThan(rgb.length));
+    expect(() => workerAssertTiffReadable(tiff), returnsNormally);
   });
 }

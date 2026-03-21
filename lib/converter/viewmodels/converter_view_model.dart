@@ -9,6 +9,7 @@ import '../converter_capabilities.dart';
 import '../conversion_matrix.dart';
 import '../models/converted_file.dart';
 import '../models/image_format.dart';
+import '../services/conversion_policy.dart';
 import '../services/image_converter_service.dart';
 import '../services/image_picker_service.dart';
 import '../services/image_save_service.dart';
@@ -26,8 +27,6 @@ class ConverterViewModel extends ChangeNotifier {
     this._converter,
     this._saver,
   );
-
-  static const int warningFileSizeBytes = 20 * 1024 * 1024;
 
   final ImagePickerService _picker;
   final ImageConverterService _converter;
@@ -53,6 +52,18 @@ class ConverterViewModel extends ChangeNotifier {
   String get convertingProgressLabel =>
       '${AppStrings.converting} $conversionElapsedLabel';
 
+  /// Ориентир по времени (без точного ETA).
+  String? get conversionTimeHint {
+    if (selectedImage == null) return null;
+    if (selectedFormat == ImageFormat.pdf) {
+      return AppStrings.conversionHintPdf;
+    }
+    if (isLargeFile) {
+      return AppStrings.conversionHintHeavy;
+    }
+    return AppStrings.conversionHintQuick;
+  }
+
   String get conversionElapsedLabel {
     final minutes = conversionElapsedSeconds ~/ 60;
     final seconds = conversionElapsedSeconds % 60;
@@ -72,6 +83,7 @@ class ConverterViewModel extends ChangeNotifier {
   /// Файл из «Поделиться» / «Открыть в приложении» (Android/iOS).
   void applyIncomingFile(File file) {
     try {
+      _discardResultFileBestEffort();
       _updateFileWarnings(file);
       selectedImage = file;
       result = null;
@@ -97,6 +109,7 @@ class ConverterViewModel extends ChangeNotifier {
         return;
       }
 
+      _discardResultFileBestEffort();
       _updateFileWarnings(file);
 
       selectedImage = file;
@@ -115,6 +128,7 @@ class ConverterViewModel extends ChangeNotifier {
   Future<void> convert() async {
     if (selectedImage == null) return;
 
+    _discardResultFileBestEffort();
     isConverting = true;
     error = null;
     result = null;
@@ -205,6 +219,7 @@ class ConverterViewModel extends ChangeNotifier {
   }
 
   void reset() {
+    _discardResultFileBestEffort();
     selectedImage = null;
     result = null;
     error = null;
@@ -231,11 +246,11 @@ class ConverterViewModel extends ChangeNotifier {
   void _updateFileWarnings(File file) {
     final size = file.lengthSync();
 
-    if (size > ImageConverterService.maxFileSizeBytes) {
+    if (ConversionPolicy.isTooLarge(size)) {
       throw Exception(AppStrings.fileTooLarge);
     }
 
-    if (size > warningFileSizeBytes) {
+    if (ConversionPolicy.isWarningSize(size)) {
       isLargeFile = true;
       warningMessage = AppStrings.largeFileWarning;
     } else {
@@ -246,6 +261,17 @@ class ConverterViewModel extends ChangeNotifier {
   void _clearFileWarnings() {
     isLargeFile = false;
     warningMessage = null;
+  }
+
+  /// Убирает файл предыдущего результата (рядом с входом), чтобы не копить мусор при повторных convert.
+  void _discardResultFileBestEffort() {
+    final f = result?.file;
+    if (f == null) return;
+    try {
+      if (f.existsSync()) {
+        f.deleteSync();
+      }
+    } catch (_) {}
   }
 
   void _startConversionTimer() {
@@ -265,6 +291,7 @@ class ConverterViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _conversionTimer?.cancel();
+    _discardResultFileBestEffort();
     super.dispose();
   }
 }

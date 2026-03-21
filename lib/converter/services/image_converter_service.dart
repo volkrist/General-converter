@@ -10,6 +10,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:heif_converter/heif_converter.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart' show PdfPageFormat;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf_render/pdf_render.dart';
 
@@ -18,6 +19,8 @@ import '../conversion_matrix.dart';
 import '../models/converted_file.dart';
 import '../models/image_format.dart';
 import '../output_file_validator.dart';
+import '../output_round_trip_validator.dart';
+import 'conversion_policy.dart';
 import 'image_pure_worker.dart';
 
 /// [ui.Image.toByteData] кладёт данные в общий [ByteBuffer]: `buffer.asUint8List()`
@@ -42,26 +45,19 @@ Uint8List _copyByteDataRange(ByteData data) {
 /// **PDF:** только **одна страница** при вводе и **одна картинка = одна страница**
 /// при выводе; многостраничный экспорт не поддерживается.
 class ImageConverterService {
-  /// На телефонах файлы >50 MB почти гарантированно рвут лимит памяти при декоде.
-  static const int maxFileSizeBytes = 50 * 1024 * 1024;
-
-  /// Сначала гоняем через нативный ресайз, чтобы не читать 80 MB JPEG в Dart целиком.
-  static const int _preShrinkMinBytes = 10 * 1024 * 1024;
-
-  @visibleForTesting
-  static bool preShrinkWouldApply(int fileLengthBytes, ImageFormat source) {
-    if (kIsWeb) return false;
-    if (fileLengthBytes < _preShrinkMinBytes) return false;
-    if (source == ImageFormat.pdf || source == ImageFormat.avif) return false;
-    return true;
-  }
+  /// Синхронно с [ConversionPolicy.hardLimitBytes] для проверок во ViewModel.
+  static int get maxFileSizeBytes => ConversionPolicy.hardLimitBytes;
 
   Future<ConvertedFile> convert({
     required File inputFile,
     required ImageFormat targetFormat,
   }) async {
+    if (!kIsWeb) {
+      await _bestEffortCleanupStalePolicyPreShrinkFiles();
+    }
+
     final fileLength = await inputFile.length();
-    if (fileLength > maxFileSizeBytes) {
+    if (ConversionPolicy.isTooLarge(fileLength)) {
       throw Exception(AppStrings.fileTooLarge);
     }
 
@@ -70,29 +66,40 @@ class ImageConverterService {
       throw Exception(AppStrings.unsupportedInputFormat);
     }
 
-    if (!ConversionMatrix.isAllowed(sourceFormat, targetFormat)) {
+    if (!ConversionMatrix.isAllowed(input: sourceFormat, target: targetFormat)) {
       throw Exception(AppStrings.formatPairNotSupported);
     }
 
+    File? policyTempFile;
     try {
-      var workingPngBytes = await _decodeToPngBytes(
+      // Один служебный pre-shrink по политике, затем decode → один финальный encode.
+      final workingFile = await _policyPreShrinkIfNeeded(
         inputFile: inputFile,
-        sourceFormat: sourceFormat,
-        fileLength: fileLength,
+        inputFormat: sourceFormat,
+        targetFormat: targetFormat,
+        inputBytes: fileLength,
       );
-
-      if (sourceFormat != ImageFormat.pdf) {
-        workingPngBytes = await _normalizeWorkingPngForMemory(
-          workingPngBytes: workingPngBytes,
-          sourceFileLengthBytes: fileLength,
-        );
+      if (workingFile.path != inputFile.path) {
+        policyTempFile = workingFile;
       }
 
-      // Пик памяти при PDF (HEIC → PDF часто рвёт процесс): заранее ужимаем растр.
-      if (targetFormat == ImageFormat.pdf && sourceFormat != ImageFormat.pdf) {
-        final maxSide = sourceFormat == ImageFormat.heic ? 2048 : 2560;
-        workingPngBytes =
-            await _runDownscalePngMaxSide(workingPngBytes, maxSide);
+      final effectiveFormat =
+          ImageFormat.fromPath(workingFile.path) ?? sourceFormat;
+      final effectiveLength = await workingFile.length();
+
+      // Pre-shrink / политика — по исходному [fileLength]; normalize — по размеру рабочего файла.
+      // Один буфер [stage]: decode → normalize → encode, без лишних одновременных копий в именовании.
+      Uint8List stage = await _decodeToPngBytes(
+        inputFile: workingFile,
+        sourceFormat: effectiveFormat,
+        fileLength: effectiveLength,
+      );
+
+      if (effectiveFormat != ImageFormat.pdf) {
+        stage = await _normalizeWorkingPngForMemory(
+          workingPngBytes: stage,
+          sourceFileLengthBytes: effectiveLength,
+        );
       }
 
       final outPath = _buildOutputPath(
@@ -102,20 +109,16 @@ class ImageConverterService {
 
       switch (targetFormat) {
         case ImageFormat.heic:
-          return _encodeHeic(
-              workingPngBytes: workingPngBytes, outPath: outPath);
+          return _encodeHeic(workingPngBytes: stage, outPath: outPath);
 
         case ImageFormat.avif:
-          return _encodeAvif(
-              workingPngBytes: workingPngBytes, outPath: outPath);
+          return _encodeAvif(workingPngBytes: stage, outPath: outPath);
 
         case ImageFormat.webp:
-          return _encodeWebp(
-              workingPngBytes: workingPngBytes, outPath: outPath);
+          return _encodeWebp(workingPngBytes: stage, outPath: outPath);
 
         case ImageFormat.pdf:
-          return _encodePdf(
-              workingPngBytes: workingPngBytes, outPath: outPath);
+          return _encodePdf(workingPngBytes: stage, outPath: outPath);
 
         case ImageFormat.jpg:
         case ImageFormat.png:
@@ -123,7 +126,7 @@ class ImageConverterService {
         case ImageFormat.tiff:
         case ImageFormat.bmp:
           return _encodeBasic(
-            workingPngBytes: workingPngBytes,
+            workingPngBytes: stage,
             targetFormat: targetFormat,
             outPath: outPath,
           );
@@ -133,6 +136,126 @@ class ImageConverterService {
     } catch (e) {
       if (e is Exception) rethrow;
       throw Exception(AppStrings.conversionFailed);
+    } finally {
+      if (policyTempFile != null) {
+        try {
+          if (await policyTempFile.exists()) await policyTempFile.delete();
+        } catch (_) {}
+      }
+    }
+  }
+
+  /// Старые `_policy_pre_*.jpg` в app temp — на случай kill/краша до `finally`.
+  Future<void> _bestEffortCleanupStalePolicyPreShrinkFiles() async {
+    try {
+      final tmp = await getTemporaryDirectory();
+      await _bestEffortDeletePolicyPreJpegsInDir(Directory(tmp.path));
+    } catch (_) {}
+  }
+
+  Future<void> _bestEffortDeletePolicyPreJpegsInDir(Directory dir) async {
+    try {
+      if (!await dir.exists()) return;
+      await for (final entity in dir.list(followLinks: false)) {
+        if (entity is! File) continue;
+        final name = p.basename(entity.path);
+        if (name.startsWith('_policy_pre_') && name.endsWith('.jpg')) {
+          try {
+            await entity.delete();
+          } catch (_) {}
+        }
+      }
+    } catch (_) {}
+  }
+
+  Future<bool> _isDirectoryWritableProbe(Directory dir) async {
+    try {
+      if (!await dir.exists()) {
+        await dir.create(recursive: true);
+      }
+      final probe = File(
+        p.join(dir.path, '.gc_w_probe_${DateTime.now().microsecondsSinceEpoch}'),
+      );
+      await probe.writeAsBytes(const [0x00], flush: true);
+      await probe.delete();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Сначала [getTemporaryDirectory], иначе каталог входного файла, иначе — контролируемая ошибка.
+  Future<String> _resolvePolicyPreJpegFullPath(File inputFile) async {
+    final name = '_policy_pre_${DateTime.now().microsecondsSinceEpoch}.jpg';
+
+    try {
+      final tmp = await getTemporaryDirectory();
+      if (await _isDirectoryWritableProbe(Directory(tmp.path))) {
+        return p.join(tmp.path, name);
+      }
+    } catch (_) {}
+
+    try {
+      final parent = inputFile.parent;
+      if (await _isDirectoryWritableProbe(parent)) {
+        return p.join(parent.path, name);
+      }
+    } catch (_) {}
+
+    throw Exception(AppStrings.policyPreShrinkNoWritableDir);
+  }
+
+  /// Один раз облегчаем вход через нативный JPEG-path (не цепочка пользовательских форматов).
+  Future<File> _policyPreShrinkIfNeeded({
+    required File inputFile,
+    required ImageFormat inputFormat,
+    required ImageFormat targetFormat,
+    required int inputBytes,
+  }) async {
+    if (kIsWeb) return inputFile;
+    if (inputFormat == ImageFormat.pdf) return inputFile;
+
+    if (!ConversionPolicy.shouldUsePreShrink(
+      inputBytes: inputBytes,
+      inputFormat: inputFormat,
+      targetFormat: targetFormat,
+    )) {
+      return inputFile;
+    }
+
+    final longSide = ConversionPolicy.preShrinkLongSide(
+      inputBytes: inputBytes,
+      inputFormat: inputFormat,
+      targetFormat: targetFormat,
+    );
+
+    final targetPath = await _resolvePolicyPreJpegFullPath(inputFile);
+
+    try {
+      final result = await FlutterImageCompress.compressAndGetFile(
+        inputFile.absolute.path,
+        targetPath,
+        minWidth: longSide,
+        minHeight: longSide,
+        quality: 88,
+        autoCorrectionAngle: true,
+        format: CompressFormat.jpeg,
+      );
+      if (result == null) {
+        try {
+          final f = File(targetPath);
+          if (await f.exists()) await f.delete();
+        } catch (_) {}
+        return inputFile;
+      }
+      return File(result.path);
+    } catch (_) {
+      try {
+        final f = File(targetPath);
+        if (await f.exists()) await f.delete();
+      } catch (_) {}
+      // Нет плагина / сбой натива (unit-тесты) — идём без pre-shrink.
+      return inputFile;
     }
   }
 
@@ -176,44 +299,9 @@ class ImageConverterService {
     return Exception(AppStrings.invalidOrCorruptImage);
   }
 
-  /// Нативное уменьшение до ~4096 px по длинной стороне (меньше RAM, меньше копий в isolate).
-  Future<File?> _nativePreShrinkToJpegTemp(File file) async {
-    if (kIsWeb) return null;
-    final tmpDir = await getTemporaryDirectory();
-    final outPath =
-        p.join(tmpDir.path, 'pre_${DateTime.now().microsecondsSinceEpoch}.jpg');
-    try {
-      final x = await FlutterImageCompress.compressAndGetFile(
-        file.absolute.path,
-        outPath,
-        minWidth: 4096,
-        minHeight: 4096,
-        quality: 88,
-        format: CompressFormat.jpeg,
-      );
-      if (x == null) return null;
-      return File(x.path);
-    } catch (_) {
-      return null;
-    }
-  }
-
-  Future<Uint8List> _readRasterWithPreShrink(File inputFile, int fileLength) async {
-    File? tmp;
-    try {
-      if (!kIsWeb && fileLength >= _preShrinkMinBytes) {
-        tmp = await _nativePreShrinkToJpegTemp(inputFile);
-      }
-      final toRead = tmp ?? inputFile;
-      final bytes = await toRead.readAsBytes();
-      return _runWorkerRasterToPng(bytes);
-    } finally {
-      if (tmp != null) {
-        try {
-          if (await tmp.exists()) await tmp.delete();
-        } catch (_) {}
-      }
-    }
+  Future<Uint8List> _readRasterFileToPng(File inputFile) async {
+    final bytes = await inputFile.readAsBytes();
+    return _runWorkerRasterToPng(bytes);
   }
 
   Future<Uint8List> _runDownscalePngMaxSide(Uint8List pngBytes, int maxSide) async {
@@ -251,7 +339,7 @@ class ImageConverterService {
       case ImageFormat.gif:
       case ImageFormat.tiff:
       case ImageFormat.bmp:
-        return _readRasterWithPreShrink(inputFile, fileLength);
+        return _readRasterFileToPng(inputFile);
     }
   }
 
@@ -260,24 +348,6 @@ class ImageConverterService {
   Future<Uint8List> _decodeHeicFileToPngBytes(File file, int fileLength) async {
     if (kIsWeb) {
       throw Exception(AppStrings.failedToDecodeHeic);
-    }
-
-    if (fileLength >= _preShrinkMinBytes) {
-      final tmp = await _nativePreShrinkToJpegTemp(file);
-      if (tmp != null) {
-        try {
-          final b = await tmp.readAsBytes();
-          if (b.isNotEmpty) {
-            return _runWorkerRasterToPng(b);
-          }
-        } catch (_) {
-          // fall through to other strategies
-        } finally {
-          try {
-            if (await tmp.exists()) await tmp.delete();
-          } catch (_) {}
-        }
-      }
     }
 
     Future<Uint8List?> tryFlutterImageCompress() async {
@@ -425,7 +495,6 @@ class ImageConverterService {
         fullWidth: page.width,
         fullHeight: page.height,
       );
-
       final pixels = Uint8List.fromList(pageImage.pixels);
       final pw = pageImage.width;
       final ph = pageImage.height;
@@ -448,20 +517,22 @@ class ImageConverterService {
   }
 
   /// Растр (PNG bytes) → одностраничный PDF ([pdf]).
+  ///
+  /// Всегда отдельный даунскейл max 1920 (даже после policy pre-shrink) — PDF сильно жрёт RAM при save.
   Future<ConvertedFile> _encodePdf({
     required Uint8List workingPngBytes,
     required String outPath,
   }) async {
-    // Меньшая встраиваемая картинка — меньше OOM при doc.save() на телефонах.
     final pdfPng = await _runDownscalePngMaxSide(workingPngBytes, 1920);
 
     final doc = pw.Document();
     final image = pw.MemoryImage(pdfPng);
-
+    // Всегда A4 + contain — не раздуваем страницу до пиксельного размера исходника.
     doc.addPage(
       pw.Page(
+        pageFormat: PdfPageFormat.a4,
         build: (_) => pw.Center(
-          child: pw.Image(image),
+          child: pw.Image(image, fit: pw.BoxFit.contain),
         ),
       ),
     );
@@ -504,6 +575,13 @@ class ImageConverterService {
     final outFile = File(outPath);
     await outFile.writeAsBytes(outputBytes);
     await OutputFileValidator.assertValid(outFile);
+    // Round-trip только для TIFF; JPG/PNG/GIF/BMP не трогаем (скорость).
+    if (targetFormat == ImageFormat.tiff) {
+      await OutputRoundTripValidator.assertDecodesAfterWrite(
+        outFile,
+        ImageFormat.tiff,
+      );
+    }
     return ConvertedFile(file: outFile, format: targetFormat);
   }
 
@@ -554,6 +632,10 @@ class ImageConverterService {
       }
       await outFile.writeAsBytes(avifBytes);
       await OutputFileValidator.assertValid(outFile);
+      await OutputRoundTripValidator.assertDecodesAfterWrite(
+        outFile,
+        ImageFormat.avif,
+      );
       return ConvertedFile(file: outFile, format: ImageFormat.avif);
     } catch (_) {
       final smaller = await _runDownscalePngMaxSide(workingPngBytes, 2048);
@@ -564,6 +646,10 @@ class ImageConverterService {
         }
         await outFile.writeAsBytes(avifBytes);
         await OutputFileValidator.assertValid(outFile);
+        await OutputRoundTripValidator.assertDecodesAfterWrite(
+          outFile,
+          ImageFormat.avif,
+        );
         return ConvertedFile(file: outFile, format: ImageFormat.avif);
       } catch (_) {
         throw Exception(AppStrings.failedToEncodeAvif);

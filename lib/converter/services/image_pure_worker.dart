@@ -6,11 +6,11 @@ import 'package:image/image.dart' as img;
 import '../models/image_format.dart';
 import 'simple_tiff_encoder.dart';
 
-/// Макс. сторона растра на телефонах (OOM при больших значениях).
-const int kWorkerMaxImageDimension = 3072;
+/// Макс. сторона растра (панорамы 12k×2k и т.п. проходят по MP, но губят RAM при PNG/TIFF).
+const int kWorkerMaxImageDimension = 6000;
 
-/// Лимит мегапикселей после декода (HEIC 12MP+ × несколько копий = вылет).
-const int kWorkerMaxPixels = 10 * 1000 * 1000;
+/// Жёсткий потолок мегапикселей после декода (важнее, чем только MB файла).
+const int kWorkerMaxPixels = 10 * 1000 * 1000; // > 10M px → даунскейл в capRasterForMemory
 
 /// Принудительный даунскейл при тяжёлом исходном файле (даже если «узкий» HEIC).
 const int kWorkerAutoResizeFileThresholdBytes = 8 * 1024 * 1024;
@@ -74,7 +74,18 @@ Uint8List workerDownscalePngMaxSide(Uint8List pngBytes, int maxSide) {
   return Uint8List.fromList(img.encodePng(im));
 }
 
+/// Проверка, что записанный TIFF реально читается тем же декодером.
+void workerAssertTiffReadable(Uint8List bytes) {
+  final im = img.decodeTiff(bytes);
+  if (im == null) {
+    throw FormatException('tiff_roundtrip');
+  }
+}
+
 /// Нормализация рабочего PNG (даунскейл при больших пикселях / тяжёлом файле).
+///
+/// [sourceFileLengthBytes] — размер **текущего рабочего файла** на диске (после pre-shrink),
+/// не исходного HEIC/JPEG, чтобы эвристика heavyFile соответствовала реальному потоку байт.
 Uint8List workerNormalizeWorkingPng(
   Uint8List workingPngBytes,
   int sourceFileLengthBytes,
