@@ -5,54 +5,55 @@ import 'package:path/path.dart' as p;
 import 'package:saver_gallery/saver_gallery.dart';
 
 import '../../constants/app_strings.dart';
+import '../models/image_format.dart';
+import 'image_save_policy.dart';
 
+/// Сохранение результата конвертации: стратегия **только по [ImageFormat]**,
+/// без ветвления по размеру файла.
 class ImageSaveService {
-  @visibleForTesting
-  static bool useFilePathApi(String fileName, int lengthBytes) {
-    final lower = fileName.toLowerCase();
-    final isPdf = lower.endsWith('.pdf');
-    return isPdf || lengthBytes > 5 * 1024 * 1024;
-  }
-
-  /// Сохраняет результат в галерею / файлы устройства.
-  ///
-  /// PDF и очень большие файлы — через [SaverGallery.saveFile] (без дублирования
-  /// всего файла в памяти как у `saveImage`).
-  Future<void> save(File file) async {
+  /// Сохраняет [file] в галерею / хранилище в зависимости от [format].
+  Future<void> save({
+    required File file,
+    required ImageFormat format,
+  }) async {
     final fileName = p.basename(file.path);
-    final lower = fileName.toLowerCase();
-    final length = await file.length();
 
-    final isPdf = lower.endsWith('.pdf');
-    final useFileApi = useFilePathApi(fileName, length);
+    if (kDebugMode) {
+      debugPrint('[GC] save start: ${file.path}');
+      debugPrint(
+        '[GC] save mode: ${ImageSavePolicy.useGalleryImageApi(format) ? "galleryImage(saveImage)" : "fileExport(saveFile)"} format=$format',
+      );
+    }
 
     try {
-      if (useFileApi) {
-        final result = await SaverGallery.saveFile(
-          filePath: file.path,
+      if (ImageSavePolicy.useGalleryImageApi(format)) {
+        final bytes = await file.readAsBytes();
+        if (bytes.isEmpty) {
+          throw Exception(AppStrings.outputFileEmpty);
+        }
+        final result = await SaverGallery.saveImage(
+          Uint8List.fromList(bytes),
           fileName: fileName,
+          quality: 100,
           skipIfExists: false,
         );
         if (!result.isSuccess) {
-          throw Exception(
-            isPdf ? AppStrings.savePdfFailed : (result.errorMessage ?? AppStrings.saveFailed),
-          );
+          throw Exception(result.errorMessage ?? AppStrings.saveFailed);
         }
         return;
       }
 
-      final bytes = await file.readAsBytes();
-      if (bytes.isEmpty) {
-        throw Exception(AppStrings.outputFileEmpty);
-      }
-      final result = await SaverGallery.saveImage(
-        Uint8List.fromList(bytes),
+      final result = await SaverGallery.saveFile(
+        filePath: file.path,
         fileName: fileName,
         skipIfExists: false,
       );
-
       if (!result.isSuccess) {
-        throw Exception(result.errorMessage ?? AppStrings.saveFailed);
+        throw Exception(
+          format == ImageFormat.pdf
+              ? AppStrings.savePdfFailed
+              : (result.errorMessage ?? AppStrings.saveFailed),
+        );
       }
     } catch (e) {
       if (e is Exception) rethrow;

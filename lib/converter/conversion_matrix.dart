@@ -4,9 +4,11 @@ import 'models/image_format.dart';
 // Keep blocked pairs minimal. Add only combinations confirmed unstable on real Android.
 
 /// Минимальный список **подтверждённо плохих** пар вход → выход (ключ `input.name->target.name`).
+///
+/// Пары «тот же формат» (jpg→jpg, heic→heic, …) всегда запрещены — см. [isAllowed].
 abstract final class ConversionMatrix {
   static const Set<String> _blockedPairs = {
-    'pdf->pdf',
+    'heic->pdf',
     'avif->pdf',
     'avif->tiff',
     'avif->gif',
@@ -17,6 +19,9 @@ abstract final class ConversionMatrix {
     required ImageFormat input,
     required ImageFormat target,
   }) {
+    if (input == target) {
+      return false;
+    }
     final key = '${input.name}->${target.name}';
     return !_blockedPairs.contains(key);
   }
