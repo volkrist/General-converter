@@ -15,6 +15,11 @@ abstract final class AppStrings {
   static const String save = 'Save';
   static const String saving = 'Saving...';
   static const String saved = 'Saved';
+  /// Кнопка для JPG/PNG (gallery image API).
+  static const String saveToGallery = 'Save to gallery';
+  /// Кнопка для PDF, HEIC, AVIF, TIFF, WebP, GIF, BMP (file export).
+  static const String exportFile = 'Export file';
+  static const String exporting = 'Exporting...';
   static const String share = 'Share';
   static const String dismiss = 'Dismiss';
   static const String emptyStateHint = 'Tap + to pick from gallery or files';

@@ -38,6 +38,9 @@ void main() {
 
   for (final src in syntheticRasterFormats) {
     for (final tgt in basicTargets) {
+      if (src == tgt) {
+        continue; // матрица запрещает вход == выход
+      }
       test('convert synthetic $src -> $tgt', () async {
         final input = await writeSyntheticRaster(dir: tempDir, format: src);
         final out = await service.convert(

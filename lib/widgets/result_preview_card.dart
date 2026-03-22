@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
 import '../constants/app_strings.dart';
+import '../converter/models/image_format.dart';
+import '../converter/services/image_save_policy.dart';
 
 class ResultPreviewCard extends StatelessWidget {
   const ResultPreviewCard({
     super.key,
     required this.file,
     required this.formatLabel,
+    required this.resultFormat,
     required this.onSave,
     this.onShare,
     this.onOpen,
@@ -20,6 +23,8 @@ class ResultPreviewCard extends StatelessWidget {
 
   final File file;
   final String formatLabel;
+  /// Формат результата — определяет подпись кнопки (gallery vs export).
+  final ImageFormat resultFormat;
   final VoidCallback onSave;
   final VoidCallback? onShare;
   final VoidCallback? onOpen;
@@ -40,6 +45,14 @@ class ResultPreviewCard extends StatelessWidget {
     };
     return !noPreview.contains(ext);
   }
+
+  String get _saveLabel => ImageSavePolicy.useGalleryImageApi(resultFormat)
+      ? AppStrings.saveToGallery
+      : AppStrings.exportFile;
+
+  String get _savingLabel => ImageSavePolicy.useGalleryImageApi(resultFormat)
+      ? AppStrings.saving
+      : AppStrings.exporting;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +138,7 @@ class ResultPreviewCard extends StatelessWidget {
                           )
                         : const Icon(Icons.save_alt),
                     label: Text(
-                      isSaving ? AppStrings.saving : AppStrings.save,
+                      isSaving ? _savingLabel : _saveLabel,
                     ),
                   ),
               ],

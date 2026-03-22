@@ -157,7 +157,10 @@ class ConverterViewModel extends ChangeNotifier {
     try {
       isSaving = true;
       notifyListeners();
-      await _saver.save(result!.file);
+      await _saver.save(
+        file: result!.file,
+        format: result!.format,
+      );
       isSaved = true;
     } catch (e) {
       error = UserErrorMapper.message(e, fallback: AppStrings.saveFailed);

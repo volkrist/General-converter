@@ -1,19 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:general_converter/converter/services/image_save_service.dart';
+import 'package:general_converter/converter/models/image_format.dart';
+import 'package:general_converter/converter/services/image_save_policy.dart';
 
 void main() {
-  test('PDF always uses file-path API branch', () {
-    expect(ImageSaveService.useFilePathApi('doc.pdf', 100), isTrue);
+  test('JPG and PNG use gallery image API', () {
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.jpg), isTrue);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.png), isTrue);
   });
 
-  test('large non-PDF uses file-path API', () {
-    expect(
-      ImageSaveService.useFilePathApi('huge.jpg', 6 * 1024 * 1024),
-      isTrue,
-    );
-  });
-
-  test('small JPG uses saveImage branch', () {
-    expect(ImageSaveService.useFilePathApi('a.jpg', 1024), isFalse);
+  test('PDF, HEIC, AVIF, TIFF, WebP, GIF, BMP use file export', () {
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.pdf), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.heic), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.avif), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.tiff), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.webp), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.gif), isFalse);
+    expect(ImageSavePolicy.useGalleryImageApi(ImageFormat.bmp), isFalse);
   });
 }

@@ -149,6 +149,7 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
                 ResultPreviewCard(
                   file: vm.result!.file,
                   formatLabel: vm.result!.format.label,
+                  resultFormat: vm.result!.format,
                   onSave: vm.save,
                   onOpen: vm.openResultExternally,
                   onShare: () {

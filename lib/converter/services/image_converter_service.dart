@@ -10,7 +10,6 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:heif_converter/heif_converter.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart' show PdfPageFormat;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdfx/pdfx.dart';
 
@@ -70,15 +69,24 @@ class ImageConverterService {
       throw Exception(AppStrings.formatPairNotSupported);
     }
 
+    if (kDebugMode) {
+      debugPrint('[GC] convert start: ${inputFile.path}');
+      debugPrint(
+        '[GC] sourceFormat=$sourceFormat targetFormat=$targetFormat size=$fileLength',
+      );
+    }
+
     File? policyTempFile;
     try {
       // Один служебный pre-shrink по политике, затем decode → один финальный encode.
+      if (kDebugMode) debugPrint('[GC] preShrink start');
       final workingFile = await _policyPreShrinkIfNeeded(
         inputFile: inputFile,
         inputFormat: sourceFormat,
         targetFormat: targetFormat,
         inputBytes: fileLength,
       );
+      if (kDebugMode) debugPrint('[GC] preShrink done: ${workingFile.path}');
       if (workingFile.path != inputFile.path) {
         policyTempFile = workingFile;
       }
@@ -89,11 +97,13 @@ class ImageConverterService {
 
       // Pre-shrink / политика — по исходному [fileLength]; normalize — по размеру рабочего файла.
       // Один буфер [stage]: decode → normalize → encode, без лишних одновременных копий в именовании.
+      if (kDebugMode) debugPrint('[GC] decode start');
       Uint8List stage = await _decodeToPngBytes(
         inputFile: workingFile,
         sourceFormat: effectiveFormat,
         fileLength: effectiveLength,
       );
+      if (kDebugMode) debugPrint('[GC] decode done: ${stage.length}');
 
       if (effectiveFormat != ImageFormat.pdf) {
         stage = await _normalizeWorkingPngForMemory(
@@ -107,30 +117,39 @@ class ImageConverterService {
         targetFormat: targetFormat,
       );
 
+      if (kDebugMode) debugPrint('[GC] encode start: $targetFormat');
+      late final ConvertedFile converted;
       switch (targetFormat) {
         case ImageFormat.heic:
-          return _encodeHeic(workingPngBytes: stage, outPath: outPath);
+          converted = await _encodeHeic(workingPngBytes: stage, outPath: outPath);
+          break;
 
         case ImageFormat.avif:
-          return _encodeAvif(workingPngBytes: stage, outPath: outPath);
+          converted = await _encodeAvif(workingPngBytes: stage, outPath: outPath);
+          break;
 
         case ImageFormat.webp:
-          return _encodeWebp(workingPngBytes: stage, outPath: outPath);
+          converted = await _encodeWebp(workingPngBytes: stage, outPath: outPath);
+          break;
 
         case ImageFormat.pdf:
-          return _encodePdf(workingPngBytes: stage, outPath: outPath);
+          converted = await _encodePdf(workingPngBytes: stage, outPath: outPath);
+          break;
 
         case ImageFormat.jpg:
         case ImageFormat.png:
         case ImageFormat.gif:
         case ImageFormat.tiff:
         case ImageFormat.bmp:
-          return _encodeBasic(
+          converted = await _encodeBasic(
             workingPngBytes: stage,
             targetFormat: targetFormat,
             outPath: outPath,
           );
+          break;
       }
+      if (kDebugMode) debugPrint('[GC] encode done: $outPath');
+      return converted;
     } on OutOfMemoryError {
       throw Exception(AppStrings.notEnoughMemory);
     } catch (e) {
@@ -533,12 +552,10 @@ class ImageConverterService {
 
     final doc = pw.Document();
     final image = pw.MemoryImage(pdfPng);
-    // Всегда A4 + contain — не раздуваем страницу до пиксельного размера исходника.
     doc.addPage(
       pw.Page(
-        pageFormat: PdfPageFormat.a4,
         build: (_) => pw.Center(
-          child: pw.Image(image, fit: pw.BoxFit.contain),
+          child: pw.Image(image),
         ),
       ),
     );
