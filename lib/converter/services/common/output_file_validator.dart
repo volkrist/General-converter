@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../constants/app_strings.dart';
+import '../../../constants/app_strings.dart';
 
 /// Проверка результата после записи на диск.
 abstract final class OutputFileValidator {

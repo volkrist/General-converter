@@ -5,7 +5,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:image/image.dart' as img;
 
 import 'package:general_converter/converter/models/image_format.dart';
-import 'package:general_converter/converter/services/image_converter_service.dart';
+import 'package:general_converter/converter/services/android/image_converter_service.dart';
 
 import '../test/converter/synthetic_raster_files.dart';
 

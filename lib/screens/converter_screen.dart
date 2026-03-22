@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../constants/app_strings.dart';
 import '../converter/viewmodels/converter_view_model.dart';
@@ -21,8 +20,15 @@ class ConverterScreen extends StatelessWidget {
   }
 }
 
-class _ConverterView extends StatelessWidget {
+class _ConverterView extends StatefulWidget {
   const _ConverterView();
+
+  @override
+  State<_ConverterView> createState() => _ConverterViewState();
+}
+
+class _ConverterViewState extends State<_ConverterView> {
+  String? _scheduledDialogForMessage;
 
   void _showPickSourceSheet(BuildContext context, ConverterViewModel vm) {
     showModalBottomSheet<void>(
@@ -57,11 +63,56 @@ class _ConverterView extends StatelessWidget {
                 vm.pickFromFiles();
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.layers_outlined),
+              title: Text(AppStrings.pickManyFiles),
+              onTap: () {
+                Navigator.pop(ctx);
+                vm.pickBatchFromFiles();
+              },
+            ),
             const SizedBox(height: 8),
           ],
         ),
       ),
     );
+  }
+
+  void _scheduleErrorDialogIfNeeded(BuildContext context, ConverterViewModel vm) {
+    final message = vm.dialogError;
+    if (message == null) {
+      _scheduledDialogForMessage = null;
+      return;
+    }
+    if (message == _scheduledDialogForMessage) return;
+    _scheduledDialogForMessage = message;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!context.mounted) return;
+      final current = vm.dialogError;
+      if (current == null || current != message) return;
+
+      await showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Error'),
+          content: Text(current),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+                vm.clearError();
+                setState(() => _scheduledDialogForMessage = null);
+              },
+              child: const Text(AppStrings.dismiss),
+            ),
+          ],
+        ),
+      );
+      if (mounted && vm.dialogError == null) {
+        setState(() => _scheduledDialogForMessage = null);
+      }
+    });
   }
 
   @override
@@ -71,11 +122,19 @@ class _ConverterView extends StatelessWidget {
 
     return Consumer<ConverterViewModel>(
       builder: (context, vm, _) {
+        _scheduleErrorDialogIfNeeded(context, vm);
+
         return Scaffold(
           appBar: AppBar(
             title: const Text(AppStrings.appName),
             centerTitle: true,
             actions: [
+              if (vm.isConverting || vm.isBatchConverting)
+                TextButton.icon(
+                  onPressed: vm.cancelConvert,
+                  icon: const Icon(Icons.close),
+                  label: const Text(AppStrings.cancel),
+                ),
               IconButton(
                 icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
                 onPressed: () {
@@ -98,6 +157,7 @@ class _ConverterView extends StatelessWidget {
 
 Widget _buildBody(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
+
   return Column(
     children: [
       if (vm.error != null)
@@ -111,6 +171,27 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
           message: vm.warningMessage!,
           isWarning: true,
           onDismiss: vm.clearWarning,
+        ),
+      if (vm.isConverting || vm.isBatchConverting)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+          child: Column(
+            children: [
+              LinearProgressIndicator(
+                value: vm.progress <= 0 || vm.progress >= 1 ? null : vm.progress,
+              ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  vm.progressLabel.isEmpty
+                      ? vm.convertingProgressLabel
+                      : vm.progressLabel,
+                  style: theme.textTheme.bodySmall,
+                ),
+              ),
+            ],
+          ),
         ),
       Expanded(
         child: Padding(
@@ -132,36 +213,69 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
                 Text(
                   vm.conversionTimeHint!,
                   style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
               const SizedBox(height: 24),
               ConvertButton(
-                onPressed:
-                    vm.selectedImage != null ? () => vm.convert() : null,
+                onPressed: vm.selectedImage != null && !vm.isBatchConverting
+                    ? () => vm.convert()
+                    : null,
                 isLoading: vm.isConverting,
-                enabled: vm.selectedImage != null,
+                enabled: vm.selectedImage != null && !vm.isBatchConverting,
                 loadingLabel: vm.convertingProgressLabel,
+              ),
+              const SizedBox(height: 12),
+              FilledButton.tonalIcon(
+                onPressed: vm.batchFiles.isEmpty ||
+                        vm.isConverting ||
+                        vm.isBatchConverting
+                    ? null
+                    : vm.convertBatch,
+                icon: const Icon(Icons.layers),
+                label: Text(
+                  vm.batchFiles.isEmpty
+                      ? AppStrings.convertBatch
+                      : '${AppStrings.convertBatch} (${vm.batchSummary})',
+                ),
               ),
               if (vm.result != null) ...[
                 const SizedBox(height: 24),
                 ResultPreviewCard(
                   file: vm.result!.file,
+                  fileName: vm.result!.displayName,
                   formatLabel: vm.result!.format.label,
-                  resultFormat: vm.result!.format,
                   onSave: vm.save,
                   onOpen: vm.openResultExternally,
-                  onShare: () {
-                    SharePlus.instance.share(
-                      ShareParams(
-                        files: [XFile(vm.result!.file.path)],
-                        subject: AppStrings.appName,
-                      ),
-                    );
-                  },
+                  onShare: vm.shareResult,
+                  onRename: vm.renameOutputBase,
                   isSaving: vm.isSaving,
                   isSaved: vm.isSaved,
+                ),
+              ],
+              if (vm.batchResults.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                Text(
+                  'Batch results: ${vm.batchResults.length}',
+                  style: theme.textTheme.titleMedium,
+                ),
+                const SizedBox(height: 12),
+                ...vm.batchResults.map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: ResultPreviewCard(
+                      file: item.file,
+                      fileName: item.displayName,
+                      formatLabel: item.format.label,
+                      onSave: () => vm.saveConverted(item),
+                      onOpen: null,
+                      onShare: null,
+                      onRename: (_) {},
+                      isSaving: vm.isSaving,
+                      isSaved: false,
+                    ),
+                  ),
                 ),
               ],
             ],

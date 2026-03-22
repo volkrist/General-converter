@@ -1,4 +1,4 @@
-import '../models/image_format.dart';
+import '../../models/image_format.dart';
 
 /// Один служебный pre-shrink до тяжёлого decode/encode — не цепочка пользовательских форматов.
 ///

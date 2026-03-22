@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_strings.dart';
 import '../converter/models/image_format.dart';
 
 /// Список целей задаёт только ViewModel ([ConverterViewModel.allowedTargetFormats]),
@@ -22,7 +23,7 @@ class FormatDropdown extends StatelessWidget {
     if (items.isEmpty) {
       return const InputDecorator(
         decoration: InputDecoration(
-          labelText: 'Target format',
+          labelText: AppStrings.targetFormat,
           border: OutlineInputBorder(),
         ),
         child: SizedBox(height: 48, child: Center(child: Text('—'))),
@@ -31,7 +32,7 @@ class FormatDropdown extends StatelessWidget {
 
     return InputDecorator(
       decoration: const InputDecoration(
-        labelText: 'Target format',
+        labelText: AppStrings.targetFormat,
         border: OutlineInputBorder(),
         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       ),

@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
 import '../constants/app_strings.dart';
-import '../converter/models/image_format.dart';
-import '../converter/services/image_save_policy.dart';
 
-class ResultPreviewCard extends StatelessWidget {
+class ResultPreviewCard extends StatefulWidget {
   const ResultPreviewCard({
     super.key,
     required this.file,
+    required this.fileName,
     required this.formatLabel,
-    required this.resultFormat,
     required this.onSave,
+    required this.onRename,
     this.onShare,
     this.onOpen,
     this.isSaving = false,
@@ -22,19 +21,25 @@ class ResultPreviewCard extends StatelessWidget {
   });
 
   final File file;
+  final String fileName;
   final String formatLabel;
-  /// Формат результата — определяет подпись кнопки (gallery vs export).
-  final ImageFormat resultFormat;
   final VoidCallback onSave;
+  final ValueChanged<String> onRename;
   final VoidCallback? onShare;
   final VoidCallback? onOpen;
   final bool isSaving;
   final bool isSaved;
 
-  /// Android [Image.file] часто не умеет TIFF/HEIC/PDF — показываем заглушку.
+  @override
+  State<ResultPreviewCard> createState() => _ResultPreviewCardState();
+}
+
+class _ResultPreviewCardState extends State<ResultPreviewCard> {
+  late final TextEditingController _nameController;
+
   bool get _usePlatformImagePreview {
     if (kIsWeb) return false;
-    final ext = p.extension(file.path).toLowerCase();
+    final ext = p.extension(widget.file.path).toLowerCase();
     const noPreview = {
       '.tiff',
       '.tif',
@@ -46,20 +51,33 @@ class ResultPreviewCard extends StatelessWidget {
     return !noPreview.contains(ext);
   }
 
-  String get _saveLabel => ImageSavePolicy.useGalleryImageApi(resultFormat)
-      ? AppStrings.saveToGallery
-      : AppStrings.exportFile;
+  @override
+  void initState() {
+    super.initState();
+    _nameController =
+        TextEditingController(text: p.basenameWithoutExtension(widget.fileName));
+  }
 
-  String get _savingLabel => ImageSavePolicy.useGalleryImageApi(resultFormat)
-      ? AppStrings.saving
-      : AppStrings.exporting;
+  @override
+  void didUpdateWidget(covariant ResultPreviewCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final nextBase = p.basenameWithoutExtension(widget.fileName);
+    if (_nameController.text != nextBase) {
+      _nameController.text = nextBase;
+    }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final name = p.basename(file.path);
     final details = kIsWeb
-        ? formatLabel
-        : '$formatLabel · ${(file.lengthSync() / 1024).toStringAsFixed(1)} KB';
+        ? widget.formatLabel
+        : '${widget.formatLabel} · ${(widget.file.lengthSync() / 1024).toStringAsFixed(1)} KB';
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -69,78 +87,92 @@ class ResultPreviewCard extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 240),
             child: kIsWeb
-                ? Image.network(
-                    file.path,
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, error, stack) => const SizedBox(
-                      height: 120,
-                      child: Center(child: Icon(Icons.broken_image, size: 48)),
-                    ),
-                  )
+                ? _NoPreviewPlaceholder(formatLabel: widget.formatLabel)
                 : _usePlatformImagePreview
                     ? Image.file(
-                        file,
+                        widget.file,
                         fit: BoxFit.contain,
-                        errorBuilder: (_, error, stack) =>
-                            _NoPreviewPlaceholder(formatLabel: formatLabel),
+                        errorBuilder: (context, err, st) =>
+                            _NoPreviewPlaceholder(
+                                formatLabel: widget.formatLabel),
                       )
-                    : _NoPreviewPlaceholder(formatLabel: formatLabel),
+                    : _NoPreviewPlaceholder(formatLabel: widget.formatLabel),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        details,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    labelText: AppStrings.renameOutput,
+                    hintText: AppStrings.renameHint,
+                    border: OutlineInputBorder(),
+                    isDense: true,
                   ),
+                  onChanged: widget.onRename,
                 ),
-                if (onOpen != null)
-                  IconButton(
-                    onPressed: onOpen,
-                    icon: const Icon(Icons.open_in_new),
-                    tooltip: AppStrings.open,
-                  ),
-                if (onShare != null)
-                  IconButton(
-                    onPressed: onShare,
-                    icon: const Icon(Icons.share),
-                    tooltip: AppStrings.share,
-                  ),
-                const SizedBox(width: 8),
-                if (isSaved)
-                  const Chip(
-                    avatar: Icon(Icons.check_circle, size: 18),
-                    label: Text(AppStrings.saved),
-                  )
-                else
-                  FilledButton.tonalIcon(
-                    onPressed: isSaving ? null : onSave,
-                    icon: isSaving
-                        ? const SizedBox(
-                            width: 18,
-                            height: 18,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.save_alt),
-                    label: Text(
-                      isSaving ? _savingLabel : _saveLabel,
+                const SizedBox(height: 12),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.fileName,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            details,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    if (widget.onOpen != null)
+                      IconButton(
+                        onPressed: widget.onOpen,
+                        icon: const Icon(Icons.open_in_new),
+                        tooltip: AppStrings.open,
+                      ),
+                    if (widget.onShare != null)
+                      IconButton(
+                        onPressed: widget.onShare,
+                        icon: const Icon(Icons.share),
+                        tooltip: AppStrings.share,
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: widget.isSaved
+                      ? const Chip(
+                          avatar: Icon(Icons.check_circle, size: 18),
+                          label: Text(AppStrings.saved),
+                        )
+                      : FilledButton.tonalIcon(
+                          onPressed: widget.isSaving ? null : widget.onSave,
+                          icon: widget.isSaving
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(
+                                      strokeWidth: 2),
+                                )
+                              : const Icon(Icons.save_alt),
+                          label: Text(
+                            widget.isSaving
+                                ? AppStrings.saving
+                                : AppStrings.save,
+                          ),
+                        ),
+                ),
               ],
             ),
           ),

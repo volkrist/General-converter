@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:saver_gallery/saver_gallery.dart';
 
-import '../../constants/app_strings.dart';
-import '../models/image_format.dart';
+import '../../../constants/app_strings.dart';
+import '../../models/image_format.dart';
 import 'image_save_policy.dart';
 
 /// Сохранение результата конвертации: стратегия **только по [ImageFormat]**,

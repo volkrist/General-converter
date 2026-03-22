@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:general_converter/converter/models/image_format.dart';
-import 'package:general_converter/converter/services/conversion_policy.dart';
+import 'package:general_converter/converter/services/common/conversion_policy.dart';
 
 void main() {
   test('shouldUsePreShrink for HEIC always', () {

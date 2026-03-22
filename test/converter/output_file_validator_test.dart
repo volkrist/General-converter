@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:general_converter/constants/app_strings.dart';
-import 'package:general_converter/converter/output_file_validator.dart';
+import 'package:general_converter/converter/services/common/output_file_validator.dart';
 import 'package:path/path.dart' as p;
 
 void main() {

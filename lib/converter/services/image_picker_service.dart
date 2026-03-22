@@ -3,14 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
-/// Выбор файла: **галерея** (растровые фото) или **файлы** (все поддерживаемые + PDF).
 class ImagePickerService {
   ImagePickerService({ImagePicker? galleryPicker})
       : _gallery = galleryPicker ?? ImagePicker();
 
   final ImagePicker _gallery;
 
-  /// Расширения, согласованные с [ImageFormat.fromPath].
   static const allowedExtensions = <String>[
     'jpg',
     'jpeg',
@@ -26,7 +24,6 @@ class ImagePickerService {
     'pdf',
   ];
 
-  /// Системная галерея / фото (без PDF).
   Future<File?> pickFromGallery() async {
     final xFile = await _gallery.pickImage(
       source: ImageSource.gallery,
@@ -36,7 +33,6 @@ class ImagePickerService {
     return File(xFile.path);
   }
 
-  /// Проводник файлов: изображения + PDF.
   Future<File?> pickFromFiles() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -46,5 +42,20 @@ class ImagePickerService {
     final path = result.files.single.path;
     if (path == null) return null;
     return File(path);
+  }
+
+  Future<List<File>> pickManyFromFiles() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+      type: FileType.custom,
+      allowedExtensions: allowedExtensions,
+    );
+    if (result == null || result.files.isEmpty) return <File>[];
+
+    return result.files
+        .map((e) => e.path)
+        .whereType<String>()
+        .map(File.new)
+        .toList();
   }
 }

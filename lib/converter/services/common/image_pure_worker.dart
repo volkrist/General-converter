@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:image/image.dart' as img;
 
-import '../models/image_format.dart';
+import '../../models/image_format.dart';
 import 'simple_tiff_encoder.dart';
 
 /// Макс. сторона растра (панорамы 12k×2k и т.п. проходят по MP, но губят RAM при PNG/TIFF).
@@ -153,7 +153,9 @@ img.Image capRasterForMemory(img.Image source) {
   return im;
 }
 
-/// Кодирует рабочий PNG в целевой растровый формат (без HEIC/WebP/AVIF/PDF).
+/// Кодирует рабочий PNG в целевой растровый формат.
+///
+/// WebP — через `package:image`. HEIC/AVIF/PDF здесь не кодируются (только Android / отдельные пути).
 Uint8List workerEncodeBasic(Uint8List workingPngBytes, int formatIndex) {
   final targetFormat = ImageFormat.values[formatIndex];
   final decoded = img.decodeImage(workingPngBytes);
@@ -175,11 +177,15 @@ Uint8List workerEncodeBasic(Uint8List workingPngBytes, int formatIndex) {
       return _encodeTiffRgbBaseline(im);
     case ImageFormat.bmp:
       return Uint8List.fromList(img.encodeBmp(im));
-    case ImageFormat.heic:
-    case ImageFormat.avif:
     case ImageFormat.webp:
+      // Кодирование WebP в `package:image` нет (только decode). Web — Canvas; Android — FlutterImageCompress.
+      throw StateError('workerEncodeBasic: WebP use platform encoder');
+    case ImageFormat.heic:
+      throw StateError('workerEncodeBasic: HEIC encode supported only on Android');
+    case ImageFormat.avif:
+      throw StateError('workerEncodeBasic: AVIF encode supported only on Android');
     case ImageFormat.pdf:
-      throw StateError('workerEncodeBasic: $targetFormat not supported');
+      throw StateError('workerEncodeBasic: PDF not supported');
   }
 }
 

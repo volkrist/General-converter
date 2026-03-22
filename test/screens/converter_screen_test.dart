@@ -48,7 +48,7 @@ void main() {
       await tester.tap(find.byType(DropdownButton<ImageFormat>));
       await tester.pumpAndSettle();
 
-      for (final format in ConverterCapabilities.supportedOutputFormats) {
+      for (final format in ConverterCapabilities.outputFormatsForPlatform) {
         expect(find.text(format.label), findsWidgets);
       }
     });

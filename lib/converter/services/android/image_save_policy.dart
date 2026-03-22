@@ -1,4 +1,4 @@
-import '../models/image_format.dart';
+import '../../models/image_format.dart';
 
 /// Как сохранять результат: только **JPG/PNG** через gallery image API (`saveImage`),
 /// всё остальное — через путь файла (`saveFile`), без эвристик по размеру.

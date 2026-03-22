@@ -13,14 +13,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdfx/pdfx.dart';
 
-import '../../constants/app_strings.dart';
-import '../conversion_matrix.dart';
-import '../models/converted_file.dart';
-import '../models/image_format.dart';
-import '../output_file_validator.dart';
-import '../output_round_trip_validator.dart';
-import 'conversion_policy.dart';
-import 'image_pure_worker.dart';
+import 'package:general_converter/constants/app_strings.dart';
+import 'package:general_converter/converter/models/converted_file.dart';
+import 'package:general_converter/converter/models/image_format.dart';
+import 'package:general_converter/converter/services/common/conversion_matrix.dart';
+import 'package:general_converter/converter/services/common/conversion_policy.dart';
+import 'package:general_converter/converter/services/common/image_pure_worker.dart';
+import 'package:general_converter/converter/services/common/output_file_validator.dart';
+import 'package:general_converter/converter/services/common/output_round_trip_validator.dart';
 
 /// [ui.Image.toByteData] кладёт данные в общий [ByteBuffer]: `buffer.asUint8List()`
 /// без offset/length захватывает весь буфер → битый PNG и ошибка «файл повреждён».
@@ -521,9 +521,7 @@ class ImageConverterService {
       }
 
       final pixels = pageImage.bytes;
-      final pw = pageImage.width;
-      final ph = pageImage.height;
-      
+
       try {
         if (kIsWeb) {
           return workerImportEncodedPng(pixels);

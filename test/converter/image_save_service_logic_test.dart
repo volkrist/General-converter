@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:general_converter/converter/models/image_format.dart';
-import 'package:general_converter/converter/services/image_save_policy.dart';
+import 'package:general_converter/converter/services/android/image_save_policy.dart';
 
 void main() {
   test('JPG and PNG use gallery image API', () {

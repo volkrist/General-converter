@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:general_converter/converter/services/image_pure_worker.dart';
-import 'package:general_converter/converter/services/simple_tiff_encoder.dart';
+import 'package:general_converter/converter/services/common/image_pure_worker.dart';
+import 'package:general_converter/converter/services/common/simple_tiff_encoder.dart';
 
 void main() {
   test('encodeRgbTiffUncompressed produces non-empty TIFF header and strip', () {

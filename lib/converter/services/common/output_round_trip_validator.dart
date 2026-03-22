@@ -1,17 +1,43 @@
 import 'dart:io';
 import 'dart:isolate';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
-import '../constants/app_strings.dart';
-import 'models/image_format.dart';
-import 'services/image_pure_worker.dart';
+import 'package:general_converter/constants/app_strings.dart';
+import 'package:general_converter/converter/models/image_format.dart';
+
+import 'image_pure_worker.dart';
 
 /// После encode для «капризных» форматов — убедиться, что файл реально декодится.
 ///
 /// **Только AVIF и TIFF** (JPG/PNG/GIF/BMP не проверяем — лишняя задержка).
 /// HEIC при необходимости можно добавить отдельным путём декода.
 abstract final class OutputRoundTripValidator {
+  /// Web / in-memory: проверка по байтам (без удаления файла).
+  static Future<void> assertDecodesFromBytes(
+    Uint8List bytes,
+    ImageFormat format,
+  ) async {
+    if (format != ImageFormat.avif && format != ImageFormat.tiff) {
+      return;
+    }
+    try {
+      switch (format) {
+        case ImageFormat.avif:
+          await _assertAvifBytes(bytes);
+          break;
+        case ImageFormat.tiff:
+          await _assertTiffBytes(bytes);
+          break;
+        default:
+          break;
+      }
+    } catch (_) {
+      throw Exception(AppStrings.outputEncodeRoundTripFailed);
+    }
+  }
+
   /// При ошибке: удаляет [file] и бросает [AppStrings.outputEncodeRoundTripFailed].
   static Future<void> assertDecodesAfterWrite(
     File file,
@@ -21,16 +47,8 @@ abstract final class OutputRoundTripValidator {
       return;
     }
     try {
-      switch (format) {
-        case ImageFormat.avif:
-          await _assertAvif(file);
-          break;
-        case ImageFormat.tiff:
-          await _assertTiff(file);
-          break;
-        default:
-          break;
-      }
+      final bytes = await file.readAsBytes();
+      await assertDecodesFromBytes(bytes, format);
     } catch (_) {
       try {
         if (await file.exists()) await file.delete();
@@ -39,8 +57,7 @@ abstract final class OutputRoundTripValidator {
     }
   }
 
-  static Future<void> _assertAvif(File file) async {
-    final bytes = await file.readAsBytes();
+  static Future<void> _assertAvifBytes(Uint8List bytes) async {
     if (bytes.isEmpty) {
       throw StateError('empty');
     }
@@ -58,8 +75,7 @@ abstract final class OutputRoundTripValidator {
     }
   }
 
-  static Future<void> _assertTiff(File file) async {
-    final bytes = await file.readAsBytes();
+  static Future<void> _assertTiffBytes(Uint8List bytes) async {
     if (bytes.isEmpty) {
       throw StateError('empty');
     }

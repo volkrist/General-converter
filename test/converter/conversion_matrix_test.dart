@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:general_converter/converter/conversion_matrix.dart';
+import 'package:general_converter/converter/services/common/conversion_matrix.dart';
 import 'package:general_converter/converter/models/image_format.dart';
 
 void main() {

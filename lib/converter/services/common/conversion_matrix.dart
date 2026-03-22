@@ -1,6 +1,5 @@
-import 'converter_capabilities.dart';
-import 'models/image_format.dart';
-
+import '../../converter_capabilities.dart';
+import '../../models/image_format.dart';
 // Keep blocked pairs minimal. Add only combinations confirmed unstable on real Android.
 
 /// Минимальный список **подтверждённо плохих** пар вход → выход (ключ `input.name->target.name`).
@@ -26,9 +25,9 @@ abstract final class ConversionMatrix {
     return !_blockedPairs.contains(key);
   }
 
-  /// Цели для UI — пересечение [ConverterCapabilities.supportedOutputFormats] с матрицей.
+  /// Цели для UI — пересечение платформенного списка выходов с матрицей.
   static List<ImageFormat> allowedOutputsFor(ImageFormat input) {
-    return ConverterCapabilities.supportedOutputFormats
+    return ConverterCapabilities.outputFormatsForPlatform
         .where((t) => isAllowed(input: input, target: t))
         .toList(growable: false);
   }

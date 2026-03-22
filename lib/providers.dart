@@ -1,11 +1,11 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'converter/services/image_converter_service.dart'
+import 'converter/services/android/image_converter_service.dart'
     as core_converter_service;
 import 'converter/services/image_picker_service.dart'
     as core_picker_service;
-import 'converter/services/image_save_service.dart' as core_save_service;
+import 'converter/services/android/image_save_service.dart' as core_save_service;
 import 'converter/viewmodels/converter_view_model.dart' as core_vm;
 import 'theme_view_model.dart';
 
