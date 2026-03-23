@@ -5,6 +5,7 @@ abstract final class AppStrings {
   static const String pickFromGallery = 'Gallery';
   static const String pickFromFiles = 'Files';
   static const String pickManyFiles = 'Batch files';
+  static const String pickFolder = 'Folder';
   static const String pickFileTitle = 'Choose source';
 
   static const String targetFormat = 'Target format';
@@ -89,4 +90,29 @@ abstract final class AppStrings {
   static const String batchDone = 'Batch conversion completed';
   static const String noBatchFiles = 'No files selected for batch conversion';
   static const String progressFiles = 'files';
+
+  static const String batchModeTitle = 'Batch conversion';
+  static const String batchModeSubtitle =
+      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+  static const String batchSummaryTotal = 'Total';
+  static const String batchSummaryDone = 'Done';
+  static const String batchSummaryFailed = 'Failed';
+  static const String batchSummaryQueued = 'Queued';
+  static const String saveAllSuccessful = 'Save all successful';
+  static const String batchSaveAllStarting = 'Saving files...';
+  static String batchSaveAllProgressLabel(int current, int total) =>
+      'Saving $current/$total';
+  static const String retryFailed = 'Retry failed';
+  static const String clearCompleted = 'Clear completed';
+  /// Rows already saved to gallery (unsaved “done” items stay in the list).
+  static const String clearCompletedTooltip =
+      'Remove items marked as saved from this list';
+  static const String clearBatchQueue = 'Clear queue';
+  static const String batchStatusQueued = 'Queued';
+  static const String batchStatusConverting = 'Converting';
+  static const String batchStatusDone = 'Done';
+  static const String batchStatusFailed = 'Failed';
+  static const String batchStatusSaving = 'Saving';
+  static const String batchStatusSaved = 'Saved';
+  static const String batchStatusCancelled = 'Cancelled';
 }

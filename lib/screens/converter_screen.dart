@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/app_strings.dart';
+import '../converter/models/batch_item_state.dart';
 import '../converter/viewmodels/converter_view_model.dart';
 import '../theme_view_model.dart';
+import '../widgets/batch_result_tile.dart';
+import '../widgets/batch_summary_card.dart';
 import '../widgets/conversion_status_banner.dart';
 import '../widgets/convert_button.dart';
 import '../widgets/format_dropdown.dart';
@@ -71,6 +74,14 @@ class _ConverterViewState extends State<_ConverterView> {
                 vm.pickBatchFromFiles();
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.folder_copy_outlined),
+              title: Text(AppStrings.pickFolder),
+              onTap: () {
+                Navigator.pop(ctx);
+                vm.pickBatchFromFolder();
+              },
+            ),
             const SizedBox(height: 8),
           ],
         ),
@@ -78,7 +89,10 @@ class _ConverterViewState extends State<_ConverterView> {
     );
   }
 
-  void _scheduleErrorDialogIfNeeded(BuildContext context, ConverterViewModel vm) {
+  void _scheduleErrorDialogIfNeeded(
+    BuildContext context,
+    ConverterViewModel vm,
+  ) {
     final message = vm.dialogError;
     if (message == null) {
       _scheduledDialogForMessage = null;
@@ -194,94 +208,144 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
           ),
         ),
       Expanded(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: ListView(
-            children: [
-              if (vm.selectedImage != null)
-                SelectedFileCard(file: vm.selectedImage!)
-              else
-                const _EmptyState(),
-              const SizedBox(height: 16),
-              FormatDropdown(
-                value: vm.selectedFormat,
-                allowedFormats: vm.allowedTargetFormats,
-                onChanged: vm.setFormat,
-              ),
-              if (vm.conversionTimeHint != null) ...[
-                const SizedBox(height: 8),
-                Text(
-                  vm.conversionTimeHint!,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ],
-              const SizedBox(height: 24),
-              ConvertButton(
-                onPressed: vm.selectedImage != null && !vm.isBatchConverting
-                    ? () => vm.convert()
-                    : null,
-                isLoading: vm.isConverting,
-                enabled: vm.selectedImage != null && !vm.isBatchConverting,
-                loadingLabel: vm.convertingProgressLabel,
-              ),
-              const SizedBox(height: 12),
-              FilledButton.tonalIcon(
-                onPressed: vm.batchFiles.isEmpty ||
-                        vm.isConverting ||
-                        vm.isBatchConverting
-                    ? null
-                    : vm.convertBatch,
-                icon: const Icon(Icons.layers),
-                label: Text(
-                  vm.batchFiles.isEmpty
-                      ? AppStrings.convertBatch
-                      : '${AppStrings.convertBatch} (${vm.batchSummary})',
-                ),
-              ),
-              if (vm.result != null) ...[
-                const SizedBox(height: 24),
-                ResultPreviewCard(
-                  file: vm.result!.file,
-                  fileName: vm.result!.displayName,
-                  formatLabel: vm.result!.format.label,
-                  onSave: vm.save,
-                  onOpen: vm.openResultExternally,
-                  onShare: vm.shareResult,
-                  onRename: vm.renameOutputBase,
-                  isSaving: vm.isSaving,
-                  isSaved: vm.isSaved,
-                ),
-              ],
-              if (vm.batchResults.isNotEmpty) ...[
-                const SizedBox(height: 24),
-                Text(
-                  'Batch results: ${vm.batchResults.length}',
-                  style: theme.textTheme.titleMedium,
-                ),
-                const SizedBox(height: 12),
-                ...vm.batchResults.map(
-                  (item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: ResultPreviewCard(
-                      file: item.file,
-                      fileName: item.displayName,
-                      formatLabel: item.format.label,
-                      onSave: () => vm.saveConverted(item),
-                      onOpen: null,
-                      onShare: null,
-                      onRename: (_) {},
-                      isSaving: vm.isSaving,
-                      isSaved: false,
-                    ),
-                  ),
-                ),
-              ],
-            ],
+        child: vm.screenMode == ConverterScreenMode.batch && vm.hasBatchItems
+            ? _buildBatchSection(context, vm)
+            : _buildSingleSection(context, vm),
+      ),
+    ],
+  );
+}
+
+Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
+  final theme = Theme.of(context);
+
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: ListView(
+      children: [
+        if (vm.selectedImage != null)
+          SelectedFileCard(file: vm.selectedImage!)
+        else
+          const _EmptyState(),
+        const SizedBox(height: 16),
+        FormatDropdown(
+          value: vm.selectedFormat,
+          allowedFormats: vm.allowedTargetFormats,
+          onChanged: vm.setFormat,
+        ),
+        if (vm.conversionTimeHint != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            vm.conversionTimeHint!,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
+        ],
+        const SizedBox(height: 24),
+        ConvertButton(
+          onPressed: vm.selectedImage != null && !vm.isBatchConverting
+              ? () => vm.convert()
+              : null,
+          isLoading: vm.isConverting,
+          enabled: vm.selectedImage != null && !vm.isBatchConverting,
+          loadingLabel: vm.convertingProgressLabel,
+        ),
+        if (vm.result != null) ...[
+          const SizedBox(height: 24),
+          ResultPreviewCard(
+            file: vm.result!.file,
+            fileName: vm.result!.displayName,
+            formatLabel: vm.result!.format.label,
+            onSave: vm.save,
+            onOpen: vm.openResultExternally,
+            onShare: vm.shareResult,
+            onRename: vm.renameOutputBase,
+            isSaving: vm.isSaving,
+            isSaved: vm.isSaved,
+          ),
+        ],
+      ],
+    ),
+  );
+}
+
+Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
+  final theme = Theme.of(context);
+
+  final saveAllEnabled = !vm.isBatchConverting &&
+      !vm.isBatchSavingAll &&
+      vm.batchItems.any((e) => e.status == BatchItemStatus.done);
+  final retryFailedEnabled = !vm.isBatchConverting &&
+      !vm.isBatchSavingAll &&
+      vm.batchFailedCount > 0;
+
+  return ListView(
+    padding: const EdgeInsets.all(16),
+    children: [
+      Text(
+        AppStrings.batchModeSubtitle,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: theme.colorScheme.onSurfaceVariant,
         ),
       ),
+      const SizedBox(height: 8),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: vm.isBatchConverting || vm.isBatchSavingAll
+              ? null
+              : () => vm.clearBatch(deleteOutputs: true),
+          icon: const Icon(Icons.clear_all),
+          label: Text(AppStrings.clearBatchQueue),
+        ),
+      ),
+      const SizedBox(height: 8),
+      FormatDropdown(
+        value: vm.selectedFormat,
+        allowedFormats: vm.allowedTargetFormats,
+        onChanged: vm.setFormat,
+      ),
+      const SizedBox(height: 16),
+      FilledButton.tonalIcon(
+        onPressed: vm.batchItems.isEmpty ||
+                vm.isConverting ||
+                vm.isBatchConverting ||
+                vm.isBatchSavingAll
+            ? null
+            : () => vm.convertBatch(),
+        icon: const Icon(Icons.layers),
+        label: Text(
+          '${AppStrings.convertBatch} (${vm.batchSummary})',
+        ),
+      ),
+      const SizedBox(height: 16),
+      BatchSummaryCard(
+        total: vm.batchTotal,
+        done: vm.batchDoneCount,
+        failed: vm.batchFailedCount,
+        queued: vm.batchQueuedCount,
+        onSaveAll: () => vm.saveAllBatchSuccessful(),
+        onRetryFailed: () => vm.retryFailedBatchItems(),
+        saveAllEnabled: saveAllEnabled,
+        retryFailedEnabled: retryFailedEnabled,
+        isSavingAll: vm.isBatchSavingAll,
+        saveProgress: vm.batchSaveProgress,
+        saveLabel: vm.batchSaveLabel,
+      ),
+      const SizedBox(height: 16),
+      ...List.generate(vm.batchItems.length, (index) {
+        final item = vm.batchItems[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: BatchResultTile(
+            item: item,
+            onSave: () => vm.saveBatchItem(index),
+            onRename: (value) => vm.renameBatchItem(index, value),
+            onShare: () => vm.shareBatchItem(index),
+          ),
+        );
+      }),
     ],
   );
 }
