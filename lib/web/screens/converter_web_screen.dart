@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../constants/app_strings.dart';
 import '../../converter/converter_capabilities.dart';
 import '../../converter/models/image_format.dart';
+import '../../converter/services/common/conversion_matrix.dart';
 import '../../converter/services/web/download_bytes.dart';
 import '../../converter/services/web/web_image_converter_service.dart';
 
@@ -62,6 +63,7 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
       setState(() {
         _inputBytes = bytes;
         _inputName = file.name;
+        _clampTargetToAllowed();
       });
     } catch (e) {
       setState(() {
@@ -76,10 +78,36 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
     }
   }
 
+  List<ImageFormat> get _allowedTargetFormats {
+    if (_inputName.isEmpty) {
+      return List<ImageFormat>.from(
+        ConverterCapabilities.outputFormatsForPlatform,
+      );
+    }
+    final inFmt = ImageFormat.fromPath(_inputName);
+    if (inFmt == null) {
+      return List<ImageFormat>.from(
+        ConverterCapabilities.outputFormatsForPlatform,
+      );
+    }
+    return ConversionMatrix.allowedOutputsFor(inFmt);
+  }
+
+  void _clampTargetToAllowed() {
+    final allowed = _allowedTargetFormats;
+    if (allowed.isEmpty) {
+      return;
+    }
+    if (!allowed.contains(_targetFormat)) {
+      _targetFormat = allowed.first;
+    }
+  }
+
   Future<void> _convert() async {
     if (_inputBytes == null) return;
 
     setState(() {
+      _clampTargetToAllowed();
       _isConverting = true;
       _errorMessage = null;
       _outputBytes = null;
@@ -207,6 +235,7 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
   @override
   Widget build(BuildContext context) {
     final inputSelected = _inputBytes != null;
+    final allowedTargets = _allowedTargetFormats;
     final canConvert =
         inputSelected && !_isConverting && !_isPicking;
     final canDownload = _outputBytes != null && !_isConverting;
@@ -240,28 +269,35 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
                   labelText: AppStrings.targetFormat,
                   border: const OutlineInputBorder(),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<ImageFormat>(
-                    isExpanded: true,
-                    value: _targetFormat,
-                    items: ConverterCapabilities.outputFormatsForPlatform
-                        .map(
-                          (format) => DropdownMenuItem<ImageFormat>(
-                            value: format,
-                            child: Text(format.label),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: _isConverting
-                        ? null
-                        : (value) {
-                            if (value == null) return;
-                            setState(() {
-                              _targetFormat = value;
-                            });
-                          },
-                  ),
-                ),
+                child: allowedTargets.isEmpty
+                    ? const SizedBox(
+                        height: 48,
+                        child: Center(child: Text('—')),
+                      )
+                    : DropdownButtonHideUnderline(
+                        child: DropdownButton<ImageFormat>(
+                          isExpanded: true,
+                          value: allowedTargets.contains(_targetFormat)
+                              ? _targetFormat
+                              : allowedTargets.first,
+                          items: allowedTargets
+                              .map(
+                                (format) => DropdownMenuItem<ImageFormat>(
+                                  value: format,
+                                  child: Text(format.label),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: _isConverting
+                              ? null
+                              : (v) {
+                                  if (v == null) return;
+                                  setState(() {
+                                    _targetFormat = v;
+                                  });
+                                },
+                        ),
+                      ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(

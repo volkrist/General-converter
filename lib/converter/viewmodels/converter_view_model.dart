@@ -98,6 +98,9 @@ class ConverterViewModel extends ChangeNotifier {
       selectedImage == null ? null : ImageFormat.fromPath(selectedImage!.path);
 
   List<ImageFormat> get allowedTargetFormats {
+    if (screenMode == ConverterScreenMode.batch && hasBatchItems) {
+      return _allowedTargetsForBatchItems();
+    }
     final inFmt = selectedInputFormat;
     if (inFmt == null) {
       return List<ImageFormat>.from(
@@ -174,6 +177,7 @@ class ConverterViewModel extends ChangeNotifier {
         );
 
       warningMessage = AppStrings.batchReady;
+      _clampFormatToAllowed();
     } catch (e) {
       error = UserErrorMapper.message(e, fallback: AppStrings.pickFailed);
       dialogError = error;
@@ -216,6 +220,7 @@ class ConverterViewModel extends ChangeNotifier {
         );
 
       warningMessage = AppStrings.batchReady;
+      _clampFormatToAllowed();
     } catch (e) {
       error = UserErrorMapper.message(e, fallback: AppStrings.pickFailed);
       dialogError = error;
@@ -356,6 +361,8 @@ class ConverterViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
+      _clampFormatToAllowed();
+
       for (var i = 0; i < batchItems.length; i++) {
         if (_isCancelledRun(currentRun)) {
           final item = batchItems[i];
@@ -455,6 +462,8 @@ class ConverterViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
+      _clampFormatToAllowed();
+
       for (final i in failedIndexes) {
         if (_isCancelledRun(currentRun)) break;
 
@@ -830,15 +839,43 @@ class ConverterViewModel extends ChangeNotifier {
   }
 
   void _clampFormatToAllowed() {
-    final inFmt = selectedInputFormat;
-    if (inFmt == null) return;
-
-    final allowed = ConversionMatrix.allowedOutputsFor(inFmt);
+    final allowed = allowedTargetFormats;
     if (allowed.isEmpty) return;
 
     if (!allowed.contains(selectedFormat)) {
       selectedFormat = allowed.first;
     }
+  }
+
+  /// Пересечение допустимых целей по каждому файлу батча (порядок как у платформы).
+  List<ImageFormat> _allowedTargetsForBatchItems() {
+    if (batchItems.isEmpty) {
+      return List<ImageFormat>.from(
+        ConverterCapabilities.outputFormatsForPlatform,
+      );
+    }
+
+    var intersection = <ImageFormat>{};
+    var first = true;
+    for (final item in batchItems) {
+      final inFmt = ImageFormat.fromPath(item.sourceFile.path);
+      final allowed = inFmt == null
+          ? ConverterCapabilities.outputFormatsForPlatform.toSet()
+          : ConversionMatrix.allowedOutputsFor(inFmt).toSet();
+      if (first) {
+        intersection = allowed;
+        first = false;
+      } else {
+        intersection = intersection.intersection(allowed);
+      }
+      if (intersection.isEmpty) {
+        break;
+      }
+    }
+
+    return ConverterCapabilities.outputFormatsForPlatform
+        .where(intersection.contains)
+        .toList(growable: false);
   }
 
   bool _isCancelledRun(int currentRun) => currentRun != _runId || isCancelled;
