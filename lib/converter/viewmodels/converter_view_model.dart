@@ -36,9 +36,6 @@ class ConverterViewModel extends ChangeNotifier {
   final ImageConverterService _converter;
   final ImageSaveService _saver;
 
-  static const int _memoryGuardFileLimitBytes = 50 * 1024 * 1024;
-  static const int _batchHeavyFilesSoftLimit = 8;
-
   ConverterScreenMode screenMode = ConverterScreenMode.single;
 
   File? selectedImage;
@@ -154,16 +151,6 @@ class ConverterViewModel extends ChangeNotifier {
       final files = await _picker.pickManyFromFiles();
       if (files.isEmpty) return;
 
-      final heavyCount = files
-          .where(
-            (f) => f.existsSync() && f.lengthSync() > _memoryGuardFileLimitBytes,
-          )
-          .length;
-
-      if (heavyCount >= _batchHeavyFilesSoftLimit) {
-        throw Exception(AppStrings.batchMemoryGuardTriggered);
-      }
-
       _discardResultFileBestEffort();
 
       screenMode = ConverterScreenMode.batch;
@@ -205,16 +192,6 @@ class ConverterViewModel extends ChangeNotifier {
     try {
       final files = await _picker.pickFolderImages();
       if (files.isEmpty) return;
-
-      final heavyCount = files
-          .where(
-            (f) => f.existsSync() && f.lengthSync() > _memoryGuardFileLimitBytes,
-          )
-          .length;
-
-      if (heavyCount >= _batchHeavyFilesSoftLimit) {
-        throw Exception(AppStrings.batchMemoryGuardTriggered);
-      }
 
       _discardResultFileBestEffort();
 
@@ -303,13 +280,6 @@ class ConverterViewModel extends ChangeNotifier {
   Future<void> convert() async {
     if (selectedImage == null) return;
 
-    if (_hitsMemoryGuard(selectedImage!)) {
-      error = AppStrings.memoryGuardTriggered;
-      dialogError = error;
-      notifyListeners();
-      return;
-    }
-
     final currentRun = ++_runId;
     isCancelled = false;
 
@@ -397,15 +367,6 @@ class ConverterViewModel extends ChangeNotifier {
 
         final item = batchItems[i];
         final file = item.sourceFile;
-
-        if (_hitsMemoryGuard(file)) {
-          batchItems[i] = item.copyWith(
-            status: BatchItemStatus.failed,
-            errorMessage: AppStrings.memoryGuardTriggered,
-          );
-          notifyListeners();
-          continue;
-        }
 
         batchItems[i] = item.copyWith(
           status: BatchItemStatus.converting,
@@ -499,15 +460,6 @@ class ConverterViewModel extends ChangeNotifier {
 
         final item = batchItems[i];
         final file = item.sourceFile;
-
-        if (_hitsMemoryGuard(file)) {
-          batchItems[i] = item.copyWith(
-            status: BatchItemStatus.failed,
-            errorMessage: AppStrings.memoryGuardTriggered,
-          );
-          notifyListeners();
-          continue;
-        }
 
         batchItems[i] = item.copyWith(
           status: BatchItemStatus.converting,
@@ -886,14 +838,6 @@ class ConverterViewModel extends ChangeNotifier {
 
     if (!allowed.contains(selectedFormat)) {
       selectedFormat = allowed.first;
-    }
-  }
-
-  bool _hitsMemoryGuard(File file) {
-    try {
-      return file.existsSync() && file.lengthSync() > _memoryGuardFileLimitBytes;
-    } catch (_) {
-      return false;
     }
   }
 

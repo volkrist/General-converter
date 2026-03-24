@@ -52,6 +52,9 @@ abstract final class AppStrings {
 
   static const String previewNotAvailable =
       'Preview is not available for this format';
+  /// Batch tile: failure/cancel — not a “format” limitation.
+  static const String batchPreviewNoThumbnail = 'No thumbnail';
+  static const String batchPreviewWaiting = 'Thumbnail after conversion';
 
   static const String failedToEncodeAvif = 'Failed to encode AVIF';
   static const String avifEncodeFailed = failedToEncodeAvif;

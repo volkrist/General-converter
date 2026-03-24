@@ -84,12 +84,13 @@ class _BatchResultTileState extends State<BatchResultTile> {
                 height: 180,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                errorBuilder: (_, _, _) => _buildPreviewFallback(context),
+                errorBuilder: (_, _, _) =>
+                    _buildPreviewFallback(context, item),
               ),
             ),
             const SizedBox(height: 12),
           ] else ...[
-            _buildPreviewFallback(context),
+            _buildPreviewFallback(context, item),
             const SizedBox(height: 12),
           ],
           if (result != null) ...[
@@ -171,8 +172,19 @@ class _BatchResultTileState extends State<BatchResultTile> {
     );
   }
 
-  Widget _buildPreviewFallback(BuildContext context) {
+  Widget _buildPreviewFallback(BuildContext context, BatchItemState item) {
     final colorScheme = Theme.of(context).colorScheme;
+    final message = switch (item.status) {
+      BatchItemStatus.failed ||
+      BatchItemStatus.cancelled =>
+        AppStrings.batchPreviewNoThumbnail,
+      BatchItemStatus.queued || BatchItemStatus.converting =>
+        AppStrings.batchPreviewWaiting,
+      BatchItemStatus.done ||
+      BatchItemStatus.saving ||
+      BatchItemStatus.saved =>
+        AppStrings.previewNotAvailable,
+    };
     return Container(
       height: 120,
       width: double.infinity,
@@ -183,7 +195,7 @@ class _BatchResultTileState extends State<BatchResultTile> {
       ),
       alignment: Alignment.center,
       child: Text(
-        AppStrings.previewNotAvailable,
+        message,
         style: TextStyle(color: colorScheme.onSurfaceVariant),
         textAlign: TextAlign.center,
       ),
