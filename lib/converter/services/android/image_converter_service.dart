@@ -1,12 +1,11 @@
 import 'dart:io';
 import 'dart:isolate';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_avif/flutter_avif.dart';
+import 'package:flutter_avif_platform_interface/flutter_avif_platform_interface.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image/image.dart' as img;
 import 'package:heif_converter/heif_converter.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -22,15 +21,68 @@ import 'package:general_converter/converter/services/common/image_pure_worker.da
 import 'package:general_converter/converter/services/common/output_file_validator.dart';
 import 'package:general_converter/converter/services/common/output_round_trip_validator.dart';
 
-/// [ui.Image.toByteData] кладёт данные в общий [ByteBuffer]: `buffer.asUint8List()`
-/// без offset/length захватывает весь буфер → битый PNG и ошибка «файл повреждён».
-Uint8List _copyByteDataRange(ByteData data) {
-  return Uint8List.fromList(
-    Uint8List.view(
-      data.buffer,
-      data.offsetInBytes,
-      data.lengthInBytes,
-    ),
+/// Нативный decode AVIF → плотный RGBA для [workerPdfRgbaToPng] (без Skia/`dart:ui`).
+Uint8List _avifNativeFrameToRgba(Uint8List raw, int w, int h) {
+  final expected4 = w * h * 4;
+  final expected3 = w * h * 3;
+  if (raw.length == expected4) {
+    return raw;
+  }
+  if (raw.length == expected3) {
+    final out = Uint8List(expected4);
+    var o = 0;
+    var i = 0;
+    for (var p = 0; p < w * h; p++) {
+      out[o++] = raw[i++];
+      out[o++] = raw[i++];
+      out[o++] = raw[i++];
+      out[o++] = 255;
+    }
+    return out;
+  }
+  if (raw.length > expected4) {
+    return Uint8List.fromList(raw.sublist(0, expected4));
+  }
+  throw const FormatException('avif_native_rgba_len');
+}
+
+/// AVIF encode: раньше high-level [encodeAvif] гнал PNG через `dart:ui` (Skia/GPU).
+/// На части Adreno + аппаратный HEVC в libavif это даёт гонку и SIGSEGV в `libGLESv2_adreno.so`.
+/// Здесь PNG → RGBA только через `package:image` (CPU), затем тот же нативный encode.
+Future<Uint8List> _avifEncodeFromPngBytesCpu(Uint8List pngBytes) async {
+  final decoded = img.decodeImage(pngBytes) ?? img.decodePng(pngBytes);
+  if (decoded == null) {
+    throw const FormatException('avif_cpu_png_decode');
+  }
+  final oriented = img.bakeOrientation(decoded);
+  if (oriented.width <= 0 || oriented.height <= 0) {
+    throw const FormatException('avif_cpu_png_dim');
+  }
+  final rgba = oriented.getBytes(order: img.ChannelOrder.rgba);
+  final w = oriented.width;
+  final h = oriented.height;
+  final expected = w * h * 4;
+  if (rgba.length != expected) {
+    throw FormatException('avif_cpu_rgba_len ${rgba.length} != $expected');
+  }
+
+  final api = FlutterAvifPlatform.api;
+  final frames = <EncodeFrame>[
+    EncodeFrame(data: rgba, durationInTimescale: 1),
+  ];
+
+  return api.encodeAvif(
+    width: w,
+    height: h,
+    maxThreads: 1,
+    speed: 10,
+    timescale: 1,
+    maxQuantizer: 40,
+    minQuantizer: 25,
+    maxQuantizerAlpha: 40,
+    minQuantizerAlpha: 25,
+    imageSequence: frames,
+    exifData: Uint8List(0),
   );
 }
 
@@ -312,7 +364,7 @@ class ImageConverterService {
     if (code.contains('dimension') || code.contains('pdf_')) {
       return Exception(AppStrings.invalidImageDimensions);
     }
-    if (code.contains('shrink')) {
+    if (code.contains('shrink') || code.contains('avif_native')) {
       return Exception(AppStrings.invalidOrCorruptImage);
     }
     return Exception(AppStrings.invalidOrCorruptImage);
@@ -423,65 +475,26 @@ class ImageConverterService {
   }
 
   Future<Uint8List> _decodeAvifFileToPngBytes(File file, int fileLength) async {
-    // Не гоняем AVIF через compress-to-JPEG «пре-шринк»: на части устройств даёт
-    // мусор / пустой выход; decodeAvif + пиксели надёжнее.
-
     final bytes = await file.readAsBytes();
     if (bytes.isEmpty) {
       throw Exception(AppStrings.invalidOrCorruptImage);
     }
 
-    final frames = await decodeAvif(bytes);
-    if (frames.isEmpty) {
-      throw Exception(AppStrings.invalidOrCorruptImage);
+    // Первый кадр через FFI (как и раньше по смыслу «frames.first»), без Skia/`ui.Image`.
+    final frame =
+        await FlutterAvifPlatform.api.decodeSingleFrameImage(avifBytes: bytes);
+    final w = frame.width;
+    final h = frame.height;
+    if (w <= 0 || h <= 0) {
+      throw Exception(AppStrings.invalidImageDimensions);
     }
-
-    final ui.Image image = frames.first.image;
+    final raw = Uint8List.fromList(frame.data);
     try {
-      if (image.width <= 0 || image.height <= 0) {
-        throw Exception(AppStrings.invalidImageDimensions);
-      }
-      return await _uiImageToNormalizedPngBytes(image);
-    } finally {
-      image.dispose();
-    }
-  }
-
-  /// Пиксели из [ui.Image] → нормализованный PNG в изоляте (без [_runWorkerRasterToPng]).
-  Future<Uint8List> _uiImageToNormalizedPngBytes(ui.Image image) async {
-    final pngBd = await image.toByteData(format: ui.ImageByteFormat.png);
-    final pngBytes =
-        pngBd != null && pngBd.lengthInBytes > 0 ? _copyByteDataRange(pngBd) : null;
-    if (pngBytes != null && pngBytes.isNotEmpty) {
-      try {
-        if (kIsWeb) {
-          return workerImportEncodedPng(pngBytes);
-        }
-        return await Isolate.run(() => workerImportEncodedPng(pngBytes));
-      } catch (_) {
-        // PNG с движка не разобрался в worker — идём в raw RGBA (часто спасает AVIF).
-      }
-    }
-
-    final rgbaBd = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
-    if (rgbaBd == null || rgbaBd.lengthInBytes < 1) {
-      throw Exception(AppStrings.invalidOrCorruptImage);
-    }
-    final w = image.width;
-    final h = image.height;
-    var raw = _copyByteDataRange(rgbaBd);
-    final expected = w * h * 4;
-    if (raw.length < expected) {
-      throw Exception(AppStrings.invalidOrCorruptImage);
-    }
-    if (raw.length > expected) {
-      raw = Uint8List.fromList(raw.sublist(0, expected));
-    }
-    try {
+      final rgba = _avifNativeFrameToRgba(raw, w, h);
       if (kIsWeb) {
-        return workerPdfRgbaToPng(raw, w, h);
+        return workerPdfRgbaToPng(rgba, w, h);
       }
-      return await Isolate.run(() => workerPdfRgbaToPng(raw, w, h));
+      return await Isolate.run(() => workerPdfRgbaToPng(rgba, w, h));
     } on FormatException catch (e) {
       throw _exceptionFromWorkerFormat(e);
     }
@@ -647,7 +660,7 @@ class ImageConverterService {
   }) async {
     final outFile = File(outPath);
     try {
-      final avifBytes = await encodeAvif(workingPngBytes);
+      final avifBytes = await _avifEncodeFromPngBytesCpu(workingPngBytes);
       if (avifBytes.isEmpty) {
         throw Exception(AppStrings.failedToEncodeAvif);
       }
@@ -661,7 +674,7 @@ class ImageConverterService {
     } catch (_) {
       final smaller = await _runDownscalePngMaxSide(workingPngBytes, 2048);
       try {
-        final avifBytes = await encodeAvif(smaller);
+        final avifBytes = await _avifEncodeFromPngBytesCpu(smaller);
         if (avifBytes.isEmpty) {
           throw Exception(AppStrings.failedToEncodeAvif);
         }

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_avif/flutter_avif.dart';
+import 'package:flutter_avif_platform_interface/flutter_avif_platform_interface.dart';
 
 import 'package:general_converter/constants/app_strings.dart';
 import 'package:general_converter/converter/models/image_format.dart';
@@ -61,17 +61,12 @@ abstract final class OutputRoundTripValidator {
     if (bytes.isEmpty) {
       throw StateError('empty');
     }
-    final frames = await decodeAvif(bytes);
-    if (frames.isEmpty) {
-      throw StateError('no_frames');
-    }
-    final im = frames.first.image;
-    try {
-      if (im.width <= 0 || im.height <= 0) {
-        throw StateError('bad_dims');
-      }
-    } finally {
-      im.dispose();
+    final frame =
+        await FlutterAvifPlatform.api.decodeSingleFrameImage(avifBytes: bytes);
+    if (frame.width <= 0 ||
+        frame.height <= 0 ||
+        frame.data.isEmpty) {
+      throw StateError('bad_avif_frame');
     }
   }
 
