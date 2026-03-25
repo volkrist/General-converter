@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:general_converter/constants/app_strings.dart';
+
+import '../l10n/l10n_extensions.dart';
 
 class PickImageFab extends StatelessWidget {
   const PickImageFab({
@@ -15,7 +16,7 @@ class PickImageFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: isLoading ? null : onPressed,
-      tooltip: AppStrings.pickImage,
+      tooltip: context.l10n.pickImage,
       shape: const CircleBorder(),
       child: isLoading
           ? const SizedBox(

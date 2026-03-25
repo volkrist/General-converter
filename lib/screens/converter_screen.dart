@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/app_strings.dart';
 import '../converter/models/batch_item_state.dart';
+import '../converter/models/conversion_time_hint.dart';
 import '../converter/viewmodels/converter_view_model.dart';
+import '../l10n/l10n_extensions.dart';
+import '../localization/language_names.dart';
+import '../localization/locale_controller.dart';
 import '../theme_view_model.dart';
 import '../widgets/batch_result_tile.dart';
 import '../widgets/batch_summary_card.dart';
@@ -37,55 +40,58 @@ class _ConverterViewState extends State<_ConverterView> {
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-              child: Text(
-                AppStrings.pickFileTitle,
-                style: Theme.of(ctx).textTheme.titleMedium,
-                textAlign: TextAlign.center,
+      builder: (ctx) {
+        final l = ctx.l10n;
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Text(
+                  l.pickFileTitle,
+                  style: Theme.of(ctx).textTheme.titleMedium,
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library_outlined),
-              title: Text(AppStrings.pickFromGallery),
-              onTap: () {
-                Navigator.pop(ctx);
-                vm.pickFromGallery();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder_open_outlined),
-              title: Text(AppStrings.pickFromFiles),
-              onTap: () {
-                Navigator.pop(ctx);
-                vm.pickFromFiles();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.layers_outlined),
-              title: Text(AppStrings.pickManyFiles),
-              onTap: () {
-                Navigator.pop(ctx);
-                vm.pickBatchFromFiles();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder_copy_outlined),
-              title: Text(AppStrings.pickFolder),
-              onTap: () {
-                Navigator.pop(ctx);
-                vm.pickBatchFromFolder();
-              },
-            ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
+              ListTile(
+                leading: const Icon(Icons.photo_library_outlined),
+                title: Text(l.pickFromGallery),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  vm.pickFromGallery();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.folder_open_outlined),
+                title: Text(l.pickFromFiles),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  vm.pickFromFiles();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.layers_outlined),
+                title: Text(l.pickManyFiles),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  vm.pickBatchFromFiles();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.folder_copy_outlined),
+                title: Text(l.pickFolder),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  vm.pickBatchFromFolder();
+                },
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -109,7 +115,7 @@ class _ConverterViewState extends State<_ConverterView> {
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Error'),
+          title: Text(ctx.l10n.errorDialogTitle),
           content: Text(current),
           actions: [
             TextButton(
@@ -118,7 +124,7 @@ class _ConverterViewState extends State<_ConverterView> {
                 vm.clearError();
                 setState(() => _scheduledDialogForMessage = null);
               },
-              child: const Text(AppStrings.dismiss),
+              child: Text(ctx.l10n.dismiss),
             ),
           ],
         ),
@@ -134,27 +140,62 @@ class _ConverterViewState extends State<_ConverterView> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return Consumer<ConverterViewModel>(
-      builder: (context, vm, _) {
+    return Consumer2<ConverterViewModel, LocaleController>(
+      builder: (context, vm, localeVm, _) {
         _scheduleErrorDialogIfNeeded(context, vm);
+        final l10n = context.l10n;
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text(AppStrings.appName),
+            title: Text(l10n.appName),
             centerTitle: true,
             actions: [
+              PopupMenuButton<String>(
+                icon: const Icon(Icons.language_outlined),
+                tooltip: l10n.language,
+                onSelected: (code) {
+                  if (code == '_system') {
+                    localeVm.setLocaleOverride(null);
+                  } else {
+                    localeVm.setLocaleOverride(Locale(code));
+                  }
+                },
+                itemBuilder: (ctx) {
+                  final l = ctx.l10n;
+                  final entries = <PopupMenuEntry<String>>[
+                    CheckedPopupMenuItem<String>(
+                      value: '_system',
+                      checked: localeVm.localeOverride == null,
+                      child: Text(l.systemLanguage),
+                    ),
+                    const PopupMenuDivider(),
+                  ];
+                  for (final loc in sortedSupportedLocales()) {
+                    entries.add(
+                      CheckedPopupMenuItem<String>(
+                        value: loc.languageCode,
+                        checked:
+                            localeVm.localeOverride?.languageCode ==
+                                loc.languageCode,
+                        child: Text(localePickerLabel(loc)),
+                      ),
+                    );
+                  }
+                  return entries;
+                },
+              ),
               if (vm.isConverting || vm.isBatchConverting)
                 TextButton.icon(
                   onPressed: vm.cancelConvert,
                   icon: const Icon(Icons.close),
-                  label: const Text(AppStrings.cancel),
+                  label: Text(l10n.cancel),
                 ),
               IconButton(
                 icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
                 onPressed: () {
                   context.read<ThemeViewModel>().toggleTheme();
                 },
-                tooltip: AppStrings.toggleTheme,
+                tooltip: l10n.toggleTheme,
               ),
             ],
           ),
@@ -169,8 +210,27 @@ class _ConverterViewState extends State<_ConverterView> {
   }
 }
 
+String? _localizedConversionHint(
+  BuildContext context,
+  ConversionTimeHint? kind,
+) {
+  if (kind == null) return null;
+  final l = context.l10n;
+  switch (kind) {
+    case ConversionTimeHint.quick:
+      return l.conversionHintQuick;
+    case ConversionTimeHint.heavy:
+      return l.conversionHintHeavy;
+    case ConversionTimeHint.pdf:
+      return l.conversionHintPdf;
+  }
+}
+
 Widget _buildBody(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
+  final l10n = context.l10n;
+  final convertingLine =
+      '${l10n.converting} ${vm.conversionElapsedLabel}'.trim();
 
   return Column(
     children: [
@@ -198,9 +258,7 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  vm.progressLabel.isEmpty
-                      ? vm.convertingProgressLabel
-                      : vm.progressLabel,
+                  vm.progressLabel.isEmpty ? convertingLine : vm.progressLabel,
                   style: theme.textTheme.bodySmall,
                 ),
               ),
@@ -218,6 +276,10 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
 
 Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
+  final l10n = context.l10n;
+  final hint = _localizedConversionHint(context, vm.conversionTimeHintKind);
+  final convertingLine =
+      '${l10n.converting} ${vm.conversionElapsedLabel}'.trim();
 
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -233,10 +295,10 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
           allowedFormats: vm.allowedTargetFormats,
           onChanged: vm.setFormat,
         ),
-        if (vm.conversionTimeHint != null) ...[
+        if (hint != null) ...[
           const SizedBox(height: 8),
           Text(
-            vm.conversionTimeHint!,
+            hint,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -249,7 +311,7 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
               : null,
           isLoading: vm.isConverting,
           enabled: vm.selectedImage != null && !vm.isBatchConverting,
-          loadingLabel: vm.convertingProgressLabel,
+          loadingLabel: convertingLine,
         ),
         if (vm.result != null) ...[
           const SizedBox(height: 24),
@@ -272,6 +334,7 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
 
 Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
+  final l10n = context.l10n;
 
   final saveAllEnabled = !vm.isBatchConverting &&
       !vm.isBatchSavingAll &&
@@ -284,7 +347,7 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
     padding: const EdgeInsets.all(16),
     children: [
       Text(
-        AppStrings.batchModeSubtitle,
+        l10n.batchModeSubtitle,
         style: theme.textTheme.bodyMedium?.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
         ),
@@ -297,7 +360,7 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
               ? null
               : () => vm.clearBatch(deleteOutputs: true),
           icon: const Icon(Icons.clear_all),
-          label: Text(AppStrings.clearBatchQueue),
+          label: Text(l10n.clearBatchQueue),
         ),
       ),
       const SizedBox(height: 8),
@@ -316,7 +379,7 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
             : () => vm.convertBatch(),
         icon: const Icon(Icons.layers),
         label: Text(
-          '${AppStrings.convertBatch} (${vm.batchSummary})',
+          '${l10n.convertBatch} (${vm.batchSummary})',
         ),
       ),
       const SizedBox(height: 16),
@@ -369,7 +432,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            AppStrings.tapToPick,
+            context.l10n.tapToPick,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),

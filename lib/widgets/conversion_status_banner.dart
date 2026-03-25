@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_strings.dart';
+import '../l10n/l10n_extensions.dart';
 
 class ConversionStatusBanner extends StatelessWidget {
   const ConversionStatusBanner({
@@ -31,7 +31,7 @@ class ConversionStatusBanner extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: onDismiss,
-          child: const Text(AppStrings.dismiss),
+          child: Text(context.l10n.dismiss),
         ),
       ],
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
-import '../constants/app_strings.dart';
 import '../converter/models/batch_item_state.dart';
+import '../l10n/l10n_extensions.dart';
 
 class BatchResultTile extends StatefulWidget {
   const BatchResultTile({
@@ -54,6 +54,7 @@ class _BatchResultTileState extends State<BatchResultTile> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
     final item = widget.item;
     final result = item.result;
 
@@ -96,9 +97,9 @@ class _BatchResultTileState extends State<BatchResultTile> {
           if (result != null) ...[
             TextField(
               controller: _controller,
-              decoration: const InputDecoration(
-                labelText: AppStrings.renameOutput,
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.renameOutput,
+                border: const OutlineInputBorder(),
                 isDense: true,
               ),
               enabled: item.status != BatchItemStatus.saved &&
@@ -137,7 +138,7 @@ class _BatchResultTileState extends State<BatchResultTile> {
               IconButton(
                 onPressed: result == null ? null : widget.onShare,
                 icon: const Icon(Icons.share),
-                tooltip: AppStrings.share,
+                tooltip: l10n.share,
               ),
               const SizedBox(width: 8),
               FilledButton.tonalIcon(
@@ -153,10 +154,10 @@ class _BatchResultTileState extends State<BatchResultTile> {
                 ),
                 label: Text(
                   item.status == BatchItemStatus.saved
-                      ? AppStrings.saved
+                      ? l10n.saved
                       : item.status == BatchItemStatus.saving
-                          ? AppStrings.saving
-                          : AppStrings.save,
+                          ? l10n.saving
+                          : l10n.save,
                 ),
               ),
             ],
@@ -174,16 +175,17 @@ class _BatchResultTileState extends State<BatchResultTile> {
 
   Widget _buildPreviewFallback(BuildContext context, BatchItemState item) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = context.l10n;
     final message = switch (item.status) {
       BatchItemStatus.failed ||
       BatchItemStatus.cancelled =>
-        AppStrings.batchPreviewNoThumbnail,
+        l10n.batchPreviewNoThumbnail,
       BatchItemStatus.queued || BatchItemStatus.converting =>
-        AppStrings.batchPreviewWaiting,
+        l10n.batchPreviewWaiting,
       BatchItemStatus.done ||
       BatchItemStatus.saving ||
       BatchItemStatus.saved =>
-        AppStrings.previewNotAvailable,
+        l10n.previewNotAvailable,
     };
     return Container(
       height: 120,

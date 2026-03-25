@@ -1,121 +1,99 @@
+import '../l10n/app_localizations_en.dart';
+
+/// Сообщения для слоёв **без** [BuildContext] (сервисы, VM, маппер ошибок).
+///
+/// Всегда **английский**, чтобы [UserErrorMapper] и тесты сравнивали стабильный текст.
+/// В интерфейсе используйте [AppLocalizations.of] / [AppL10nX].
 abstract final class AppStrings {
-  static const String appName = 'General Converter';
+  static final AppLocalizationsEn _en = AppLocalizationsEn();
 
-  static const String pickImage = 'Pick file';
-  static const String pickFromGallery = 'Gallery';
-  static const String pickFromFiles = 'Files';
-  static const String pickManyFiles = 'Batch files';
-  static const String pickFolder = 'Folder';
-  static const String pickFileTitle = 'Choose source';
-
-  static const String targetFormat = 'Target format';
-  static const String convert = 'Convert';
-  static const String convertBatch = 'Convert batch';
-  static const String converting = 'Converting...';
-  static const String cancel = 'Cancel';
-
-  static const String fileTooLarge = 'File is too large';
-  static const String largeFileWarning =
-      'Large file detected. Conversion may reduce image size for stability.';
-  static const String notEnoughMemory =
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
-  static const String memoryGuardTriggered =
-      'File is too heavy for safe conversion on this device.';
-  static const String batchMemoryGuardTriggered =
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
-
-  static const String save = 'Save';
-  static const String saving = 'Saving...';
-  static const String saved = 'Saved';
-  static const String share = 'Share';
-  static const String rename = 'Rename';
-  static const String renameOutput = 'Rename output';
-  static const String renameHint = 'File name without extension';
-  static const String apply = 'Apply';
-  static const String dismiss = 'Dismiss';
-
-  static const String emptyStateHint = 'Tap + to pick from gallery or files';
-  static const String conversionFailed = 'Conversion failed';
-  static const String batchConversionFailed = 'Batch conversion failed';
-  static const String saveFailed = 'Failed to save';
-  static const String pickFailed = 'Failed to pick image';
-  static const String tapToPick = 'Tap to pick a file';
-
-  static const String invalidOrCorruptImage =
-      'The file is not a valid image or appears to be damaged.';
-  static const String invalidImageDimensions =
-      'The image has invalid size (empty or zero dimensions).';
-
-  static const String failedToDecodeHeic = 'Failed to decode HEIC';
-  static const String heicDecodeFailed = failedToDecodeHeic;
-  static const String failedToEncodeHeic = 'Failed to encode HEIC';
-
-  static const String previewNotAvailable =
-      'Preview is not available for this format';
-  /// Batch tile: failure/cancel — not a “format” limitation.
-  static const String batchPreviewNoThumbnail = 'No thumbnail';
-  static const String batchPreviewWaiting = 'Thumbnail after conversion';
-
-  static const String failedToEncodeAvif = 'Failed to encode AVIF';
-  static const String avifEncodeFailed = failedToEncodeAvif;
-
-  static const String formatPairNotSupported =
-      'This format pair is not supported';
-
-  static const String pdfRenderUnavailable =
-      'PDF could not be rendered on this device';
-
-  static const String savePdfFailed = 'Failed to save PDF';
-  static const String unsupportedInputFormat = 'Unsupported input format';
-
-  static const String open = 'Open';
-  static const String openFileFailed = 'Could not open file with another app';
-  static const String openFileUnavailableWeb =
-      'Opening files in another app is not available on web';
-
-  static const String outputFileEmpty = 'Output file is empty';
-  static const String outputEncodeRoundTripFailed =
-      'Output file was not readable after save';
-
-  static const String toggleTheme = 'Toggle theme';
-
-  static const String policyPreShrinkNoWritableDir =
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
-
-  static const String conversionHintQuick =
-      'Usually finishes in a few seconds.';
-  static const String conversionHintHeavy =
-      'Large file — conversion may take ~10–30 seconds.';
-  static const String conversionHintPdf =
-      'PDF export may take longer (~10–30 seconds).';
-
-  static const String batchReady = 'Batch queue is ready';
-  static const String batchDone = 'Batch conversion completed';
-  static const String noBatchFiles = 'No files selected for batch conversion';
-  static const String progressFiles = 'files';
-
-  static const String batchModeTitle = 'Batch conversion';
-  static const String batchModeSubtitle =
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
-  static const String batchSummaryTotal = 'Total';
-  static const String batchSummaryDone = 'Done';
-  static const String batchSummaryFailed = 'Failed';
-  static const String batchSummaryQueued = 'Queued';
-  static const String saveAllSuccessful = 'Save all successful';
-  static const String batchSaveAllStarting = 'Saving files...';
+  static String get appName => _en.appName;
+  static String get pickImage => _en.pickImage;
+  static String get pickFromGallery => _en.pickFromGallery;
+  static String get pickFromFiles => _en.pickFromFiles;
+  static String get pickManyFiles => _en.pickManyFiles;
+  static String get pickFolder => _en.pickFolder;
+  static String get pickFileTitle => _en.pickFileTitle;
+  static String get targetFormat => _en.targetFormat;
+  static String get convert => _en.convert;
+  static String get convertBatch => _en.convertBatch;
+  static String get converting => _en.converting;
+  static String get cancel => _en.cancel;
+  static String get fileTooLarge => _en.fileTooLarge;
+  static String get largeFileWarning => _en.largeFileWarning;
+  static String get notEnoughMemory => _en.notEnoughMemory;
+  static String get memoryGuardTriggered => _en.memoryGuardTriggered;
+  static String get batchMemoryGuardTriggered => _en.batchMemoryGuardTriggered;
+  static String get save => _en.save;
+  static String get saving => _en.saving;
+  static String get saved => _en.saved;
+  static String get share => _en.share;
+  static String get rename => _en.rename;
+  static String get renameOutput => _en.renameOutput;
+  static String get renameHint => _en.renameHint;
+  static String get apply => _en.apply;
+  static String get dismiss => _en.dismiss;
+  static String get emptyStateHint => _en.emptyStateHint;
+  static String get conversionFailed => _en.conversionFailed;
+  static String get batchConversionFailed => _en.batchConversionFailed;
+  static String get saveFailed => _en.saveFailed;
+  static String get pickFailed => _en.pickFailed;
+  static String get tapToPick => _en.tapToPick;
+  static String get invalidOrCorruptImage => _en.invalidOrCorruptImage;
+  static String get invalidImageDimensions => _en.invalidImageDimensions;
+  static String get failedToDecodeHeic => _en.failedToDecodeHeic;
+  static String get heicDecodeFailed => _en.failedToDecodeHeic;
+  static String get failedToEncodeHeic => _en.failedToEncodeHeic;
+  static String get previewNotAvailable => _en.previewNotAvailable;
+  static String get batchPreviewNoThumbnail => _en.batchPreviewNoThumbnail;
+  static String get batchPreviewWaiting => _en.batchPreviewWaiting;
+  static String get failedToEncodeAvif => _en.failedToEncodeAvif;
+  static String get avifEncodeFailed => _en.failedToEncodeAvif;
+  static String get formatPairNotSupported => _en.formatPairNotSupported;
+  static String get pdfRenderUnavailable => _en.pdfRenderUnavailable;
+  static String get savePdfFailed => _en.savePdfFailed;
+  static String get unsupportedInputFormat => _en.unsupportedInputFormat;
+  static String get open => _en.open;
+  static String get openFileFailed => _en.openFileFailed;
+  static String get openFileUnavailableWeb => _en.openFileUnavailableWeb;
+  static String get outputFileEmpty => _en.outputFileEmpty;
+  static String get outputEncodeRoundTripFailed =>
+      _en.outputEncodeRoundTripFailed;
+  static String get toggleTheme => _en.toggleTheme;
+  static String get policyPreShrinkNoWritableDir =>
+      _en.policyPreShrinkNoWritableDir;
+  static String get conversionHintQuick => _en.conversionHintQuick;
+  static String get conversionHintHeavy => _en.conversionHintHeavy;
+  static String get conversionHintPdf => _en.conversionHintPdf;
+  static String get batchReady => _en.batchReady;
+  static String get batchDone => _en.batchDone;
+  static String get noBatchFiles => _en.noBatchFiles;
+  static String get progressFiles => _en.progressFiles;
+  static String get batchModeTitle => _en.batchModeTitle;
+  static String get batchModeSubtitle => _en.batchModeSubtitle;
+  static String get batchSummaryTotal => _en.batchSummaryTotal;
+  static String get batchSummaryDone => _en.batchSummaryDone;
+  static String get batchSummaryFailed => _en.batchSummaryFailed;
+  static String get batchSummaryQueued => _en.batchSummaryQueued;
+  static String get saveAllSuccessful => _en.saveAllSuccessful;
+  static String get batchSaveAllStarting => _en.batchSaveAllStarting;
   static String batchSaveAllProgressLabel(int current, int total) =>
-      'Saving $current/$total';
-  static const String retryFailed = 'Retry failed';
-  static const String clearCompleted = 'Clear completed';
-  /// Rows already saved to gallery (unsaved “done” items stay in the list).
-  static const String clearCompletedTooltip =
-      'Remove items marked as saved from this list';
-  static const String clearBatchQueue = 'Clear queue';
-  static const String batchStatusQueued = 'Queued';
-  static const String batchStatusConverting = 'Converting';
-  static const String batchStatusDone = 'Done';
-  static const String batchStatusFailed = 'Failed';
-  static const String batchStatusSaving = 'Saving';
-  static const String batchStatusSaved = 'Saved';
-  static const String batchStatusCancelled = 'Cancelled';
+      _en.batchSaveAllProgressLabel(current, total);
+  static String get retryFailed => _en.retryFailed;
+  static String get clearCompleted => _en.clearCompleted;
+  static String get clearCompletedTooltip => _en.clearCompletedTooltip;
+  static String get clearBatchQueue => _en.clearBatchQueue;
+  static String get batchStatusQueued => _en.batchStatusQueued;
+  static String get batchStatusConverting => _en.batchStatusConverting;
+  static String get batchStatusDone => _en.batchStatusDone;
+  static String get batchStatusFailed => _en.batchStatusFailed;
+  static String get batchStatusSaving => _en.batchStatusSaving;
+  static String get batchStatusSaved => _en.batchStatusSaved;
+  static String get batchStatusCancelled => _en.batchStatusCancelled;
+  static String get errorDialogTitle => _en.errorDialogTitle;
+  static String get appNameWebSuffix => _en.appNameWebSuffix;
+  static String get download => _en.download;
+  static String get language => _en.language;
+  static String get systemLanguage => _en.systemLanguage;
+  static String get pickedFileCaption => _en.pickedFileCaption;
 }

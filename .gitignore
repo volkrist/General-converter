@@ -46,3 +46,6 @@ app.*.map.json
 
 # Local emulator screenshots (not for repo)
 emulator-screen*.png
+
+# Flutter gen-l10n optional untranslated report
+l10n_untranslated.txt

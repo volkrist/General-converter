@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/app_strings.dart';
 import '../../converter/converter_capabilities.dart';
@@ -9,6 +10,9 @@ import '../../converter/models/image_format.dart';
 import '../../converter/services/common/conversion_matrix.dart';
 import '../../converter/services/web/download_bytes.dart';
 import '../../converter/services/web/web_image_converter_service.dart';
+import '../../l10n/l10n_extensions.dart';
+import '../../localization/language_names.dart';
+import '../../localization/locale_controller.dart';
 
 /// Web: Upload → Convert (общий pipeline) → Preview → Download.
 class ConverterWebScreen extends StatefulWidget {
@@ -189,7 +193,8 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
     }
   }
 
-  Widget _buildPreview() {
+  Widget _buildPreview(BuildContext context) {
+    final l10n = context.l10n;
     if (_outputBytes == null) {
       return const SizedBox.shrink();
     }
@@ -202,18 +207,19 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
           height: 280,
           fit: BoxFit.contain,
           errorBuilder: (context, error, stackTrace) {
-            return _buildPlaceholder(AppStrings.previewNotAvailable);
+            return _buildPlaceholder(context, l10n.previewNotAvailable);
           },
         ),
       );
     }
 
     return _buildPlaceholder(
-      '${_targetFormat.label}: ${AppStrings.previewNotAvailable}',
+      context,
+      '${_targetFormat.label}: ${l10n.previewNotAvailable}',
     );
   }
 
-  Widget _buildPlaceholder(String text) {
+  Widget _buildPlaceholder(BuildContext context, String text) {
     return Container(
       width: double.infinity,
       constraints: const BoxConstraints(minHeight: 180),
@@ -234,16 +240,52 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final localeVm = context.watch<LocaleController>();
     final inputSelected = _inputBytes != null;
     final allowedTargets = _allowedTargetFormats;
-    final canConvert =
-        inputSelected && !_isConverting && !_isPicking;
+    final canConvert = inputSelected && !_isConverting && !_isPicking;
     final canDownload = _outputBytes != null && !_isConverting;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${AppStrings.appName} (Web)'),
+        title: Text('${l10n.appName} ${l10n.appNameWebSuffix}'),
         centerTitle: true,
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.language_outlined),
+            tooltip: l10n.language,
+            onSelected: (code) {
+              if (code == '_system') {
+                localeVm.setLocaleOverride(null);
+              } else {
+                localeVm.setLocaleOverride(Locale(code));
+              }
+            },
+            itemBuilder: (ctx) {
+              final l = ctx.l10n;
+              final entries = <PopupMenuEntry<String>>[
+                CheckedPopupMenuItem<String>(
+                  value: '_system',
+                  checked: localeVm.localeOverride == null,
+                  child: Text(l.systemLanguage),
+                ),
+                const PopupMenuDivider(),
+              ];
+              for (final loc in sortedSupportedLocales()) {
+                entries.add(
+                  CheckedPopupMenuItem<String>(
+                    value: loc.languageCode,
+                    checked: localeVm.localeOverride?.languageCode ==
+                        loc.languageCode,
+                    child: Text(localePickerLabel(loc)),
+                  ),
+                );
+              }
+              return entries;
+            },
+          ),
+        ],
       ),
       body: Center(
         child: ConstrainedBox(
@@ -254,19 +296,25 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
               ElevatedButton(
                 onPressed: _isPicking || _isConverting ? null : _pickFile,
                 child: Text(
-                  _isPicking ? AppStrings.pickFileTitle : AppStrings.pickImage,
+                  _isPicking ? l10n.pickFileTitle : l10n.pickImage,
                 ),
               ),
               const SizedBox(height: 12),
-              if (_inputName.isNotEmpty)
+              if (_inputName.isNotEmpty) ...[
                 Text(
-                  'File: $_inputName (${_getExtension(_inputName)})',
+                  l10n.pickedFileCaption,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '$_inputName · ${_getExtension(_inputName)}',
                   style: const TextStyle(fontSize: 16),
                 ),
+              ],
               const SizedBox(height: 20),
               InputDecorator(
                 decoration: InputDecoration(
-                  labelText: AppStrings.targetFormat,
+                  labelText: l10n.targetFormat,
                   border: const OutlineInputBorder(),
                 ),
                 child: allowedTargets.isEmpty
@@ -303,7 +351,7 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
               ElevatedButton(
                 onPressed: canConvert ? _convert : null,
                 child: Text(
-                  _isConverting ? AppStrings.converting : AppStrings.convert,
+                  _isConverting ? l10n.converting : l10n.convert,
                 ),
               ),
               if (_errorMessage != null) ...[
@@ -316,12 +364,12 @@ class _ConverterWebScreenState extends State<ConverterWebScreen> {
                 ),
               ],
               const SizedBox(height: 24),
-              _buildPreview(),
+              _buildPreview(context),
               if (_outputBytes != null) ...[
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: canDownload ? _download : null,
-                  child: const Text('Download'),
+                  child: Text(l10n.download),
                 ),
               ],
             ],

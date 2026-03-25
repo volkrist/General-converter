@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
-import '../constants/app_strings.dart';
+import '../l10n/l10n_extensions.dart';
 
 class ResultPreviewCard extends StatefulWidget {
   const ResultPreviewCard({
@@ -75,6 +75,7 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final details = kIsWeb
         ? widget.formatLabel
         : '${widget.formatLabel} · ${(widget.file.lengthSync() / 1024).toStringAsFixed(1)} KB';
@@ -104,10 +105,10 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: AppStrings.renameOutput,
-                    hintText: AppStrings.renameHint,
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l10n.renameOutput,
+                    hintText: l10n.renameHint,
+                    border: const OutlineInputBorder(),
                     isDense: true,
                   ),
                   onChanged: widget.onRename,
@@ -138,13 +139,13 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
                       IconButton(
                         onPressed: widget.onOpen,
                         icon: const Icon(Icons.open_in_new),
-                        tooltip: AppStrings.open,
+                        tooltip: l10n.open,
                       ),
                     if (widget.onShare != null)
                       IconButton(
                         onPressed: widget.onShare,
                         icon: const Icon(Icons.share),
-                        tooltip: AppStrings.share,
+                        tooltip: l10n.share,
                       ),
                   ],
                 ),
@@ -152,9 +153,9 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: widget.isSaved
-                      ? const Chip(
-                          avatar: Icon(Icons.check_circle, size: 18),
-                          label: Text(AppStrings.saved),
+                      ? Chip(
+                          avatar: const Icon(Icons.check_circle, size: 18),
+                          label: Text(l10n.saved),
                         )
                       : FilledButton.tonalIcon(
                           onPressed: widget.isSaving ? null : widget.onSave,
@@ -167,9 +168,7 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
                                 )
                               : const Icon(Icons.save_alt),
                           label: Text(
-                            widget.isSaving
-                                ? AppStrings.saving
-                                : AppStrings.save,
+                            widget.isSaving ? l10n.saving : l10n.save,
                           ),
                         ),
                 ),
@@ -190,6 +189,7 @@ class _NoPreviewPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     return SizedBox(
       height: 160,
       child: Center(
@@ -211,7 +211,7 @@ class _NoPreviewPlaceholder extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                AppStrings.previewNotAvailable,
+                l10n.previewNotAvailable,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),

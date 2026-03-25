@@ -10,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../constants/app_strings.dart';
 import '../converter_capabilities.dart';
 import '../models/batch_item_state.dart';
+import '../models/conversion_time_hint.dart';
 import '../models/converted_file.dart';
 import '../models/image_format.dart';
 import '../services/android/image_converter_service.dart';
@@ -72,9 +73,6 @@ class ConverterViewModel extends ChangeNotifier {
 
   final List<BatchItemState> batchItems = <BatchItemState>[];
 
-  String get convertingProgressLabel =>
-      '${AppStrings.converting} $conversionElapsedLabel';
-
   String get conversionElapsedLabel {
     final minutes = conversionElapsedSeconds ~/ 60;
     final seconds = conversionElapsedSeconds % 60;
@@ -83,15 +81,15 @@ class ConverterViewModel extends ChangeNotifier {
     return '$mm:$ss';
   }
 
-  String? get conversionTimeHint {
+  ConversionTimeHint? get conversionTimeHintKind {
     if (selectedImage == null) return null;
     if (selectedFormat == ImageFormat.pdf) {
-      return AppStrings.conversionHintPdf;
+      return ConversionTimeHint.pdf;
     }
     if (isLargeFile) {
-      return AppStrings.conversionHintHeavy;
+      return ConversionTimeHint.heavy;
     }
-    return AppStrings.conversionHintQuick;
+    return ConversionTimeHint.quick;
   }
 
   ImageFormat? get selectedInputFormat =>

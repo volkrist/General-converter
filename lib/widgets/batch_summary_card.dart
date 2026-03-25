@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_strings.dart';
+import '../l10n/l10n_extensions.dart';
 
 class BatchSummaryCard extends StatelessWidget {
   const BatchSummaryCard({
@@ -33,6 +33,7 @@ class BatchSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
 
     return Card(
       child: Padding(
@@ -41,7 +42,7 @@ class BatchSummaryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppStrings.batchModeTitle,
+              l10n.batchModeTitle,
               style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 12),
@@ -49,13 +50,13 @@ class BatchSummaryCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _StatChip(
-                    label: AppStrings.batchSummaryTotal,
+                    label: l10n.batchSummaryTotal,
                     value: total.toString(),
                   ),
                 ),
                 Expanded(
                   child: _StatChip(
-                    label: AppStrings.batchSummaryDone,
+                    label: l10n.batchSummaryDone,
                     value: done.toString(),
                   ),
                 ),
@@ -66,13 +67,13 @@ class BatchSummaryCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _StatChip(
-                    label: AppStrings.batchSummaryFailed,
+                    label: l10n.batchSummaryFailed,
                     value: failed.toString(),
                   ),
                 ),
                 Expanded(
                   child: _StatChip(
-                    label: AppStrings.batchSummaryQueued,
+                    label: l10n.batchSummaryQueued,
                     value: queued.toString(),
                   ),
                 ),
@@ -92,12 +93,12 @@ class BatchSummaryCard extends StatelessWidget {
             const SizedBox(height: 16),
             FilledButton.tonal(
               onPressed: saveAllEnabled ? onSaveAll : null,
-              child: Text(AppStrings.saveAllSuccessful),
+              child: Text(l10n.saveAllSuccessful),
             ),
             const SizedBox(height: 8),
             OutlinedButton(
               onPressed: retryFailedEnabled ? onRetryFailed : null,
-              child: Text(AppStrings.retryFailed),
+              child: Text(l10n.retryFailed),
             ),
           ],
         ),

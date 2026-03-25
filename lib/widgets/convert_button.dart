@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_strings.dart';
+import '../l10n/l10n_extensions.dart';
 
 class ConvertButton extends StatelessWidget {
   const ConvertButton({
@@ -37,8 +37,8 @@ class ConvertButton extends StatelessWidget {
             : const Icon(Icons.transform),
         label: Text(
           isLoading
-              ? (loadingLabel ?? AppStrings.converting)
-              : AppStrings.convert,
+              ? (loadingLabel ?? context.l10n.converting)
+              : context.l10n.convert,
         ),
       ),
     );

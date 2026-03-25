@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_strings.dart';
 import '../converter/models/image_format.dart';
+import '../l10n/l10n_extensions.dart';
 
 /// Список целей задаёт только ViewModel ([ConverterViewModel.allowedTargetFormats]),
 /// сюда не дублировать свою логику матрицы/форматов.
@@ -21,20 +21,20 @@ class FormatDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = allowedFormats;
     if (items.isEmpty) {
-      return const InputDecorator(
+      return InputDecorator(
         decoration: InputDecoration(
-          labelText: AppStrings.targetFormat,
-          border: OutlineInputBorder(),
+          labelText: context.l10n.targetFormat,
+          border: const OutlineInputBorder(),
         ),
-        child: SizedBox(height: 48, child: Center(child: Text('—'))),
+        child: const SizedBox(height: 48, child: Center(child: Text('—'))),
       );
     }
 
     return InputDecorator(
-      decoration: const InputDecoration(
-        labelText: AppStrings.targetFormat,
-        border: OutlineInputBorder(),
-        contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: InputDecoration(
+        labelText: context.l10n.targetFormat,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<ImageFormat>(
