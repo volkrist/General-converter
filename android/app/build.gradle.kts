@@ -16,7 +16,7 @@ plugins {
 }
 
 android {
-    namespace = "com.volkrist.general_converter"
+    namespace = "com.tfd.general_converter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.volkrist.general_converter"
+        applicationId = "com.tfd.general_converter"
         minSdk = maxOf(flutter.minSdkVersion, 28)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
