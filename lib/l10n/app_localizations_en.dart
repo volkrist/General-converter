@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Generic Converter';
 
   @override
   String get pickImage => 'Pick file';
@@ -273,5 +273,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Selected file';
+  String get pickedFileCaption => 'Picked file';
 }

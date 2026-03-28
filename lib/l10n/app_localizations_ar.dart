@@ -273,5 +273,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Selected file';
+  String get pickedFileCaption => 'Picked file';
 }

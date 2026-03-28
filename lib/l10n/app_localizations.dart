@@ -169,7 +169,7 @@ abstract class AppLocalizations {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'General Converter'**
+  /// **'Generic Converter'**
   String get appName;
 
   /// No description provided for @pickImage.
@@ -667,7 +667,7 @@ abstract class AppLocalizations {
   /// No description provided for @pickedFileCaption.
   ///
   /// In en, this message translates to:
-  /// **'Selected file'**
+  /// **'Picked file'**
   String get pickedFileCaption;
 }
 
