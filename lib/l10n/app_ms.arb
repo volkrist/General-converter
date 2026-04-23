@@ -69,14 +69,14 @@
   "batchSaveAllProgressLabel": "Menyimpan {current}/{total}",
   "@batchSaveAllProgressLabel": {
     "placeholders": {
-    "current": {
-    "type": "int"
-    },
-    "total": {
-    "type": "int"
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
-    }
-    },
+  },
   "retryFailed": "Retry failed",
   "clearCompleted": "Clear completed",
   "clearCompletedTooltip": "Remove items marked as saved from this list",
@@ -95,5 +95,186 @@
   "errorDialogTitle": "Error",
   "keepScreenOn": "Keep screen on",
   "keepScreenOnTooltip": "Prevent the device display from turning off while the app is active.",
-  "pickedFileCaption": "Fail yang dipilih"
+  "pickedFileCaption": "Fail yang dipilih",
+  "@appName": {
+    "description": "The application name shown in UI"
+  },
+  "@pickImage": {
+    "description": "Button label to pick a single file"
+  },
+  "@pickFromGallery": {
+    "description": "Label to pick from gallery"
+  },
+  "@pickFromFiles": {
+    "description": "Label to pick from file manager"
+  },
+  "@pickManyFiles": {
+    "description": "Label for batch file selection"
+  },
+  "@pickFolder": {
+    "description": "Convert action label"
+  },
+  "@convertBatch": {},
+  "@fileTooLarge": {
+    "description": "Error shown when file is too large"
+  },
+  "@largeFileWarning": {
+    "description": "Warning about large files"
+  },
+  "@notEnoughMemory": {
+    "description": "Error when device lacks memory"
+  },
+  "@memoryGuardTriggered": {
+    "description": "Message when conversion is restricted by memory guard"
+  },
+  "@batchMemoryGuardTriggered": {
+    "description": "Message when batch selection triggers memory guard"
+  },
+  "@save": {
+    "description": "Save action label"
+  },
+  "@saving": {
+    "description": "Status shown while saving"
+  },
+  "@saved": {
+    "description": "Confirmation that save completed"
+  },
+  "@share": {
+    "description": "Share action label"
+  },
+  "@rename": {
+    "description": "Rename action label"
+  },
+  "@renameOutput": {
+    "description": "Rename output label"
+  },
+  "@renameHint": {
+    "description": "Hint text for renaming output file"
+  },
+  "@apply": {
+    "description": "Apply action label"
+  },
+  "@dismiss": {
+    "description": "Dismiss action label"
+  },
+  "@emptyStateHint": {
+    "description": "Hint shown in empty state"
+  },
+  "@conversionFailed": {
+    "description": "Error when conversion fails"
+  },
+  "@batchConversionFailed": {
+    "description": "Error when batch conversion fails"
+  },
+  "@saveFailed": {
+    "description": "Error when saving fails"
+  },
+  "@pickFailed": {
+    "description": "Error when picking a file fails"
+  },
+  "@tapToPick": {
+    "description": "Instruction to tap to pick a file"
+  },
+  "@invalidOrCorruptImage": {
+    "description": "Error for invalid or corrupt image files"
+  },
+  "@invalidImageDimensions": {
+    "description": "Error for images with invalid dimensions"
+  },
+  "@failedToDecodeHeic": {
+    "description": "Error decoding HEIC"
+  },
+  "@failedToEncodeHeic": {
+    "description": "Error encoding HEIC"
+  },
+  "@previewNotAvailable": {
+    "description": "Text shown when preview is unavailable"
+  },
+  "@batchPreviewNoThumbnail": {
+    "description": "Label when no thumbnail available"
+  },
+  "@batchPreviewWaiting": {
+    "description": "Label shown while thumbnail is pending"
+  },
+  "@failedToEncodeAvif": {
+    "description": "Error encoding AVIF"
+  },
+  "@formatPairNotSupported": {
+    "description": "Message for unsupported format pair"
+  },
+  "@pdfRenderUnavailable": {
+    "description": "Message when PDF rendering isn't supported"
+  },
+  "@savePdfFailed": {
+    "description": "Error when saving PDF fails"
+  },
+  "@unsupportedInputFormat": {
+    "description": "Message for unsupported input formats"
+  },
+  "@open": {
+    "description": "Open action label"
+  },
+  "@openFileFailed": {
+    "description": "Error when opening file with another app fails"
+  },
+  "@openFileUnavailableWeb": {
+    "description": "Message when opening files in another app is not available on web"
+  },
+  "@outputFileEmpty": {
+    "description": "Error when output file is empty"
+  },
+  "@outputEncodeRoundTripFailed": {
+    "description": "Error when output becomes unreadable after saving"
+  },
+  "@toggleTheme": {
+    "description": "Label to toggle theme"
+  },
+  "@policyPreShrinkNoWritableDir": {
+    "description": "Message when temporary workspace cannot be prepared"
+  },
+  "@conversionHintQuick": {
+    "description": "Quick conversion hint"
+  },
+  "@conversionHintHeavy": {
+    "description": "Heavy conversion hint"
+  },
+  "@conversionHintPdf": {
+    "description": "PDF conversion hint"
+  },
+  "@batchReady": {
+    "description": "Message when batch queue is ready"
+  },
+  "@batchDone": {
+    "description": "Message when batch completes"
+  },
+  "@noBatchFiles": {
+    "description": "Message when no batch files are selected"
+  },
+  "@progressFiles": {
+    "description": "Label for file count in progress"
+  },
+  "@batchModeTitle": {
+    "description": "Title for batch mode"
+  },
+  "@batchModeSubtitle": {
+    "description": "Subtitle explaining batch mode"
+  },
+  "@batchSummaryTotal": {
+    "description": "Label for total in batch summary"
+  },
+  "@batchSummaryDone": {
+    "description": "Label for done in batch summary"
+  },
+  "@batchSummaryFailed": {
+    "description": "Label for failed in batch summary"
+  },
+  "@batchSummaryQueued": {
+    "description": "Label for queued in batch summary"
+  },
+  "@saveAllSuccessful": {
+    "description": "Confirmation when all saves succeeded"
+  },
+  "@batchSaveAllStarting": {
+    "description": "Status shown when saving all files"
+  }
 }
