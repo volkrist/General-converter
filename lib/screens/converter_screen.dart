@@ -176,7 +176,7 @@ class _ConverterViewState extends State<_ConverterView> {
                         value: loc.languageCode,
                         checked:
                             localeVm.localeOverride?.languageCode ==
-                                loc.languageCode,
+                            loc.languageCode,
                         child: Text(localePickerLabel(loc)),
                       ),
                     );
@@ -184,12 +184,7 @@ class _ConverterViewState extends State<_ConverterView> {
                   return entries;
                 },
               ),
-              if (vm.isConverting || vm.isBatchConverting)
-                TextButton.icon(
-                  onPressed: vm.cancelConvert,
-                  icon: const Icon(Icons.close),
-                  label: Text(l10n.cancel),
-                ),
+
               IconButton(
                 icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
                 onPressed: () {
@@ -229,8 +224,8 @@ String? _localizedConversionHint(
 Widget _buildBody(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
   final l10n = context.l10n;
-  final convertingLine =
-      '${l10n.converting} ${vm.conversionElapsedLabel}'.trim();
+  final convertingLine = '${l10n.converting} ${vm.conversionElapsedLabel}'
+      .trim();
 
   return Column(
     children: [
@@ -252,7 +247,9 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
           child: Column(
             children: [
               LinearProgressIndicator(
-                value: vm.progress <= 0 || vm.progress >= 1 ? null : vm.progress,
+                value: vm.progress <= 0 || vm.progress >= 1
+                    ? null
+                    : vm.progress,
               ),
               const SizedBox(height: 8),
               Align(
@@ -278,8 +275,8 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
   final l10n = context.l10n;
   final hint = _localizedConversionHint(context, vm.conversionTimeHintKind);
-  final convertingLine =
-      '${l10n.converting} ${vm.conversionElapsedLabel}'.trim();
+  final convertingLine = '${l10n.converting} ${vm.conversionElapsedLabel}'
+      .trim();
 
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -312,6 +309,7 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
           isLoading: vm.isConverting,
           enabled: vm.selectedImage != null && !vm.isBatchConverting,
           loadingLabel: convertingLine,
+          onCancel: vm.cancelConvert,
         ),
         if (vm.result != null) ...[
           const SizedBox(height: 24),
@@ -336,12 +334,12 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
   final theme = Theme.of(context);
   final l10n = context.l10n;
 
-  final saveAllEnabled = !vm.isBatchConverting &&
+  final saveAllEnabled =
+      !vm.isBatchConverting &&
       !vm.isBatchSavingAll &&
       vm.batchItems.any((e) => e.status == BatchItemStatus.done);
-  final retryFailedEnabled = !vm.isBatchConverting &&
-      !vm.isBatchSavingAll &&
-      vm.batchFailedCount > 0;
+  final retryFailedEnabled =
+      !vm.isBatchConverting && !vm.isBatchSavingAll && vm.batchFailedCount > 0;
 
   return ListView(
     padding: const EdgeInsets.all(16),
@@ -371,16 +369,15 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
       ),
       const SizedBox(height: 16),
       FilledButton.tonalIcon(
-        onPressed: vm.batchItems.isEmpty ||
+        onPressed:
+            vm.batchItems.isEmpty ||
                 vm.isConverting ||
                 vm.isBatchConverting ||
                 vm.isBatchSavingAll
             ? null
             : () => vm.convertBatch(),
         icon: const Icon(Icons.layers),
-        label: Text(
-          '${l10n.convertBatch} (${vm.batchSummary})',
-        ),
+        label: Text('${l10n.convertBatch} (${vm.batchSummary})'),
       ),
       const SizedBox(height: 16),
       BatchSummaryCard(
