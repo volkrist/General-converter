@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'app_theme.dart';
 import 'l10n/app_localizations.dart';
@@ -19,7 +19,7 @@ class GeneralConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!kReleaseMode && !_wakelockEnabled) {
-      Wakelock.enable();
+      WakelockPlus.enable();
       _wakelockEnabled = true;
     }
     return MultiProvider(
