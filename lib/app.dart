@@ -46,8 +46,10 @@ class GeneralConverterApp extends StatelessWidget {
             themeMode: themeVm.themeMode,
             onGenerateRoute: AppRouter.onGenerateRoute,
             debugShowCheckedModeBanner: false,
-            builder: (context, child) => IncomingSharedFilesListener(
-              child: child ?? const SizedBox.shrink(),
+            builder: (context, child) => SafeArea(
+              child: IncomingSharedFilesListener(
+                child: child ?? const SizedBox.shrink(),
+              ),
             ),
             // Provide an app-level AppBar leading button via Navigator's first route.
           );

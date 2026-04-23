@@ -2,7 +2,7 @@ name: general_converter
 description: "Image converter app — pick, convert, and save images between formats."
 publish_to: "none"
 
-version: 1.0.1+4
+version: 1.2.0+5
 
 environment:
   sdk: ^3.11.1
