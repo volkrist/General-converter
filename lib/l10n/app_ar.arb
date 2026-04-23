@@ -69,8 +69,12 @@
   "batchSaveAllProgressLabel": "Saving {current}/{total}",
   "@batchSaveAllProgressLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "retryFailed": "Retry failed",

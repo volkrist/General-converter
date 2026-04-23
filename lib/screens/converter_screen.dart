@@ -149,9 +149,11 @@ class _ConverterViewState extends State<_ConverterView> {
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              icon: Icon(context.watch<WakelockViewModel>().enabled
-                  ? Icons.visibility
-                  : Icons.visibility_off),
+              icon: Icon(
+                context.watch<WakelockViewModel>().enabled
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+              ),
               onPressed: () {
                 final vm = context.read<WakelockViewModel>();
                 vm.setEnabled(!vm.enabled);

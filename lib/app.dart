@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'viewmodels/wakelock_view_model.dart';
-
 import 'app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'localization/locale_controller.dart';
 import 'providers.dart';
 import 'router.dart';
 import 'theme_view_model.dart';
+import 'viewmodels/wakelock_view_model.dart';
 import 'widgets/incoming_shared_files_listener.dart';
 
 class GeneralConverterApp extends StatelessWidget {
