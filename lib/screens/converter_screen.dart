@@ -8,6 +8,7 @@ import '../l10n/l10n_extensions.dart';
 import '../localization/language_names.dart';
 import '../localization/locale_controller.dart';
 import '../theme_view_model.dart';
+import '../viewmodels/wakelock_view_model.dart';
 import '../widgets/batch_result_tile.dart';
 import '../widgets/batch_summary_card.dart';
 import '../widgets/conversion_status_banner.dart';
@@ -147,6 +148,16 @@ class _ConverterViewState extends State<_ConverterView> {
 
         return Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(context.watch<WakelockViewModel>().enabled
+                  ? Icons.visibility
+                  : Icons.visibility_off),
+              onPressed: () {
+                final vm = context.read<WakelockViewModel>();
+                vm.setEnabled(!vm.enabled);
+              },
+              tooltip: 'Keep screen on',
+            ),
             title: Text(l10n.appName),
             centerTitle: true,
             actions: [

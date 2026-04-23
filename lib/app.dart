@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
+
+import 'viewmodels/wakelock_view_model.dart';
 
 import 'app_theme.dart';
 import 'l10n/app_localizations.dart';
@@ -11,21 +11,19 @@ import 'router.dart';
 import 'theme_view_model.dart';
 import 'widgets/incoming_shared_files_listener.dart';
 
-bool _wakelockEnabled = false;
-
 class GeneralConverterApp extends StatelessWidget {
   const GeneralConverterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (!kReleaseMode && !_wakelockEnabled) {
-      WakelockPlus.enable();
-      _wakelockEnabled = true;
-    }
     return MultiProvider(
       providers: appProviders,
       child: Consumer2<ThemeViewModel, LocaleController>(
         builder: (context, themeVm, localeVm, _) {
+          final wakelockVm = context.watch<WakelockViewModel>();
+          // reference wakelockVm to ensure the app rebuilds when pref changes
+          final _ = wakelockVm.enabled;
+
           return MaterialApp(
             onGenerateTitle: (ctx) => AppLocalizations.of(ctx).appName,
             locale: localeVm.localeOverride,
@@ -52,6 +50,7 @@ class GeneralConverterApp extends StatelessWidget {
             builder: (context, child) => IncomingSharedFilesListener(
               child: child ?? const SizedBox.shrink(),
             ),
+            // Provide an app-level AppBar leading button via Navigator's first route.
           );
         },
       ),

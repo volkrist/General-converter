@@ -83,5 +83,7 @@
   "language": "Язык",
   "systemLanguage": "Как в системе",
   "errorDialogTitle": "Ошибка",
-  "pickedFileCaption": "Выбранный файл"
+  "pickedFileCaption": "Выбранный файл",
+  "keepScreenOn": "Keep screen on",
+  "keepScreenOnTooltip": "Prevent the device display from turning off while the app is active."
 }

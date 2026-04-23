@@ -274,4 +274,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get pickedFileCaption => 'Picked file';
+
+  @override
+  String get keepScreenOn => 'Keep screen on';
+
+  @override
+  String get keepScreenOnTooltip =>
+      'Prevent the device display from turning off while the app is active.';
 }

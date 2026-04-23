@@ -88,5 +88,7 @@
   "download": "Download",
   "language": "Language",
   "systemLanguage": "System default",
-  "errorDialogTitle": "Error"
+  "errorDialogTitle": "Error",
+  "keepScreenOn": "Keep screen on",
+  "keepScreenOnTooltip": "Prevent the device display from turning off while the app is active."
 }

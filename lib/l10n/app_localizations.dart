@@ -669,6 +669,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Picked file'**
   String get pickedFileCaption;
+
+  /// No description provided for @keepScreenOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep screen on'**
+  String get keepScreenOn;
+
+  /// No description provided for @keepScreenOnTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Prevent the device display from turning off while the app is active.'**
+  String get keepScreenOnTooltip;
 }
 
 class _AppLocalizationsDelegate
