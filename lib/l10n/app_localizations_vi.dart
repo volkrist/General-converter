@@ -9,276 +9,277 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Bộ chuyển đổi tổng quát';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Chọn tệp';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Thư viện';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Tệp';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Tệp hàng loạt';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Thư mục';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Chọn nguồn';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Định dạng đích';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Chuyển đổi';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Chuyển đổi hàng loạt';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Đang chuyển đổi...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Hủy';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Tệp quá lớn';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Phát hiện tệp lớn. Việc chuyển đổi có thể giảm kích thước ảnh để đảm bảo ổn định.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Không đủ bộ nhớ để xử lý tệp này. Thử ảnh nhỏ hơn hoặc đóng các ứng dụng khác.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Tệp quá nặng để chuyển đổi an toàn trên thiết bị này.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Chọn quá nhiều tệp nặng cùng lúc. Chia nhỏ lô.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Lưu';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Đang lưu...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Đã lưu';
 
   @override
-  String get share => 'Share';
+  String get share => 'Chia sẻ';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Đổi tên';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Đổi tên đầu ra';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Tên tệp không có phần mở rộng';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Áp dụng';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Đóng';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Chạm + để chọn từ thư viện hoặc tệp';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Chuyển đổi thất bại';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Chuyển đổi hàng loạt thất bại';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Lưu thất bại';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Chọn thất bại';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Chạm để chọn tệp';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Tệp không phải là hình ảnh hợp lệ hoặc có vẻ bị hỏng.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Hình ảnh có kích thước không hợp lệ (trống hoặc bằng không).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Giải mã HEIC thất bại';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Mã hóa HEIC thất bại';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Xem trước không khả dụng cho định dạng này';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Không có hình thu nhỏ';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Hình thu nhỏ sau khi chuyển đổi';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Mã hóa AVIF thất bại';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Cặp định dạng này không được hỗ trợ';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'Không thể kết xuất PDF trên thiết bị này';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Lưu PDF thất bại';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Định dạng đầu vào không được hỗ trợ';
 
   @override
-  String get open => 'Open';
+  String get open => 'Mở';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Không thể mở tệp bằng ứng dụng khác';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Mở tệp trong ứng dụng khác không có sẵn trên web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Tệp đầu ra trống';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Tệp đầu ra không thể đọc được sau khi lưu';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Chuyển chủ đề';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Không thể chuẩn bị không gian làm việc tạm thời cho tệp này. Thử nguồn khác hoặc giải phóng bộ nhớ.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Thường hoàn thành trong vài giây.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Tệp lớn — chuyển đổi có thể mất ~10–30 giây.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Xuất PDF có thể mất nhiều thời gian hơn (~10–30 giây).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Hàng đợi lô sẵn sàng';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Chuyển đổi hàng loạt hoàn tất';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Không có tệp được chọn cho chuyển đổi hàng loạt';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'tệp';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Chuyển đổi hàng loạt';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Chọn định dạng đích, sau đó chuyển đổi tất cả tệp. Chế độ xem tệp đơn bị ẩn trong chế độ này.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Tổng';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Hoàn thành';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Thất bại';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Đang chờ';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Lưu tất cả thành công';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Đang lưu tệp...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Đang lưu $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Thử lại thất bại';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Xóa hoàn thành';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Xóa các mục được đánh dấu là đã lưu khỏi danh sách này';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Xóa hàng đợi';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'Đang chờ';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Đang chuyển đổi';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Hoàn thành';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Thất bại';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Đang lưu';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Đã lưu';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Đã hủy';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Tải xuống';
 
   @override
-  String get language => 'Language';
+  String get language => 'Ngôn ngữ';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Mặc định hệ thống';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Lỗi';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Tệp đã chọn';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Giữ màn hình sáng';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Ngăn màn hình thiết bị tắt khi ứng dụng đang hoạt động.';
 }

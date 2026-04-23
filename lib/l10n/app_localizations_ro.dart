@@ -9,159 +9,164 @@ class AppLocalizationsRo extends AppLocalizations {
   AppLocalizationsRo([String locale = 'ro']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Convertor General';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Alege fișier';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galerie';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Fișiere';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Fișiere batch';
 
   @override
   String get pickFolder => 'Folder';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Alege sursa';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Format țintă';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Convertiți';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Convertiți batch';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Se convertește...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Anulați';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Fișierul este prea mare';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Fișier mare detectat. Conversia poate reduce dimensiunea imaginii pentru stabilitate.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Memorie insuficientă pentru a procesa acest fișier. Încercați o imagine mai mică sau închideți alte aplicații.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Fișierul este prea greu pentru o conversie sigură pe acest dispozitiv.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Prea multe fișiere grele selectate simultan. Împărțiți lotul în părți mai mici.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Salvați';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Se salvează...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Salvat';
 
   @override
-  String get share => 'Share';
+  String get share => 'Partajați';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Redenumiți';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Redenumiți ieșirea';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Nume fișier fără extensie';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Aplicați';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Închideți';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint =>
+      'Atingeți + pentru a alege din galerie sau fișiere';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Conversia a eșuat';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Conversia batch a eșuat';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Salvarea a eșuat';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Selectarea a eșuat';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Atingeți pentru a alege un fișier';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Fișierul nu este o imagine validă sau pare deteriorat.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Imaginea are dimensiuni nevalide (goală sau zero).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Decodarea HEIC a eșuat';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Codificarea HEIC a eșuat';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Previzualizarea nu este disponibilă pentru acest format';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Fără miniatură';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatură după conversie';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Codificarea AVIF a eșuat';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported =>
+      'Această pereche de formate nu este acceptată';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'PDF-ul nu a putut fi redat pe acest dispozitiv';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Salvarea PDF-ului a eșuat';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Format de intrare neacceptat';
 
   @override
-  String get open => 'Open';
+  String get open => 'Deschideți';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'Nu s-a putut deschide fișierul cu o altă aplicație';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Deschiderea fișierelor într-o altă aplicație nu este disponibilă pe web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Fișierul de ieșire este gol';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Fișierul de ieșire nu a fost citibil după salvare';
 
   @override
   String get toggleTheme => 'Toggle theme';
@@ -273,7 +278,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Fișier selectat';
 
   @override
   String get keepScreenOn => 'Keep screen on';

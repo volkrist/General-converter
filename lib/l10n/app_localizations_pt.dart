@@ -9,218 +9,223 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Conversor Geral';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Escolher arquivo';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galeria';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Arquivos';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Arquivos em lote';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Pasta';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Escolher fonte';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Formato de destino';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Converter';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Converter em lote';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Convertendo...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Cancelar';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Arquivo muito grande';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Arquivo grande detectado. A conversão pode reduzir o tamanho da imagem para estabilidade.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Memória insuficiente para processar este arquivo. Tente uma imagem menor ou feche outros aplicativos.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'O arquivo é muito pesado para conversão segura neste dispositivo.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Muitos arquivos pesados selecionados de uma vez. Divida o lote em partes menores.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Salvar';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Salvando...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Salvo';
 
   @override
-  String get share => 'Share';
+  String get share => 'Compartilhar';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Renomear';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Renomear saída';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Nome do arquivo sem extensão';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Aplicar';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Fechar';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint =>
+      'Toque em + para escolher da galeria ou arquivos';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Falha na conversão';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Falha na conversão em lote';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Falha ao salvar';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Falha ao escolher';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Toque para escolher um arquivo';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'O arquivo não é uma imagem válida ou parece estar corrompido.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'A imagem tem dimensões inválidas (vazia ou zero).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Falha ao decodificar HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Falha ao codificar HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Pré-visualização não disponível para este formato';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Sem miniatura';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatura após conversão';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Falha ao codificar AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Este par de formatos não é suportado';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'Não foi possível renderizar o PDF neste dispositivo';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Falha ao salvar PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Formato de entrada não suportado';
 
   @override
-  String get open => 'Open';
+  String get open => 'Abrir';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'Não foi possível abrir o arquivo com outro aplicativo';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Abrir arquivos em outro aplicativo não está disponível na web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Arquivo de saída está vazio';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'O arquivo de saída não era legível após o salvamento';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Alternar tema';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Não foi possível preparar um espaço temporário para este arquivo. Tente outra fonte ou liberte espaço.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Normalmente termina em alguns segundos.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Arquivo grande — conversão pode levar ~10–30 segundos.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Exportação PDF pode levar mais tempo (~10–30 segundos).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Fila de lote está pronta';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Conversão em lote concluída';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles =>
+      'Nenhum arquivo selecionado para conversão em lote';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'arquivos';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Conversão em lote';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Escolha o formato de destino, então converta todos os arquivos. A visualização de arquivo individual está escondida neste modo.';
 
   @override
   String get batchSummaryTotal => 'Total';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Concluído';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Falhou';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Em fila';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Salvar tudo bem-sucedido';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Salvando arquivos...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Salvando $current/$total';
   }
 
   @override
@@ -273,7 +278,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Arquivo selecionado';
 
   @override
   String get keepScreenOn => 'Keep screen on';

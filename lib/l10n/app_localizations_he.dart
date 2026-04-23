@@ -9,276 +9,271 @@ class AppLocalizationsHe extends AppLocalizations {
   AppLocalizationsHe([String locale = 'he']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'ממיר כללי';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'בחר קובץ';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'גלריה';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'קבצים';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'קבצים באצווה';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'תיקייה';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'בחר מקור';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'פורמט יעד';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'המר';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'המר אצווה';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'ממירים...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'ביטול';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'הקובץ גדול מדי';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'זוהה קובץ גדול. המרה עשויה להקטין את גודל התמונה לשם יציבות.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'אין מספיק זיכרון לעיבוד קובץ זה. נסה תמונה קטנה יותר או סגור אפליקציות אחרות.';
 
   @override
-  String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+  String get memoryGuardTriggered => 'הקובץ כבד מדי להמרה בטוחה במכשיר זה.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'נבחרו יותר מדי קבצים כבדים בבת אחת. חלק את האצווה לחלקים קטנים יותר.';
 
   @override
-  String get save => 'Save';
+  String get save => 'שמור';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'שומר...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'נשמר';
 
   @override
-  String get share => 'Share';
+  String get share => 'שיתוף';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'שנה שם';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'שינוי שם הפלט';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'שם הקובץ ללא סיומת';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'החל';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'סגור';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'הקש + כדי לבחור מהגלריה או מהקבצים';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'ההמרה נכשלה';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'ההמרה באצווה נכשלה';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'השמירה נכשלה';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'הבחירה נכשלה';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'הקש כדי לבחור קובץ';
 
   @override
-  String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+  String get invalidOrCorruptImage => 'הקובץ אינו תמונה תקינה או נראה פגום.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'לתמונה יש ממדים לא חוקיים (ריקים או אפס).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'פענוח HEIC נכשל';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'הצפנת HEIC נכשלה';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'תצוגה מקדימה אינה זמינה לפורמט זה';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'אין תמונה ממוזערת';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'תמונה ממוזערת לאחר ההמרה';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'הצפנת AVIF נכשלה';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'צמד פורמטים זה אינו נתמך';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'לא ניתן לעבד PDF במכשיר זה';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'שמירת ה-PDF נכשלה';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'פורמט קלט לא נתמך';
 
   @override
-  String get open => 'Open';
+  String get open => 'פתח';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'לא ניתן לפתוח קובץ באפליקציה אחרת';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'פתיחת קבצים באפליקציה אחרת אינה זמינה בווב';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'קובץ הפלט ריק';
 
   @override
-  String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+  String get outputEncodeRoundTripFailed => 'קובץ הפלט לא היה קריא לאחר השמירה';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'החלף ערכת נושא';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'לא ניתן להכין סביבת עבודה זמנית עבור קובץ זה. נסה מקור אחר או שחרר מקום אחסון.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'בד\"רזית מסתיים תוך מספר שניות.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'קובץ גדול — ההמרה עשויה לקחת ~10–30 שניות.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'ייצוא PDF עשוי לקחת יותר זמן (~10–30 שניות).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'תור האצווה מוכן';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'המרת האצווה הושלמה';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'לא נבחרו קבצים להמרת אצווה';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'קבצים';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'המרת אצווה';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'בחר פורמט יעד ואז המיר את כל הקבצים. תצוגת הקובץ היחיד מוסתרת במצב זה.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'סה\"כ';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'הושלם';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'נכשל';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'בתור';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'הכל נשמר בהצלחה';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'שומר את הקבצים...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'שומר $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'נסה שוב';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'נקה את הושלם';
 
   @override
-  String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+  String get clearCompletedTooltip => 'הסר פריטים שסומנו כנשמרים מרשימה זו';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'נקה תור';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'בתור';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'ממירים';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'הושלם';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'נכשל';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'שומר';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'נשמר';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'בוטל';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'הורד';
 
   @override
-  String get language => 'Language';
+  String get language => 'שפה';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'ברירת מחדל של המערכת';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'שגיאה';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'הקובץ שנבחר';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'השאר את המסך דולק';
 
   @override
-  String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+  String get keepScreenOnTooltip => 'מנע כיבוי המסך בזמן שהאפליקציה פעילה.';
 }

@@ -9,155 +9,156 @@ class AppLocalizationsNb extends AppLocalizations {
   AppLocalizationsNb([String locale = 'nb']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Generell Konverter';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Velg fil';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galleri';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Filer';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Batch-filer';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Mappe';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Velg kilde';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Målformat';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Konverter';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Batch-konverter';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Konverterer...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Avbryt';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Filen er for stor';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Stor fil oppdaget. Konvertering kan redusere bildestørrelsen for stabilitet.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Ikke nok minne til å behandle denne filen. Prøv et mindre bilde eller lukk andre apper.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Filen er for tung for sikker konvertering på denne enheten.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'For mange tunge filer valgt samtidig. Del batchen i mindre deler.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Lagre';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Lagrer...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Lagret';
 
   @override
-  String get share => 'Share';
+  String get share => 'Del';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Gi nytt navn';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Gi nytt navn til output';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Filnavn uten utvidelse';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Bruk';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Lukk';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Trykk + for å velge fra galleri eller filer';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Konvertering mislyktes';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Batch-konvertering mislyktes';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Lagring mislyktes';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Valg mislyktes';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Trykk for å velge en fil';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Filen er ikke et gyldig bilde eller ser ut til å være skadet.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Bildet har ugyldige dimensjoner (tomt eller null).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Kunne ikke dekode HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Kunne ikke kode HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Forhåndsvisning er ikke tilgjengelig for dette formatet';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Ingen miniatyrbilde';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatyrbilde etter konvertering';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Kunne ikke kode AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Dette formatparet støttes ikke';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'PDF kunne ikke vises på denne enheten';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Kunne ikke lagre PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Ikke støttet inndataformat';
 
   @override
-  String get open => 'Open';
+  String get open => 'Åpne';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Kunne ikke åpne filen med en annen app';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Åpne filer i en annen app er ikke tilgjengelig på nettet';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Utdatafilen er tom';
 
   @override
   String get outputEncodeRoundTripFailed =>
@@ -273,7 +274,7 @@ class AppLocalizationsNb extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Valgt fil';
 
   @override
   String get keepScreenOn => 'Keep screen on';

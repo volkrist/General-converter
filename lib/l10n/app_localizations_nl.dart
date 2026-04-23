@@ -9,155 +9,158 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Algemene Converter';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Kies bestand';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galerij';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Bestanden';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Batch bestanden';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Map';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Kies bron';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Doelformaat';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Converteren';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Batch converteren';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Bezig met converteren...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Annuleren';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Bestand is te groot';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Groot bestand gedetecteerd. Conversie kan de afbeeldingsgrootte verkleinen voor stabiliteit.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Niet genoeg geheugen om dit bestand te verwerken. Probeer een kleinere afbeelding of sluit andere apps.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Bestand is te zwaar voor veilige conversie op dit apparaat.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Te veel zware bestanden tegelijk geselecteerd. Verdeel de batch in kleinere delen.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Opslaan';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Bezig met opslaan...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Opgeslagen';
 
   @override
-  String get share => 'Share';
+  String get share => 'Delen';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Hernoemen';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Uitvoer hernoemen';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Bestandsnaam zonder extensie';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Toepassen';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Sluiten';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Tik op + om te kiezen uit galerij of bestanden';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Conversie mislukt';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Batchconversie mislukt';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Opslaan mislukt';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Selecteren mislukt';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Tik om een bestand te kiezen';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Het bestand is geen geldige afbeelding of lijkt beschadigd te zijn.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'De afbeelding heeft ongeldige afmetingen (leeg of nul).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'HEIC decoderen mislukt';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'HEIC coderen mislukt';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Voorvertoning is niet beschikbaar voor dit formaat';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Geen miniatuur';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatuur na conversie';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'AVIF coderen mislukt';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported =>
+      'Dit formatenpaar wordt niet ondersteund';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'PDF kon niet worden weergegeven op dit apparaat';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'PDF opslaan mislukt';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Niet-ondersteund invoerformaat';
 
   @override
-  String get open => 'Open';
+  String get open => 'Openen';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Kon bestand niet openen met een andere app';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Bestanden openen in een andere app is niet beschikbaar op het web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Uitvoerbestand is leeg';
 
   @override
   String get outputEncodeRoundTripFailed =>
@@ -273,7 +276,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Geselecteerd bestand';
 
   @override
   String get keepScreenOn => 'Keep screen on';

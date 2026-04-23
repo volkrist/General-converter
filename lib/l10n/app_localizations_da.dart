@@ -9,253 +9,254 @@ class AppLocalizationsDa extends AppLocalizations {
   AppLocalizationsDa([String locale = 'da']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Generisk konverter';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Vælg fil';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galleri';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Filer';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Batch-filer';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Mappe';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Vælg kilde';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Målformat';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Konverter';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Konverter batch';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Konverterer...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Annuller';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Filen er for stor';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Stor fil opdaget. Konvertering kan reducere billedstørrelsen for stabilitet.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Ikke nok hukommelse til at behandle denne fil. Prøv et mindre billede eller luk andre apps.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Filen er for krævende til sikker konvertering på denne enhed.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'For mange tunge filer valgt på én gang. Del batchen op.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Gem';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Gemmer...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Gemt';
 
   @override
-  String get share => 'Share';
+  String get share => 'Del';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Omdøb';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Omdøb output';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Filnavn uden filtype';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Anvend';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Luk';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Tryk + for at vælge fra galleri eller filer';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Konvertering mislykkedes';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Batch-konvertering mislykkedes';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Gem mislykkedes';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Valg af billede mislykkedes';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Tryk for at vælge fil';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Filen er ikke et gyldigt billede eller ser ud til at være beskadiget.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Billedet har ugyldige dimensioner (tomt eller nul dimensioner).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Kunne ikke dekode HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Kunne ikke kode HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Forhåndsvisning er ikke tilgængelig for dette format';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Ingen miniature';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniature efter konvertering';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Kunne ikke kode AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Dette formatpar understøttes ikke';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'PDF kunne ikke gengives på denne enhed';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Kunne ikke gemme PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Uunderstøttet inputformat';
 
   @override
-  String get open => 'Open';
+  String get open => 'Åbn';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Kunne ikke åbne fil med en anden app';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Åbning af filer i en anden app er ikke tilgængelig på web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Outputfilen er tom';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Outputfilen kunne ikke læses efter gem';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Skift tema';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Kan ikke forberede et midlertidigt arbejdsområde til denne fil. Prøv en anden kilde eller frigør lagerplads.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Færdiggøres normalt på få sekunder.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Stor fil — konvertering kan tage ~10–30 sekunder.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'PDF-eksport kan tage længere tid (~10–30 sekunder).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Batch-køen er klar';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Batch-konvertering fuldført';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Ingen filer valgt til batch-konvertering';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'filer';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Batch-konvertering';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Vælg målformat, og konverter derefter alle filer. Enkel-fils visning er skjult i denne tilstand.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'I alt';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Færdig';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Mislykkedes';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'I kø';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Alle gemt korrekt';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Gemmer filer...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Gemmer $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Prøv igen';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Ryd fuldførte';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Fjern elementer markeret som gemt fra denne liste';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Ryd kø';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'I kø';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Konverterer';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Færdig';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Mislykkedes';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Gemmer';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Gemt';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Annulleret';
 
   @override
   String get appNameWebSuffix => '(Web)';
@@ -264,21 +265,21 @@ class AppLocalizationsDa extends AppLocalizations {
   String get download => 'Download';
 
   @override
-  String get language => 'Language';
+  String get language => 'Sprog';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Systemstandard';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Fejl';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Valgt fil';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Hold skærm tændt';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Forhindrer, at enhedens skærm slukker, mens appen er aktiv.';
 }

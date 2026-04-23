@@ -9,218 +9,219 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Penukar Umum';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Pilih fail';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galeri';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Fail';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Fail batch';
 
   @override
   String get pickFolder => 'Folder';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Pilih sumber';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Format sasaran';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Tukar';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Tukar batch';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Menukar...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Batal';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Fail terlalu besar';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Fail besar dikesan. Penukaran mungkin mengurangkan saiz imej untuk kestabilan.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Memori tidak mencukupi untuk memproses fail ini. Cuba imej yang lebih kecil atau tutup aplikasi lain.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Fail terlalu berat untuk penukaran selamat pada peranti ini.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Terlalu banyak fail berat dipilih sekaligus. Bahagikan batch kepada bahagian yang lebih kecil.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Simpan';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Menyimpan...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Disimpan';
 
   @override
-  String get share => 'Share';
+  String get share => 'Kongsi';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Tukar nama';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Tukar nama output';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Nama fail tanpa sambungan';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Terapkan';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Tutup';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Ketuk + untuk memilih dari galeri atau fail';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Penukaran gagal';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Penukaran batch gagal';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Gagal menyimpan';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Gagal memilih';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Ketuk untuk memilih fail';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Fail bukan imej yang sah atau kelihatan rosak.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Imej mempunyai saiz tidak sah (kosong atau sifar).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Gagal menyahkod HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Gagal menyandikan HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'Pratonton tidak tersedia untuk format ini';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Tiada lakaran kecil';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Lakaran kecil selepas penukaran';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Gagal menyandikan AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Pasangan format ini tidak disokong';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'PDF tidak dapat dipaparkan pada peranti ini';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Gagal menyimpan PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Format input tidak disokong';
 
   @override
-  String get open => 'Open';
+  String get open => 'Buka';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Tidak dapat membuka fail dengan aplikasi lain';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Membuka fail dalam aplikasi lain tidak tersedia di web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Fail output kosong';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Fail output tidak dapat dibaca selepas menyimpan';
 
   @override
   String get toggleTheme => 'Toggle theme';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Tidak dapat menyediakan ruang sementara untuk fail ini. Cuba sumber lain atau ruang kosong.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Biasanya selesai dalam beberapa saat.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Fail besar — penukaran mungkin memakan waktu ~10–30 saat.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Paparan PDF mungkin memakan waktu lebih lama (~10–30 saat).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Kumpulan batch siap';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Penukaran batch selesai';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Tiada fail dipilih untuk penukaran batch';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'fail';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Penukaran batch';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Pilih format sasaran, lalu tukar semua fail. Tampilan fail tunggal tersembunyi dalam mod ini.';
 
   @override
   String get batchSummaryTotal => 'Total';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Selesai';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Gagal';
 
   @override
   String get batchSummaryQueued => 'Queued';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Simpan semua berjaya';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Menyimpan fail...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Menyimpan $current/$total';
   }
 
   @override
@@ -273,7 +274,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Fail yang dipilih';
 
   @override
   String get keepScreenOn => 'Keep screen on';

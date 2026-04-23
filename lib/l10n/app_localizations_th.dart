@@ -9,276 +9,275 @@ class AppLocalizationsTh extends AppLocalizations {
   AppLocalizationsTh([String locale = 'th']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'ตัวแปลงทั่วไป';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'เลือกไฟล์';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'แกลเลอรี';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'ไฟล์';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'ไฟล์เป็นชุด';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'โฟลเดอร์';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'เลือกแหล่งที่มา';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'รูปแบบเป้าหมาย';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'แปลง';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'แปลงเป็นชุด';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'กำลังแปลง...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'ยกเลิก';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'ไฟล์ใหญ่เกินไป';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'ตรวจพบไฟล์ขนาดใหญ่ การแปลงอาจลดขนาดภาพเพื่อความเสถียร';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'หน่วยความจำไม่เพียงพอในการประมวลผลไฟล์นี้ ลองใช้ภาพที่เล็กกว่า หรือปิดแอปอื่นๆ';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'ไฟล์หนักเกินไปสำหรับการแปลงที่ปลอดภัยบนอุปกรณ์นี้';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'เลือกไฟล์หนักจำนวนมากเกินไปพร้อมกัน แยกชุดเป็นส่วนเล็กๆ';
 
   @override
-  String get save => 'Save';
+  String get save => 'บันทึก';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'กำลังบันทึก...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'บันทึกแล้ว';
 
   @override
-  String get share => 'Share';
+  String get share => 'แชร์';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'เปลี่ยนชื่อ';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'เปลี่ยนชื่อเอาต์พุต';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'ชื่อไฟล์โดยไม่ต้องใส่นามสกุล';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'ใช้';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'ปิด';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'แตะ + เพื่อเลือกจากแกลเลอรีหรือไฟล์';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'การแปลงล้มเหลว';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'การแปลงเป็นชุดล้มเหลว';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'บันทึกล้มเหลว';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'การเลือกล้มเหลว';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'แตะเพื่อเลือกไฟล์';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'ไฟล์ไม่ใช่ภาพที่ถูกต้องหรืออาจมีความเสียหาย';
 
   @override
-  String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+  String get invalidImageDimensions => 'ภาพมีขนาดไม่ถูกต้อง (ว่างหรือศูนย์)';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'ถอดรหัส HEIC ล้มเหลว';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'เข้ารหัส HEIC ล้มเหลว';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'ไม่สามารถแสดงตัวอย่างสำหรับรูปแบบนี้ได้';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'ไม่มีภาพขนาดย่อ';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'ภาพขนาดย่อหลังการแปลง';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'เข้ารหัส AVIF ล้มเหลว';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'คู่รูปแบบนี้ไม่รองรับ';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'อุปกรณ์นี้ไม่สามารถเรนเดอร์ PDF ได้';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'บันทึก PDF ล้มเหลว';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'รูปแบบอินพุตไม่รองรับ';
 
   @override
-  String get open => 'Open';
+  String get open => 'เปิด';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'ไม่สามารถเปิดไฟล์ด้วยแอปอื่นได้';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'การเปิดไฟล์ในแอปอื่นไม่สามารถใช้ได้บนเว็บ';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'ไฟล์ผลลัพธ์ว่างเปล่า';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'ไฟล์ผลลัพธ์ไม่สามารถอ่านได้หลังการบันทึก';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'สลับธีม';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'ไม่สามารถเตรียมพื้นที่ทำงานชั่วคราวสำหรับไฟล์นี้ ลองใช้แหล่งอื่นหรือเคลียร์ที่เก็บข้อมูล';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'โดยปกติจะเสร็จในไม่กี่วินาที';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'ไฟล์ใหญ่ — การแปลงอาจใช้เวลาประมาณ 10–30 วินาที';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'การส่งออก PDF อาจใช้เวลานานขึ้น (ประมาณ 10–30 วินาที)';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'คิวชุดพร้อมแล้ว';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'การแปลงชุดเสร็จสิ้น';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'ไม่มีไฟล์ที่เลือกสำหรับการแปลงเป็นชุด';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'ไฟล์';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'การแปลงเป็นชุด';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'เลือกฟอร์แมตเป้าหมาย แล้วแปลงไฟล์ทั้งหมด มุมมองไฟล์เดี่ยวจะถูกซ่อนในโหมดนี้';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'รวม';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'เสร็จสิ้น';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'ล้มเหลว';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'อยู่ในคิว';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'บันทึกทั้งหมดเรียบร้อย';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'กำลังบันทึกไฟล์...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'กำลังบันทึก $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'ลองอีกครั้งล้มเหลว';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'ล้างที่เสร็จแล้ว';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'ลบรายการที่ถูกทำเครื่องหมายว่าเป็นที่บันทึกจากรายการนี้';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'ล้างคิว';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'อยู่ในคิว';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'กำลังแปลง';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'เสร็จสิ้น';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'ล้มเหลว';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'กำลังบันทึก';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'บันทึกแล้ว';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'ยกเลิกแล้ว';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'ดาวน์โหลด';
 
   @override
-  String get language => 'Language';
+  String get language => 'ภาษา';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'ค่าเริ่มต้นของระบบ';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'ข้อผิดพลาด';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'ไฟล์ที่เลือก';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'ให้หน้าจอเปิดอยู่';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'ป้องกันไม่ให้หน้าจอปิดเมื่อแอปอยู่ในสถานะใช้งาน';
 }

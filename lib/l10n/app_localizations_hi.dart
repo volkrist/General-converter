@@ -9,276 +9,275 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'जनरल कन्वर्टर';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'फ़ाइल चुनें';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'गैलरी';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'फ़ाइलें';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'बैच फ़ाइलें';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'फ़ोल्डर';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'स्रोत चुनें';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'लक्ष्य फ़ॉर्मेट';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'रूपांतरण';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'बैच रूपांतरण';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'रूपांतरित हो रहा है...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'रद्द करें';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'फ़ाइल बहुत बड़ी है';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'बड़ी फ़ाइल मिली। स्थिरता के लिए रूपांतरण आकार कम कर सकता है।';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'इस फ़ाइल को संसाधित करने के लिए पर्याप्त मेमोरी नहीं है। एक छोटी छवि आज़माएँ या अन्य ऐप बंद करें।';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'इस डिवाइस पर सुरक्षित रूपांतरण के लिए फ़ाइल बहुत भारी है।';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'एक बार में बहुत सारी भारी फ़ाइलें चयनित हैं। बैच भाग करें।';
 
   @override
-  String get save => 'Save';
+  String get save => 'सहेजें';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'सहेजा जा रहा है...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'सहेजा गया';
 
   @override
-  String get share => 'Share';
+  String get share => 'साझा करें';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'नाम बदलें';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'आउटपुट का नाम बदलें';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'एक्सटेंशन के बिना फ़ाइल का नाम';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'लागू करें';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'बंद करें';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'गैलरी या फ़ाइलों से चुनने के लिए + दबाएँ';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'रूपांतरण विफल हुआ';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'बैच रूपांतरण विफल हुआ';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'सहेजना विफल';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'चयन विफल हुआ';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'चयन करने के लिए टैप करें';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'फ़ाइल वैध छवि नहीं है या क्षतिग्रस्त लगती है।';
 
   @override
-  String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+  String get invalidImageDimensions => 'छवि का आकार अमान्य है (खाली या शून्य)।';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'HEIC डिकोड असफल हुआ';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'HEIC एन्कोड असफल हुआ';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'इस फ़ॉर्मेट के लिए पूर्वावलोकन उपलब्ध नहीं है';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'कोई थंबनेल नहीं';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'रूपांतरण के बाद थंबनेल';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'AVIF एन्कोड असफल हुआ';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'यह फॉर्मेट जोड़ा समर्थित नहीं है';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'इस डिवाइस पर PDF रेंडर नहीं किया जा सकता';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'PDF सहेजना विफल हुआ';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'असमर्थित इनपुट फ़ॉर्मेट';
 
   @override
-  String get open => 'Open';
+  String get open => 'खोलें';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'किसी अन्य ऐप से फ़ाइल खोलना असफल हुआ';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'वेब पर किसी अन्य ऐप में फ़ाइल खोलना उपलब्ध नहीं है';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'आउटपुट फ़ाइल खाली है';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'सहेजने के बाद आउटपुट फ़ाइल पढ़ने योग्य नहीं थी';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'थीम बदलें';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'इस फ़ाइल के लिए अस्थायी वर्कस्पेस तैयार नहीं किया जा सकता। किसी अन्य स्रोत का प्रयास करें या स्टोरेज खाली करें।';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'आम तौर पर कुछ सेकंड में पूरा होता है।';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'बड़ी फ़ाइल — रूपांतरण में ~10–30 सेकंड लग सकते हैं।';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'PDF निर्यात में अधिक समय लग सकता है (~10–30 सेकंड)।';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'बैच क्यू तैयार है';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'बैच रूपांतरण पूरा हुआ';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'बैच रूपांतरण के लिए कोई फ़ाइल चयनित नहीं है';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'फ़ाइलें';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'बैच रूपांतरण';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'लक्ष्य फ़ॉर्मेट चुनें, फिर सभी फ़ाइलों को रूपांतरित करें। इस मोड में एकल फ़ाइल दृश्य छिपा होता है।';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'कुल';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'पूर्ण';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'विफल';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'क्यू में';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'सभी सफलतापूर्वक सहेजे गए';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'फाइलें सहेजी जा रही हैं...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'सहेजा जा रहा है $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'फिर से प्रयास करें';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'सम्पन्न साफ़ करें';
 
   @override
-  String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+  String get clearCompletedTooltip => 'इस सूची से सहेजे गए आइटम निकालें';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'क्यू साफ़ करें';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'क्यू में';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'रूपांतरण हो रहा है';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'पूर्ण';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'विफल';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'सहेजा जा रहा है';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'सहेजा गया';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'रद्द किया गया';
 
   @override
-  String get appNameWebSuffix => '(Web)';
+  String get appNameWebSuffix => '(वेब)';
 
   @override
-  String get download => 'Download';
+  String get download => 'डाउनलोड';
 
   @override
-  String get language => 'Language';
+  String get language => 'भाषा';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'सिस्टम डिफ़ॉल्ट';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'त्रुटि';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'चयनित फ़ाइल';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'स्क्रीन चालू रखें';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'ऐप सक्रिय रहने पर डिवाइस डिस्प्ले के बंद होने से रोकें।';
 }

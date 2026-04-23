@@ -9,276 +9,281 @@ class AppLocalizationsCa extends AppLocalizations {
   AppLocalizationsCa([String locale = 'ca']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Convertidor genèric';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Selecciona fitxer';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galeria';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Fitxers';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Fitxers per lots';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Carpeta';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Tria la font';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Format de destinació';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Convertir';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Convertir lot';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Convertint...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Cancel·la';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'El fitxer és massa gran';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'S\'ha detectat un fitxer gran. La conversió pot reduir la mida per estabilitat.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'No hi ha prou memòria per processar aquest fitxer. Proveu una imatge més petita o tanqueu altres apps.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'El fitxer és massa pesat per fer una conversió segura en aquest dispositiu.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'S\'han seleccionat massa fitxers pesats alhora. Separeu el lot en parts més petites.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Desa';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Desant...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Desat';
 
   @override
-  String get share => 'Share';
+  String get share => 'Comparteix';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Canvia nom';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Canvia nom de la sortida';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Nom del fitxer sense extensió';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Aplica';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Tanca';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Prem + per seleccionar de la galeria o fitxers';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'La conversió ha fallat';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'La conversió per lots ha fallat';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Error en desar';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'No s\'ha pogut seleccionar la imatge';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Toca per seleccionar un fitxer';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'El fitxer no és una imatge vàlida o sembla estar danyat.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'La imatge té mides no vàlides (buida o amb dimensions zero).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Error en decodificar HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Error en codificar HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'La vista prèvia no està disponible per a aquest format';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Sense miniatura';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatura després de la conversió';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Error en codificar AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported =>
+      'Aquesta parella de formats no està suportada';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'No es pot renderitzar PDF en aquest dispositiu';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Error en desar PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Format d\'entrada no suportat';
 
   @override
-  String get open => 'Open';
+  String get open => 'Obre';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'No s\'ha pogut obrir el fitxer amb una altra app';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Obrir fitxers en una altra app no està disponible a la web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'El fitxer de sortida està buit';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'El fitxer de sortida no es podia llegir després de desar';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Canvia tema';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'No es pot preparar un espai de treball temporal per a aquest fitxer. Proveu una altra font o allibereu espai d\'emmagatzematge.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Normalment acaba en pocs segons.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Fitxer gran — la conversió pot trigar ~10–30 segons.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'L\'exportació a PDF pot trigar més (~10–30 segons).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'La cua del lot està preparada';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Conversió per lots completada';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles =>
+      'No s\'han seleccionat fitxers per a la conversió per lots';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'fitxers';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Conversió per lots';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Trieu el format de destinació i després convertiu tots els fitxers. La vista d\'un sol fitxer està oculta en aquest mode.';
 
   @override
   String get batchSummaryTotal => 'Total';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Fet';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Fallit';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'A la cua';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Tot desat correctament';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Desant fitxers...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Desant $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Torna a intentar';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Neteja completats';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Elimina els elements marcats com a desats d\'aquesta llista';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Neteja la cua';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'A la cua';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Convertint';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Fet';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Fallit';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Desant';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Desat';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Cancel·lat';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Descarrega';
 
   @override
-  String get language => 'Language';
+  String get language => 'Idioma';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Per defecte del sistema';
 
   @override
   String get errorDialogTitle => 'Error';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Fitxer seleccionat';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Mantenir pantalla activa';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Evita que la pantalla s\'apagui mentre l\'aplicació està activa.';
 }

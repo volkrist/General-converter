@@ -9,276 +9,279 @@ class AppLocalizationsFi extends AppLocalizations {
   AppLocalizationsFi([String locale = 'fi']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'All-purpose-muunnin';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Valitse tiedosto';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galleria';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Tiedostot';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Erä­tiedostot';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Kansio';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Valitse lähde';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Kohdeformaatti';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Muunna';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Muunna erä';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Muunnetaan...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Peruuta';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Tiedosto on liian suuri';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Suuri tiedosto havaittu. Muunnos voi pienentää kuvan kokoa vakauden vuoksi.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Ei tarpeeksi muistia tämän tiedoston käsittelyyn. Kokeile pienempää kuvaa tai sulje muita sovelluksia.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Tiedosto on liian raskas turvalliseen muunnokseen tällä laitteella.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Liian monta raskasta tiedostoa valittu kerralla. Jaa erä pienempiin osiin.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Tallenna';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Tallennetaan...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Tallennettu';
 
   @override
-  String get share => 'Share';
+  String get share => 'Jaa';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Nimeä uudelleen';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Nimeä tuloste uudelleen';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Tiedoston nimi ilman päätettä';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Käytä';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Sulje';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint =>
+      'Napauta + valitaksesi galleriasta tai tiedostoista';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Muunnos epäonnistui';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Erämuunnos epäonnistui';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Tallennus epäonnistui';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Valinta epäonnistui';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Napauta valitaksesi tiedoston';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Tiedosto ei ole kelvollinen kuva tai vaikuttaa vahingoittuneelta.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Kuvalla on virheelliset mitat (tyhjä tai nolla).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'HEIC-purku epäonnistui';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'HEIC-koodaus epäonnistui';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Esikatselu ei ole käytettävissä tälle muodolle';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Ei pikkukuvaa';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Pikkukuva muunnoksen jälkeen';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'AVIF-koodaus epäonnistui';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Tätä formaattiparia ei tueta';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'PDF:ää ei voi esittää tällä laitteella';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'PDF-tallennus epäonnistui';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Tulon formaatti ei ole tuettu';
 
   @override
-  String get open => 'Open';
+  String get open => 'Avaa';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'Tiedostoa ei voitu avata toisella sovelluksella';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Tiedostojen avaaminen toisessa sovelluksessa ei ole käytettävissä verkossa';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Tulostiedosto on tyhjä';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Tulostiedostoa ei voitu lukea tallennuksen jälkeen';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Vaihda teema';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Väliaikaisen työhakemiston valmistelu tälle tiedostolle epäonnistui. Kokeile toista lähdettä tai vapauta tallennustilaa.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Valmistuu yleensä muutamassa sekunnissa.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Suuri tiedosto — muunnos voi kestää ~10–30 sekuntia.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'PDF-vienti voi kestää pidempään (~10–30 sekuntia).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Eräjonossa valmiina';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Erämuunnos valmis';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Ei tiedostoja valittuna erämuunnokseen';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'tiedostot';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Erämuunnos';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Valitse kohdeformaatti ja muunna sitten kaikki tiedostot. Yksittäistiedoston näkymä on piilotettu tässä tilassa.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Yhteensä';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Valmis';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Epäonnistui';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Jonossa';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Kaikki tallennettiin onnistuneesti';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Tallennetaan tiedostoja...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Tallennetaan $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Yritä uudelleen';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Tyhjennä valmiit';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Poista tästä luettelosta kohteet, jotka on merkitty tallennetuiksi';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Tyhjennä jono';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'Jonossa';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Muunnetaan';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Valmis';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Epäonnistui';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Tallennetaan';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Tallennettu';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Peruutettu';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Lataa';
 
   @override
-  String get language => 'Language';
+  String get language => 'Kieli';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Järjestelmän oletus';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Virhe';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Valittu tiedosto';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Pidä näyttö päällä';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Estä laitteen näytön sammuminen, kun sovellus on aktiivinen.';
 }

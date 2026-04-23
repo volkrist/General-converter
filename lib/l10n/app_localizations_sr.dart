@@ -9,276 +9,279 @@ class AppLocalizationsSr extends AppLocalizations {
   AppLocalizationsSr([String locale = 'sr']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Opšti konverter';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Izaberi datoteku';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galerija';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Datoteke';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Grupne datoteke';
 
   @override
   String get pickFolder => 'Folder';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Izaberite izvor';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Ciljni format';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Konvertuj';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Konvertuj grupno';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Konvertovanje...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Otkaži';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Datoteka je prevelika';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Otkrivena velika datoteka. Konverzija može smanjiti veličinu slike radi stabilnosti.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Nema dovoljno memorije za obradu ove datoteke. Pokušajte manju sliku ili zatvorite druge aplikacije.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Datoteka je preteška za sigurnu konverziju na ovom uređaju.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Izabrano je previše teških datoteka odjednom. Podelite grupu.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Sačuvaj';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Čuvanje...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Sačuvano';
 
   @override
-  String get share => 'Share';
+  String get share => 'Podeli';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Preimenuj';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Preimenuj izlaz';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Ime datoteke bez ekstenzije';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Primeni';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Zatvori';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint =>
+      'Dodirnite + da izaberete iz galerije ili datoteka';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Konverzija nije uspela';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Grupna konverzija nije uspela';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Čuvanje nije uspelo';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Izbor nije uspeo';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Dodirnite da izaberete datoteku';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Datoteka nije važeća slika ili izgleda oštećeno.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Slika ima nevažeće dimenzije (prazno ili nula).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Dekodovanje HEIC nije uspelo';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Kodovanje HEIC nije uspelo';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'Pregled nije dostupan za ovaj format';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Nema sličice';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Sličica posle konverzije';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Kodovanje AVIF nije uspelo';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Ovaj par formata nije podržan';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'PDF nije moguće prikazati na ovom uređaju';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Čuvanje PDF-a nije uspelo';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Nepodržani ulazni format';
 
   @override
-  String get open => 'Open';
+  String get open => 'Otvori';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'Nije moguće otvoriti datoteku drugim programom';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Otvaranje datoteka u drugom programu nije dostupno na webu';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Izlazna datoteka je prazna';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Izlazna datoteka nije bila čitljiva nakon čuvanja';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Promeni temu';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Ne mogu da pripremim privremeni radni prostor za ovu datoteku. Pokušajte drugi izvor ili oslobodite prostor za skladištenje.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Obično se završava za nekoliko sekundi.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Velika datoteka — konverzija može potrajati ~10–30 sekundi.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Izvoz u PDF može potrajati duže (~10–30 sekundi).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Red za grupu je spreman';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Grupna konverzija završena';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Nema datoteka odabranih za grupnu konverziju';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'datoteke';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Grupna konverzija';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Izaberite ciljni format, zatim konvertujte sve datoteke. Prikaz pojedinačne datoteke je skriven u ovom modu.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Ukupno';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Završeno';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Neuspešno';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'U redu';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Sve uspešno sačuvano';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Čuvanje datoteka...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Čuvanje $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Pokušajte ponovo nije uspelo';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Obriši završene';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Uklonite stavke koje su označene kao sačuvane iz ovog spiska';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Obriši red';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'U redu';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Konvertuje se';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Završeno';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Neuspešno';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Čuva se';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Sačuvano';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Otkazano';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Preuzmi';
 
   @override
-  String get language => 'Language';
+  String get language => 'Jezik';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Podrazumevano sistema';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Greška';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Izabrana datoteka';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Drži ekran uključen';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Sprečite gašenje ekrana dok je aplikacija aktivna.';
 }

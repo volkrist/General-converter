@@ -9,276 +9,278 @@ class AppLocalizationsUk extends AppLocalizations {
   AppLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Загальний конвертер';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Вибрати файл';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Галерея';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Файли';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Пакет файлів';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Папка';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Виберіть джерело';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Цільовий формат';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Конвертувати';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Пакетна конвертація';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Конвертування...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Скасувати';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Файл занадто великий';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Виявлено великий файл. Конвертація може зменшити розмір зображення для стабільності.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Не вистачає пам\'яті для обробки цього файлу. Спробуйте менше зображення або закрийте інші додатки.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Файл занадто важкий для безпечної конвертації на цьому пристрої.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Одночасно вибрано занадто багато важких файлів. Розділіть пакет.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Зберегти';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Збереження...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Збережено';
 
   @override
-  String get share => 'Share';
+  String get share => 'Поділитися';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Перейменувати';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Перейменувати вивід';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Ім\'я файлу без розширення';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Застосувати';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Закрити';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Торкніться +, щоб вибрати з галереї або файлів';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Конвертація не вдалася';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Пакетна конвертація не вдалася';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Не вдалося зберегти';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Не вдалося вибрати';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Торкніться, щоб вибрати файл';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Файл не є дійсним зображенням або, здається, пошкоджений.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Зображення має недійсні розміри (порожнє або нульове).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Не вдалося декодувати HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Не вдалося кодувати HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Попередній перегляд недоступний для цього формату';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Немає мініатюри';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Мініатюра після конвертації';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Не вдалося кодувати AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Ця пара форматів не підтримується';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'PDF не можна відобразити на цьому пристрої';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Не вдалося зберегти PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Непідтримуваний вхідний формат';
 
   @override
-  String get open => 'Open';
+  String get open => 'Відкрити';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Не вдалося відкрити файл іншим додатком';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Відкриття файлів в іншому додатку недоступне в інтернеті';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Файл виводу порожній';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Файл виводу було неможливо прочитати після збереження';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Змінити тему';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Не вдалося підготувати тимчасовий робочий простір для цього файлу. Спробуйте інше джерело або звільніть місце.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Зазвичай завершується за кілька секунд.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Великий файл — конвертація може зайняти ~10–30 секунд.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Експорт PDF може зайняти більше часу (~10–30 секунд).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Черга пакета готова';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Пакетна конвертація завершена';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Файли для пакетної конвертації не вибрані';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'файли';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Пакетна конвертація';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Виберіть цільовий формат, потім конвертуйте всі файли. Перегляд одиночного файлу приховано в цьому режимі.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Всього';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Готово';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Не вдалося';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'В черзі';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Усі збережені успішно';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Збереження файлів...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Збереження $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Спробуйте ще раз';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Очистити завершені';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Видаліть елементи, позначені як збережені, з цього списку';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Очистити чергу';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'В черзі';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Конвертується';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Готово';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Не вдалося';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Збереження';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Збережено';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Скасовано';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Завантажити';
 
   @override
-  String get language => 'Language';
+  String get language => 'Мова';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Системний за замовчуванням';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Помилка';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Вибраний файл';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Тримати екран увімкненим';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Запобігайте вимкненню дисплея пристрою, поки додаток активний.';
 }

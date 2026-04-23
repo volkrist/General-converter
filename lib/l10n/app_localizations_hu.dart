@@ -9,276 +9,280 @@ class AppLocalizationsHu extends AppLocalizations {
   AppLocalizationsHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Általános konverter';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Fájl kiválasztása';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galéria';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Fájlok';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Tömeges fájlok';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Mappa';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Forrás kiválasztása';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Célformátum';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Konvertálás';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Kötegkonvertálás';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Konvertálás...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Mégse';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'A fájl túl nagy';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Nagy fájl észlelve. A konverzió a stabilitás érdekében csökkentheti a kép méretét.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Nincs elegendő memória a fájl feldolgozásához. Próbáljon kisebb képet vagy zárjon be más alkalmazásokat.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'A fájl túl nehéz a biztonságos konverzióhoz ezen az eszközön.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Egyszerre túl sok nehéz fájl lett kiválasztva. Ossza fel a köteget.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Mentés';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Mentés...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Mentve';
 
   @override
-  String get share => 'Share';
+  String get share => 'Megosztás';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Átnevezés';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Kimenet átnevezése';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Fájlnév kiterjesztés nélkül';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Alkalmaz';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Bezárás';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint =>
+      'Érintse a + gombot a galériából vagy fájlokból való kiválasztáshoz';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'A konverzió sikertelen';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'A kötegkonverzió sikertelen';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'A mentés sikertelen';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'A kiválasztás sikertelen';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Érintse meg a kiválasztáshoz';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'A fájl nem érvényes kép vagy sérültnek tűnik.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'A kép érvénytelen méretekkel rendelkezik (üres vagy nulla).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'A HEIC dekódolása sikertelen';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'A HEIC kódolása sikertelen';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'Előnézet nem elérhető ehhez a formátumhoz';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Nincs bélyegkép';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Bélyegkép a konverzió után';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Az AVIF kódolása sikertelen';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'Ez a formátumpár nem támogatott';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'A PDF nem jeleníthető meg ezen az eszközön';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'PDF mentése sikertelen';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Nem támogatott bemeneti formátum';
 
   @override
-  String get open => 'Open';
+  String get open => 'Megnyitás';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed =>
+      'Nem sikerült megnyitni a fájlt egy másik alkalmazással';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Más alkalmazásban történő fájlmegnyitás nem érhető el weben';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'A kimeneti fájl üres';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'A kimeneti fájl nem olvasható mentés után';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Téma váltása';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Nem lehet ideiglenes munkaterületet előkészíteni ehhez a fájlhoz. Próbáljon meg más forrást vagy szabadítson fel tárhelyet.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick =>
+      'Általában néhány másodperc alatt befejeződik.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Nagy fájl — a konverzió ~10–30 másodpercet igényelhet.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'A PDF export hosszabb ideig tarthat (~10–30 másodperc).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'A köteg várólista készen áll';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Kötegkonverzió befejezve';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Nincsenek fájlok kiválasztva kötegkonverzióhoz';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'fájlok';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Kötegkonverzió';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Válassza ki a célformátumot, majd konvertálja az összes fájlt. Az egy fájl nézet ebben a módban rejtett.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Összesen';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Kész';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Sikertelen';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Sorban';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Minden sikeresen mentve';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Fájlok mentése...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Mentés $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Próbálja újra';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Befejezettek törlése';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Távolítsa el a mentettként jelölt elemeket erről a listáról';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Várólista törlése';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'Sorban';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Konvertálás';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Kész';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Sikertelen';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Mentés';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Mentve';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Mégse';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Letöltés';
 
   @override
-  String get language => 'Language';
+  String get language => 'Nyelv';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Rendszer alapértelmezett';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Hiba';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Kiválasztott fájl';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Képernyő bekapcsolva tartása';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Megakadályozza a készülék kijelzőjének kikapcsolását, miközben az alkalmazás aktív.';
 }

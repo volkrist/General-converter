@@ -9,276 +9,280 @@ class AppLocalizationsEl extends AppLocalizations {
   AppLocalizationsEl([String locale = 'el']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Γενικός Μετατροπέας';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Επιλογή αρχείου';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Συλλογή';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Αρχεία';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Αρχεία παρτίδας';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Φάκελος';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Επιλέξτε πηγή';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Προορισμός μορφής';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Μετατροπή';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Μετατροπή παρτίδας';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Γίνεται μετατροπή...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Άκυρο';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Το αρχείο είναι πολύ μεγάλο';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Εντοπίστηκε μεγάλο αρχείο. Η μετατροπή μπορεί να μειώσει το μέγεθος της εικόνας για σταθερότητα.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Δεν υπάρχει αρκετή μνήμη για να επεξεργαστείτε αυτό το αρχείο. Δοκιμάστε μια μικρότερη εικόνα ή κλείστε άλλες εφαρμογές.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Το αρχείο είναι πολύ βαρύ για ασφαλή μετατροπή σε αυτή τη συσκευή.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Επιλέχθηκαν πάρα πολλά βαριά αρχεία ταυτόχρονα. Διαχωρίστε την παρτίδα.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Αποθήκευση';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Αποθηκεύεται...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Αποθηκεύτηκε';
 
   @override
-  String get share => 'Share';
+  String get share => 'Κοινοποίηση';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Μετονομασία';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Μετονομασία εξόδου';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Όνομα αρχείου χωρίς κατάληξη';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Εφαρμογή';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Κλείσιμο';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Πατήστε + για επιλογή από συλλογή ή αρχεία';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Η μετατροπή απέτυχε';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Η παρτίδα μετατροπής απέτυχε';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Αποτυχία αποθήκευσης';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Αποτυχία επιλογής εικόνας';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Πατήστε για επιλογή αρχείου';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Το αρχείο δεν είναι έγκυρη εικόνα ή φαίνεται κατεστραμμένο.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Η εικόνα έχει μη έγκυρο μέγεθος (κενό ή μηδενικές διαστάσεις).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Αποτυχία αποκωδικοποίησης HEIC';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Αποτυχία κωδικοποίησης HEIC';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable =>
+      'Η προεπισκόπηση δεν είναι διαθέσιμη για αυτή τη μορφή';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Χωρίς μικρογραφία';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Μικρογραφία μετά τη μετατροπή';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Αποτυχία κωδικοποίησης AVIF';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported =>
+      'Αυτό το ζεύγος μορφών δεν υποστηρίζεται';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable =>
+      'Το PDF δεν μπορεί να αποδοθεί σε αυτή τη συσκευή';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Αποτυχία αποθήκευσης PDF';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Μη υποστηριζόμενη μορφή εισόδου';
 
   @override
-  String get open => 'Open';
+  String get open => 'Άνοιγμα';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Αποτυχία ανοίγματος αρχείου με άλλη εφαρμογή';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Το άνοιγμα αρχείων σε άλλη εφαρμογή δεν είναι διαθέσιμο στον web';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Το αρχείο εξόδου είναι κενό';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Το αρχείο εξόδου δεν ήταν αναγνώσιμο μετά την αποθήκευση';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Εναλλαγή θέματος';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Δεν είναι δυνατή η προετοιμασία προσωρινού χώρου εργασίας για αυτό το αρχείο. Δοκιμάστε άλλη πηγή ή ελευθερώστε χώρο.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick =>
+      'Συνήθως ολοκληρώνεται μέσα σε λίγα δευτερόλεπτα.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Μεγάλο αρχείο — η μετατροπή μπορεί να διαρκέσει ~10–30 δευτερόλεπτα.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Η εξαγωγή σε PDF μπορεί να διαρκέσει περισσότερο (~10–30 δευτερόλεπτα).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Η παρτίδα είναι έτοιμη';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Η παρτίδα ολοκληρώθηκε';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'Δεν επιλέχθηκαν αρχεία για παρτίδα';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'αρχεία';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Μετατροπή παρτίδας';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Επιλέξτε μορφή προορισμού και μετατρέψτε όλα τα αρχεία. Η προβολή μονής αρχείου αποκρύπτεται σε αυτή τη λειτουργία.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Σύνολο';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Ολοκληρώθηκε';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Απέτυχε';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Σε ουρά';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Όλα αποθηκεύτηκαν επιτυχώς';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Αποθηκεύονται αρχεία...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Αποθήκευση $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Δοκιμάστε ξανά';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Καθαρισμός ολοκληρωμένων';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Αφαιρέστε στοιχεία που έχουν επισημανθεί ως αποθηκευμένα από αυτήν τη λίστα';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Καθαρισμός ουράς';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'Σε ουρά';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Μετατροπή';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Ολοκληρώθηκε';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Απέτυχε';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Αποθήκευση';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Αποθηκεύτηκε';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Ακυρώθηκε';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Λήψη';
 
   @override
-  String get language => 'Language';
+  String get language => 'Γλώσσα';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Προεπιλογή συστήματος';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Σφάλμα';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Επιλεγμένο αρχείο';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Διατήρηση οθόνης ενεργής';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Αποτρέψτε την απενεργοποίηση της οθόνης ενώ η εφαρμογή είναι ενεργή.';
 }

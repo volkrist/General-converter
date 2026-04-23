@@ -9,276 +9,278 @@ class AppLocalizationsCs extends AppLocalizations {
   AppLocalizationsCs([String locale = 'cs']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => 'Obecný převodník';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'Vybrat soubor';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'Galerie';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'Soubory';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'Soubory v dávce';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'Složka';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'Vyberte zdroj';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => 'Cílový formát';
 
   @override
-  String get convert => 'Convert';
+  String get convert => 'Převést';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => 'Převést dávku';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => 'Probíhá převod...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Zrušit';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'Soubor je příliš velký';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      'Detekován velký soubor. Konverze může snížit velikost obrázku pro stabilitu.';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'Není dost paměti pro zpracování tohoto souboru. Zkuste menší obrázek nebo zavřete jiné aplikace.';
 
   @override
   String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+      'Soubor je na tomto zařízení příliš náročný pro bezpečný převod.';
 
   @override
   String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+      'Bylo vybráno příliš mnoho náročných souborů najednou. Rozdělte dávku.';
 
   @override
-  String get save => 'Save';
+  String get save => 'Uložit';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => 'Ukládání...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => 'Uloženo';
 
   @override
-  String get share => 'Share';
+  String get share => 'Sdílet';
 
   @override
-  String get rename => 'Rename';
+  String get rename => 'Přejmenovat';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => 'Přejmenovat výstup';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => 'Název souboru bez přípony';
 
   @override
-  String get apply => 'Apply';
+  String get apply => 'Použít';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => 'Zavřít';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'Klepněte + pro výběr z galerie nebo souborů';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => 'Konverze selhala';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => 'Dávková konverze selhala';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => 'Uložení se nezdařilo';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => 'Výběr obrázku se nezdařil';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => 'Klepněte pro výběr souboru';
 
   @override
   String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+      'Soubor není platný obrázek nebo je poškozen.';
 
   @override
   String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+      'Obrázek má neplatné rozměry (prázdné nebo nulové).';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'Dekódování HEIC selhalo';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'Kódování HEIC selhalo';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'Náhled pro tento formát není dostupný';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'Žádná miniatura';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => 'Miniatura po konverzi';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'Kódování AVIF selhalo';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported =>
+      'Tato kombinace formátů není podporována';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'PDF nelze vykreslit na tomto zařízení';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'Uložení PDF selhalo';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'Nepodporovaný vstupní formát';
 
   @override
-  String get open => 'Open';
+  String get open => 'Otevřít';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => 'Soubor nelze otevřít v jiné aplikaci';
 
   @override
   String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+      'Otevírání souborů v jiné aplikaci není na webu dostupné';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => 'Výstupní soubor je prázdný';
 
   @override
   String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+      'Výstupní soubor nebyl po uložení čitelný';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'Přepnout motiv';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'Nelze připravit dočasné pracovní úložiště pro tento soubor. Zkuste jiný zdroj nebo uvolněte místo.';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => 'Obvykle trvá několik sekund.';
 
   @override
   String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+      'Velký soubor — převod může trvat ~10–30 sekund.';
 
   @override
   String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+      'Export do PDF může trvat déle (~10–30 sekund).';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'Dávková fronta je připravena';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'Dávková konverze dokončena';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles =>
+      'Pro dávkovou konverzi nejsou vybrány žádné soubory';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'soubory';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'Dávková konverze';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      'Vyberte cílový formát a poté převedete všechny soubory. Zobrazení jednoho souboru je v tomto režimu skryto.';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => 'Celkem';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => 'Hotovo';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => 'Selhalo';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'Ve frontě';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'Vše uloženo úspěšně';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'Ukládání souborů...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return 'Ukládání $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => 'Zkusit znovu';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => 'Vymazat dokončené';
 
   @override
   String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+      'Odstranit položky označené jako uložené z tohoto seznamu';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'Vymazat frontu';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'Ve frontě';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => 'Převádí se';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => 'Hotovo';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => 'Selhalo';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => 'Ukládá se';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => 'Uloženo';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'Zrušeno';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'Stáhnout';
 
   @override
-  String get language => 'Language';
+  String get language => 'Jazyk';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'Systémové výchozí';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'Chyba';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => 'Vybraný soubor';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => 'Zabránit vypnutí obrazovky';
 
   @override
   String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+      'Zabrání vypnutí obrazovky zařízení, když je aplikace aktivní.';
 }

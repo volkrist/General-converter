@@ -166,37 +166,37 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
-  /// No description provided for @appName.
+  /// The application name shown in UI
   ///
   /// In en, this message translates to:
-  /// **'Generic Converter'**
+  /// **'General Converter'**
   String get appName;
 
-  /// No description provided for @pickImage.
+  /// Button label to pick a single file
   ///
   /// In en, this message translates to:
   /// **'Pick file'**
   String get pickImage;
 
-  /// No description provided for @pickFromGallery.
+  /// Label to pick from gallery
   ///
   /// In en, this message translates to:
   /// **'Gallery'**
   String get pickFromGallery;
 
-  /// No description provided for @pickFromFiles.
+  /// Label to pick from file manager
   ///
   /// In en, this message translates to:
   /// **'Files'**
   String get pickFromFiles;
 
-  /// No description provided for @pickManyFiles.
+  /// Label for batch file selection
   ///
   /// In en, this message translates to:
   /// **'Batch files'**
   String get pickManyFiles;
 
-  /// No description provided for @pickFolder.
+  /// Convert action label
   ///
   /// In en, this message translates to:
   /// **'Folder'**
@@ -238,325 +238,325 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
-  /// No description provided for @fileTooLarge.
+  /// Error shown when file is too large
   ///
   /// In en, this message translates to:
   /// **'File is too large'**
   String get fileTooLarge;
 
-  /// No description provided for @largeFileWarning.
+  /// Warning about large files
   ///
   /// In en, this message translates to:
   /// **'Large file detected. Conversion may reduce image size for stability.'**
   String get largeFileWarning;
 
-  /// No description provided for @notEnoughMemory.
+  /// Error when device lacks memory
   ///
   /// In en, this message translates to:
   /// **'Not enough memory to process this file. Try a smaller image or close other apps.'**
   String get notEnoughMemory;
 
-  /// No description provided for @memoryGuardTriggered.
+  /// Message when conversion is restricted by memory guard
   ///
   /// In en, this message translates to:
   /// **'File is too heavy for safe conversion on this device.'**
   String get memoryGuardTriggered;
 
-  /// No description provided for @batchMemoryGuardTriggered.
+  /// Message when batch selection triggers memory guard
   ///
   /// In en, this message translates to:
   /// **'Too many heavy files selected at once. Split the batch into smaller parts.'**
   String get batchMemoryGuardTriggered;
 
-  /// No description provided for @save.
+  /// Save action label
   ///
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
 
-  /// No description provided for @saving.
+  /// Status shown while saving
   ///
   /// In en, this message translates to:
   /// **'Saving...'**
   String get saving;
 
-  /// No description provided for @saved.
+  /// Confirmation that save completed
   ///
   /// In en, this message translates to:
   /// **'Saved'**
   String get saved;
 
-  /// No description provided for @share.
+  /// Share action label
   ///
   /// In en, this message translates to:
   /// **'Share'**
   String get share;
 
-  /// No description provided for @rename.
+  /// Rename action label
   ///
   /// In en, this message translates to:
   /// **'Rename'**
   String get rename;
 
-  /// No description provided for @renameOutput.
+  /// Rename output label
   ///
   /// In en, this message translates to:
   /// **'Rename output'**
   String get renameOutput;
 
-  /// No description provided for @renameHint.
+  /// Hint text for renaming output file
   ///
   /// In en, this message translates to:
   /// **'File name without extension'**
   String get renameHint;
 
-  /// No description provided for @apply.
+  /// Apply action label
   ///
   /// In en, this message translates to:
   /// **'Apply'**
   String get apply;
 
-  /// No description provided for @dismiss.
+  /// Dismiss action label
   ///
   /// In en, this message translates to:
   /// **'Dismiss'**
   String get dismiss;
 
-  /// No description provided for @emptyStateHint.
+  /// Hint shown in empty state
   ///
   /// In en, this message translates to:
   /// **'Tap + to pick from gallery or files'**
   String get emptyStateHint;
 
-  /// No description provided for @conversionFailed.
+  /// Error when conversion fails
   ///
   /// In en, this message translates to:
   /// **'Conversion failed'**
   String get conversionFailed;
 
-  /// No description provided for @batchConversionFailed.
+  /// Error when batch conversion fails
   ///
   /// In en, this message translates to:
   /// **'Batch conversion failed'**
   String get batchConversionFailed;
 
-  /// No description provided for @saveFailed.
+  /// Error when saving fails
   ///
   /// In en, this message translates to:
   /// **'Failed to save'**
   String get saveFailed;
 
-  /// No description provided for @pickFailed.
+  /// Error when picking a file fails
   ///
   /// In en, this message translates to:
   /// **'Failed to pick image'**
   String get pickFailed;
 
-  /// No description provided for @tapToPick.
+  /// Instruction to tap to pick a file
   ///
   /// In en, this message translates to:
   /// **'Tap to pick a file'**
   String get tapToPick;
 
-  /// No description provided for @invalidOrCorruptImage.
+  /// Error for invalid or corrupt image files
   ///
   /// In en, this message translates to:
   /// **'The file is not a valid image or appears to be damaged.'**
   String get invalidOrCorruptImage;
 
-  /// No description provided for @invalidImageDimensions.
+  /// Error for images with invalid dimensions
   ///
   /// In en, this message translates to:
   /// **'The image has invalid size (empty or zero dimensions).'**
   String get invalidImageDimensions;
 
-  /// No description provided for @failedToDecodeHeic.
+  /// Error decoding HEIC
   ///
   /// In en, this message translates to:
   /// **'Failed to decode HEIC'**
   String get failedToDecodeHeic;
 
-  /// No description provided for @failedToEncodeHeic.
+  /// Error encoding HEIC
   ///
   /// In en, this message translates to:
   /// **'Failed to encode HEIC'**
   String get failedToEncodeHeic;
 
-  /// No description provided for @previewNotAvailable.
+  /// Text shown when preview is unavailable
   ///
   /// In en, this message translates to:
   /// **'Preview is not available for this format'**
   String get previewNotAvailable;
 
-  /// No description provided for @batchPreviewNoThumbnail.
+  /// Label when no thumbnail available
   ///
   /// In en, this message translates to:
   /// **'No thumbnail'**
   String get batchPreviewNoThumbnail;
 
-  /// No description provided for @batchPreviewWaiting.
+  /// Label shown while thumbnail is pending
   ///
   /// In en, this message translates to:
   /// **'Thumbnail after conversion'**
   String get batchPreviewWaiting;
 
-  /// No description provided for @failedToEncodeAvif.
+  /// Error encoding AVIF
   ///
   /// In en, this message translates to:
   /// **'Failed to encode AVIF'**
   String get failedToEncodeAvif;
 
-  /// No description provided for @formatPairNotSupported.
+  /// Message for unsupported format pair
   ///
   /// In en, this message translates to:
   /// **'This format pair is not supported'**
   String get formatPairNotSupported;
 
-  /// No description provided for @pdfRenderUnavailable.
+  /// Message when PDF rendering isn't supported
   ///
   /// In en, this message translates to:
   /// **'PDF could not be rendered on this device'**
   String get pdfRenderUnavailable;
 
-  /// No description provided for @savePdfFailed.
+  /// Error when saving PDF fails
   ///
   /// In en, this message translates to:
   /// **'Failed to save PDF'**
   String get savePdfFailed;
 
-  /// No description provided for @unsupportedInputFormat.
+  /// Message for unsupported input formats
   ///
   /// In en, this message translates to:
   /// **'Unsupported input format'**
   String get unsupportedInputFormat;
 
-  /// No description provided for @open.
+  /// Open action label
   ///
   /// In en, this message translates to:
   /// **'Open'**
   String get open;
 
-  /// No description provided for @openFileFailed.
+  /// Error when opening file with another app fails
   ///
   /// In en, this message translates to:
   /// **'Could not open file with another app'**
   String get openFileFailed;
 
-  /// No description provided for @openFileUnavailableWeb.
+  /// Message when opening files in another app is not available on web
   ///
   /// In en, this message translates to:
   /// **'Opening files in another app is not available on web'**
   String get openFileUnavailableWeb;
 
-  /// No description provided for @outputFileEmpty.
+  /// Error when output file is empty
   ///
   /// In en, this message translates to:
   /// **'Output file is empty'**
   String get outputFileEmpty;
 
-  /// No description provided for @outputEncodeRoundTripFailed.
+  /// Error when output becomes unreadable after saving
   ///
   /// In en, this message translates to:
   /// **'Output file was not readable after save'**
   String get outputEncodeRoundTripFailed;
 
-  /// No description provided for @toggleTheme.
+  /// Label to toggle theme
   ///
   /// In en, this message translates to:
   /// **'Toggle theme'**
   String get toggleTheme;
 
-  /// No description provided for @policyPreShrinkNoWritableDir.
+  /// Message when temporary workspace cannot be prepared
   ///
   /// In en, this message translates to:
   /// **'Cannot prepare a temporary workspace for this file. Try another source or free storage.'**
   String get policyPreShrinkNoWritableDir;
 
-  /// No description provided for @conversionHintQuick.
+  /// Quick conversion hint
   ///
   /// In en, this message translates to:
   /// **'Usually finishes in a few seconds.'**
   String get conversionHintQuick;
 
-  /// No description provided for @conversionHintHeavy.
+  /// Heavy conversion hint
   ///
   /// In en, this message translates to:
   /// **'Large file — conversion may take ~10–30 seconds.'**
   String get conversionHintHeavy;
 
-  /// No description provided for @conversionHintPdf.
+  /// PDF conversion hint
   ///
   /// In en, this message translates to:
   /// **'PDF export may take longer (~10–30 seconds).'**
   String get conversionHintPdf;
 
-  /// No description provided for @batchReady.
+  /// Message when batch queue is ready
   ///
   /// In en, this message translates to:
   /// **'Batch queue is ready'**
   String get batchReady;
 
-  /// No description provided for @batchDone.
+  /// Message when batch completes
   ///
   /// In en, this message translates to:
   /// **'Batch conversion completed'**
   String get batchDone;
 
-  /// No description provided for @noBatchFiles.
+  /// Message when no batch files are selected
   ///
   /// In en, this message translates to:
   /// **'No files selected for batch conversion'**
   String get noBatchFiles;
 
-  /// No description provided for @progressFiles.
+  /// Label for file count in progress
   ///
   /// In en, this message translates to:
   /// **'files'**
   String get progressFiles;
 
-  /// No description provided for @batchModeTitle.
+  /// Title for batch mode
   ///
   /// In en, this message translates to:
   /// **'Batch conversion'**
   String get batchModeTitle;
 
-  /// No description provided for @batchModeSubtitle.
+  /// Subtitle explaining batch mode
   ///
   /// In en, this message translates to:
   /// **'Choose target format, then convert all files. Single-file view is hidden in this mode.'**
   String get batchModeSubtitle;
 
-  /// No description provided for @batchSummaryTotal.
+  /// Label for total in batch summary
   ///
   /// In en, this message translates to:
   /// **'Total'**
   String get batchSummaryTotal;
 
-  /// No description provided for @batchSummaryDone.
+  /// Label for done in batch summary
   ///
   /// In en, this message translates to:
   /// **'Done'**
   String get batchSummaryDone;
 
-  /// No description provided for @batchSummaryFailed.
+  /// Label for failed in batch summary
   ///
   /// In en, this message translates to:
   /// **'Failed'**
   String get batchSummaryFailed;
 
-  /// No description provided for @batchSummaryQueued.
+  /// Label for queued in batch summary
   ///
   /// In en, this message translates to:
   /// **'Queued'**
   String get batchSummaryQueued;
 
-  /// No description provided for @saveAllSuccessful.
+  /// Confirmation when all saves succeeded
   ///
   /// In en, this message translates to:
   /// **'Save all successful'**
   String get saveAllSuccessful;
 
-  /// No description provided for @batchSaveAllStarting.
+  /// Status shown when saving all files
   ///
   /// In en, this message translates to:
   /// **'Saving files...'**

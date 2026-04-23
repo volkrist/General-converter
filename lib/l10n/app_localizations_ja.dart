@@ -9,276 +9,266 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appName => 'General Converter';
+  String get appName => '汎用コンバータ';
 
   @override
-  String get pickImage => 'Pick file';
+  String get pickImage => 'ファイルを選択';
 
   @override
-  String get pickFromGallery => 'Gallery';
+  String get pickFromGallery => 'ギャラリー';
 
   @override
-  String get pickFromFiles => 'Files';
+  String get pickFromFiles => 'ファイル';
 
   @override
-  String get pickManyFiles => 'Batch files';
+  String get pickManyFiles => 'バッチファイル';
 
   @override
-  String get pickFolder => 'Folder';
+  String get pickFolder => 'フォルダ';
 
   @override
-  String get pickFileTitle => 'Choose source';
+  String get pickFileTitle => 'ソースを選択';
 
   @override
-  String get targetFormat => 'Target format';
+  String get targetFormat => '出力形式';
 
   @override
-  String get convert => 'Convert';
+  String get convert => '変換';
 
   @override
-  String get convertBatch => 'Convert batch';
+  String get convertBatch => '一括変換';
 
   @override
-  String get converting => 'Converting...';
+  String get converting => '変換中...';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'キャンセル';
 
   @override
-  String get fileTooLarge => 'File is too large';
+  String get fileTooLarge => 'ファイルが大きすぎます';
 
   @override
   String get largeFileWarning =>
-      'Large file detected. Conversion may reduce image size for stability.';
+      '大きなファイルが検出されました。安定性のために変換で画像サイズが縮小される場合があります。';
 
   @override
   String get notEnoughMemory =>
-      'Not enough memory to process this file. Try a smaller image or close other apps.';
+      'このファイルを処理するのにメモリが不足しています。小さい画像を試すか他のアプリを閉じてください。';
 
   @override
-  String get memoryGuardTriggered =>
-      'File is too heavy for safe conversion on this device.';
+  String get memoryGuardTriggered => 'このデバイスでは安全に変換するにはファイルが重すぎます。';
 
   @override
-  String get batchMemoryGuardTriggered =>
-      'Too many heavy files selected at once. Split the batch into smaller parts.';
+  String get batchMemoryGuardTriggered => '一度に重いファイルが多すぎます。バッチを分割してください。';
 
   @override
-  String get save => 'Save';
+  String get save => '保存';
 
   @override
-  String get saving => 'Saving...';
+  String get saving => '保存中...';
 
   @override
-  String get saved => 'Saved';
+  String get saved => '保存されました';
 
   @override
-  String get share => 'Share';
+  String get share => '共有';
 
   @override
-  String get rename => 'Rename';
+  String get rename => '名前を変更';
 
   @override
-  String get renameOutput => 'Rename output';
+  String get renameOutput => '出力名を変更';
 
   @override
-  String get renameHint => 'File name without extension';
+  String get renameHint => '拡張子を除いたファイル名';
 
   @override
-  String get apply => 'Apply';
+  String get apply => '適用';
 
   @override
-  String get dismiss => 'Dismiss';
+  String get dismiss => '閉じる';
 
   @override
-  String get emptyStateHint => 'Tap + to pick from gallery or files';
+  String get emptyStateHint => 'ギャラリーやファイルから選択するには + をタップしてください';
 
   @override
-  String get conversionFailed => 'Conversion failed';
+  String get conversionFailed => '変換に失敗しました';
 
   @override
-  String get batchConversionFailed => 'Batch conversion failed';
+  String get batchConversionFailed => '一括変換に失敗しました';
 
   @override
-  String get saveFailed => 'Failed to save';
+  String get saveFailed => '保存に失敗しました';
 
   @override
-  String get pickFailed => 'Failed to pick image';
+  String get pickFailed => '選択に失敗しました';
 
   @override
-  String get tapToPick => 'Tap to pick a file';
+  String get tapToPick => '選択するにはタップしてください';
 
   @override
-  String get invalidOrCorruptImage =>
-      'The file is not a valid image or appears to be damaged.';
+  String get invalidOrCorruptImage => 'ファイルは有効な画像ではないか、破損している可能性があります。';
 
   @override
-  String get invalidImageDimensions =>
-      'The image has invalid size (empty or zero dimensions).';
+  String get invalidImageDimensions => '画像のサイズが無効です（空またはゼロ）。';
 
   @override
-  String get failedToDecodeHeic => 'Failed to decode HEIC';
+  String get failedToDecodeHeic => 'HEIC のデコードに失敗しました';
 
   @override
-  String get failedToEncodeHeic => 'Failed to encode HEIC';
+  String get failedToEncodeHeic => 'HEIC のエンコードに失敗しました';
 
   @override
-  String get previewNotAvailable => 'Preview is not available for this format';
+  String get previewNotAvailable => 'この形式のプレビューは利用できません';
 
   @override
-  String get batchPreviewNoThumbnail => 'No thumbnail';
+  String get batchPreviewNoThumbnail => 'サムネイルなし';
 
   @override
-  String get batchPreviewWaiting => 'Thumbnail after conversion';
+  String get batchPreviewWaiting => '変換後のサムネイル';
 
   @override
-  String get failedToEncodeAvif => 'Failed to encode AVIF';
+  String get failedToEncodeAvif => 'AVIF のエンコードに失敗しました';
 
   @override
-  String get formatPairNotSupported => 'This format pair is not supported';
+  String get formatPairNotSupported => 'この形式の組み合わせはサポートされていません';
 
   @override
-  String get pdfRenderUnavailable => 'PDF could not be rendered on this device';
+  String get pdfRenderUnavailable => 'このデバイスでは PDF をレンダリングできません';
 
   @override
-  String get savePdfFailed => 'Failed to save PDF';
+  String get savePdfFailed => 'PDF の保存に失敗しました';
 
   @override
-  String get unsupportedInputFormat => 'Unsupported input format';
+  String get unsupportedInputFormat => 'サポートされていない入力形式';
 
   @override
-  String get open => 'Open';
+  String get open => '開く';
 
   @override
-  String get openFileFailed => 'Could not open file with another app';
+  String get openFileFailed => '別のアプリでファイルを開けませんでした';
 
   @override
-  String get openFileUnavailableWeb =>
-      'Opening files in another app is not available on web';
+  String get openFileUnavailableWeb => 'ウェブでは別のアプリでファイルを開くことはできません';
 
   @override
-  String get outputFileEmpty => 'Output file is empty';
+  String get outputFileEmpty => '出力ファイルが空です';
 
   @override
-  String get outputEncodeRoundTripFailed =>
-      'Output file was not readable after save';
+  String get outputEncodeRoundTripFailed => '保存後に出力ファイルが読み取れませんでした';
 
   @override
-  String get toggleTheme => 'Toggle theme';
+  String get toggleTheme => 'テーマ切替';
 
   @override
   String get policyPreShrinkNoWritableDir =>
-      'Cannot prepare a temporary workspace for this file. Try another source or free storage.';
+      'このファイルの一時作業領域を準備できません。別のソースを試すか、ストレージを空けてください。';
 
   @override
-  String get conversionHintQuick => 'Usually finishes in a few seconds.';
+  String get conversionHintQuick => '通常数秒で完了します。';
 
   @override
-  String get conversionHintHeavy =>
-      'Large file — conversion may take ~10–30 seconds.';
+  String get conversionHintHeavy => '大きなファイル — 変換に約10〜30秒かかる場合があります。';
 
   @override
-  String get conversionHintPdf =>
-      'PDF export may take longer (~10–30 seconds).';
+  String get conversionHintPdf => 'PDF のエクスポートは時間がかかる場合があります（~10〜30秒）。';
 
   @override
-  String get batchReady => 'Batch queue is ready';
+  String get batchReady => 'バッチキューが準備できました';
 
   @override
-  String get batchDone => 'Batch conversion completed';
+  String get batchDone => 'バッチ変換が完了しました';
 
   @override
-  String get noBatchFiles => 'No files selected for batch conversion';
+  String get noBatchFiles => 'バッチ変換のためにファイルが選択されていません';
 
   @override
-  String get progressFiles => 'files';
+  String get progressFiles => 'ファイル';
 
   @override
-  String get batchModeTitle => 'Batch conversion';
+  String get batchModeTitle => 'バッチ変換';
 
   @override
   String get batchModeSubtitle =>
-      'Choose target format, then convert all files. Single-file view is hidden in this mode.';
+      '出力形式を選択し、すべてのファイルを変換します。このモードでは単一ファイルビューは非表示です。';
 
   @override
-  String get batchSummaryTotal => 'Total';
+  String get batchSummaryTotal => '合計';
 
   @override
-  String get batchSummaryDone => 'Done';
+  String get batchSummaryDone => '完了';
 
   @override
-  String get batchSummaryFailed => 'Failed';
+  String get batchSummaryFailed => '失敗';
 
   @override
-  String get batchSummaryQueued => 'Queued';
+  String get batchSummaryQueued => 'キュー済み';
 
   @override
-  String get saveAllSuccessful => 'Save all successful';
+  String get saveAllSuccessful => 'すべて正常に保存されました';
 
   @override
-  String get batchSaveAllStarting => 'Saving files...';
+  String get batchSaveAllStarting => 'ファイルを保存しています...';
 
   @override
   String batchSaveAllProgressLabel(int current, int total) {
-    return 'Saving $current/$total';
+    return '保存中 $current/$total';
   }
 
   @override
-  String get retryFailed => 'Retry failed';
+  String get retryFailed => '再試行';
 
   @override
-  String get clearCompleted => 'Clear completed';
+  String get clearCompleted => '完了をクリア';
 
   @override
-  String get clearCompletedTooltip =>
-      'Remove items marked as saved from this list';
+  String get clearCompletedTooltip => 'このリストから保存済みとしてマークされた項目を削除します';
 
   @override
-  String get clearBatchQueue => 'Clear queue';
+  String get clearBatchQueue => 'キューをクリア';
 
   @override
-  String get batchStatusQueued => 'Queued';
+  String get batchStatusQueued => 'キュー済み';
 
   @override
-  String get batchStatusConverting => 'Converting';
+  String get batchStatusConverting => '変換中';
 
   @override
-  String get batchStatusDone => 'Done';
+  String get batchStatusDone => '完了';
 
   @override
-  String get batchStatusFailed => 'Failed';
+  String get batchStatusFailed => '失敗';
 
   @override
-  String get batchStatusSaving => 'Saving';
+  String get batchStatusSaving => '保存中';
 
   @override
-  String get batchStatusSaved => 'Saved';
+  String get batchStatusSaved => '保存済み';
 
   @override
-  String get batchStatusCancelled => 'Cancelled';
+  String get batchStatusCancelled => 'キャンセルされました';
 
   @override
   String get appNameWebSuffix => '(Web)';
 
   @override
-  String get download => 'Download';
+  String get download => 'ダウンロード';
 
   @override
-  String get language => 'Language';
+  String get language => '言語';
 
   @override
-  String get systemLanguage => 'System default';
+  String get systemLanguage => 'システムのデフォルト';
 
   @override
-  String get errorDialogTitle => 'Error';
+  String get errorDialogTitle => 'エラー';
 
   @override
-  String get pickedFileCaption => 'Picked file';
+  String get pickedFileCaption => '選択されたファイル';
 
   @override
-  String get keepScreenOn => 'Keep screen on';
+  String get keepScreenOn => '画面をオンに保つ';
 
   @override
-  String get keepScreenOnTooltip =>
-      'Prevent the device display from turning off while the app is active.';
+  String get keepScreenOnTooltip => 'アプリがアクティブな間、デバイスのディスプレイがオフになるのを防ぎます。';
 }
