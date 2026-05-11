@@ -85,6 +85,9 @@ class _BatchResultTileState extends State<BatchResultTile> {
                 height: 180,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                cacheWidth: 720,
+                filterQuality: FilterQuality.low,
+                gaplessPlayback: true,
                 errorBuilder: (_, _, _) =>
                     _buildPreviewFallback(context, item),
               ),

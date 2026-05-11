@@ -99,6 +99,14 @@ class ImageConverterService {
   /// Синхронно с [ConversionPolicy.hardLimitBytes] для проверок во ViewModel.
   static int get maxFileSizeBytes => ConversionPolicy.hardLimitBytes;
 
+  // Один счётчик внутри процесса исключает коллизии имён в батче,
+  // когда несколько `_buildOutputPath` срабатывают в одну миллисекунду.
+  static int _outputCounter = 0;
+
+  // Кешированные ответы writable-probe — экономим один write+delete на конверсию.
+  bool? _tmpWritable;
+  Directory? _outputsDir;
+
   Future<ConvertedFile> convert({
     required File inputFile,
     required ImageFormat targetFormat,
@@ -164,7 +172,7 @@ class ImageConverterService {
         );
       }
 
-      final outPath = _buildOutputPath(
+      final outPath = await _buildOutputPath(
         inputPath: inputFile.path,
         targetFormat: targetFormat,
       );
@@ -255,16 +263,32 @@ class ImageConverterService {
     }
   }
 
-  /// Сначала [getTemporaryDirectory], иначе каталог входного файла, иначе — контролируемая ошибка.
-  Future<String> _resolvePolicyPreJpegFullPath(File inputFile) async {
-    final name = '_policy_pre_${DateTime.now().microsecondsSinceEpoch}.jpg';
-
+  /// Кешированный writable-probe для temp dir (актуально для batch).
+  Future<bool> _isTempWritable() async {
+    final cached = _tmpWritable;
+    if (cached != null) return cached;
     try {
       final tmp = await getTemporaryDirectory();
-      if (await _isDirectoryWritableProbe(Directory(tmp.path))) {
+      final ok = await _isDirectoryWritableProbe(Directory(tmp.path));
+      _tmpWritable = ok;
+      return ok;
+    } catch (_) {
+      _tmpWritable = false;
+      return false;
+    }
+  }
+
+  /// Сначала [getTemporaryDirectory], иначе каталог входного файла, иначе — контролируемая ошибка.
+  Future<String> _resolvePolicyPreJpegFullPath(File inputFile) async {
+    final name =
+        '_policy_pre_${DateTime.now().microsecondsSinceEpoch}_${++_outputCounter}.jpg';
+
+    if (await _isTempWritable()) {
+      try {
+        final tmp = await getTemporaryDirectory();
         return p.join(tmp.path, name);
-      }
-    } catch (_) {}
+      } catch (_) {}
+    }
 
     try {
       final parent = inputFile.parent;
@@ -503,14 +527,15 @@ class ImageConverterService {
   /// PDF → растр: только **первая страница** ([pdfx]).
   Future<Uint8List> _decodePdfToPngBytes(File file) async {
     PdfDocument? doc;
+    PdfPage? page;
     PdfPageImage? pageImage;
     try {
       doc = await PdfDocument.openFile(file.path);
       if (doc.pagesCount < 1) {
         throw Exception(AppStrings.invalidOrCorruptImage);
       }
-      final page = await doc.getPage(1);
-      
+      page = await doc.getPage(1);
+
       var w = page.width;
       var h = page.height;
       const maxSide = 2048.0;
@@ -528,7 +553,7 @@ class ImageConverterService {
         format: PdfPageImageFormat.png,
         quality: 100,
       );
-      
+
       if (pageImage == null) {
         throw Exception(AppStrings.invalidOrCorruptImage);
       }
@@ -546,9 +571,12 @@ class ImageConverterService {
     } on MissingPluginException {
       throw Exception(AppStrings.pdfRenderUnavailable);
     } finally {
-      if (doc != null) {
-        await doc.close();
-      }
+      try {
+        await page?.close();
+      } catch (_) {}
+      try {
+        await doc?.close();
+      } catch (_) {}
     }
   }
 
@@ -727,13 +755,45 @@ class ImageConverterService {
     }
   }
 
-  String _buildOutputPath({
+  /// Гарантированно пишем в **записываемую** временную директорию приложения,
+  /// иначе fallback в каталог исходника. Это убирает падения, когда вход лежит
+  /// в read-only месте (SAF / `content://` cache, OTG).
+  ///
+  /// Имя получает счётчик внутри процесса — это исключает коллизии в батче,
+  /// когда несколько результатов рождаются в одну миллисекунду.
+  Future<String> _buildOutputPath({
     required String inputPath,
     required ImageFormat targetFormat,
-  }) {
-    final dir = p.dirname(inputPath);
+  }) async {
     final base = p.basenameWithoutExtension(inputPath);
     final ts = DateTime.now().millisecondsSinceEpoch;
-    return p.join(dir, '${base}_$ts.${targetFormat.extension}');
+    final id = ++_outputCounter;
+    final fileName = '${base}_${ts}_$id.${targetFormat.extension}';
+
+    final dir = await _resolveOutputDir(inputPath);
+    return p.join(dir, fileName);
+  }
+
+  Future<String> _resolveOutputDir(String inputPath) async {
+    final cached = _outputsDir;
+    if (cached != null) {
+      return cached.path;
+    }
+
+    if (!kIsWeb) {
+      try {
+        final tmp = await getTemporaryDirectory();
+        final dir = Directory(p.join(tmp.path, 'gc_outputs'));
+        if (!await dir.exists()) {
+          await dir.create(recursive: true);
+        }
+        if (await _isDirectoryWritableProbe(dir)) {
+          _outputsDir = dir;
+          return dir.path;
+        }
+      } catch (_) {}
+    }
+
+    return p.dirname(inputPath);
   }
 }

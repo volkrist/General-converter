@@ -1,0 +1,29 @@
+﻿diff --git a/lib/l10n/app_localizations_en.dart b/lib/l10n/app_localizations_en.dart
+index 0a57ef3..28fa89b 100644
+--- a/lib/l10n/app_localizations_en.dart
++++ b/lib/l10n/app_localizations_en.dart
+@@ -274,4 +274,24 @@ class AppLocalizationsEn extends AppLocalizations {
+ 
+   @override
+   String get pickedFileCaption => 'Selected file';
++
++  @override
++  String get statusPreparing => 'PreparingтАж';
++
++  @override
++  String get statusPreparingBatch => 'Preparing batchтАж';
++
++  @override
++  String get statusConverting => 'ConvertingтАж';
++
++  @override
++  String get statusDone => 'Done';
++
++  @override
++  String get statusCancelled => 'Cancelled';
++
++  @override
++  String statusBatchProgress(int current, int total, String name) {
++    return 'Converting $current/$total: $name';
++  }
+ }

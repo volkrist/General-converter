@@ -36,6 +36,8 @@ class ResultPreviewCard extends StatefulWidget {
 
 class _ResultPreviewCardState extends State<ResultPreviewCard> {
   late final TextEditingController _nameController;
+  int? _cachedFileSize;
+  String? _cachedFileSizePath;
 
   bool get _usePlatformImagePreview {
     if (kIsWeb) return false;
@@ -65,6 +67,10 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
     if (_nameController.text != nextBase) {
       _nameController.text = nextBase;
     }
+    if (oldWidget.file.path != widget.file.path) {
+      _cachedFileSize = null;
+      _cachedFileSizePath = null;
+    }
   }
 
   @override
@@ -73,12 +79,36 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
     super.dispose();
   }
 
+  int _fileSizeBytes() {
+    final cached = _cachedFileSize;
+    if (cached != null && _cachedFileSizePath == widget.file.path) {
+      return cached;
+    }
+    try {
+      final size = widget.file.lengthSync();
+      _cachedFileSize = size;
+      _cachedFileSizePath = widget.file.path;
+      return size;
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  String _humanSize(int bytes) {
+    if (bytes <= 0) return '0 KB';
+    if (bytes < 1024) return '$bytes B';
+    if (bytes < 1024 * 1024) {
+      return '${(bytes / 1024).toStringAsFixed(1)} KB';
+    }
+    return '${(bytes / (1024 * 1024)).toStringAsFixed(2)} MB';
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final details = kIsWeb
         ? widget.formatLabel
-        : '${widget.formatLabel} · ${(widget.file.lengthSync() / 1024).toStringAsFixed(1)} KB';
+        : '${widget.formatLabel} · ${_humanSize(_fileSizeBytes())}';
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -93,6 +123,9 @@ class _ResultPreviewCardState extends State<ResultPreviewCard> {
                     ? Image.file(
                         widget.file,
                         fit: BoxFit.contain,
+                        cacheWidth: 1080,
+                        filterQuality: FilterQuality.medium,
+                        gaplessPlayback: true,
                         errorBuilder: (context, err, st) =>
                             _NoPreviewPlaceholder(
                                 formatLabel: widget.formatLabel),

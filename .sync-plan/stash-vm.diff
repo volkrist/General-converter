@@ -1,0 +1,111 @@
+﻿diff --git a/lib/converter/viewmodels/converter_view_model.dart b/lib/converter/viewmodels/converter_view_model.dart
+index e899ab5..9a30682 100644
+--- a/lib/converter/viewmodels/converter_view_model.dart
++++ b/lib/converter/viewmodels/converter_view_model.dart
+@@ -297,7 +297,7 @@ class ConverterViewModel extends ChangeNotifier {
+     result = null;
+     isSaved = false;
+     progress = 0.0;
+-    progressLabel = 'Preparing...';
++    progressLabel = AppStrings.statusPreparing;
+ 
+     _startConversionTimer();
+     notifyListeners();
+@@ -305,10 +305,7 @@ class ConverterViewModel extends ChangeNotifier {
+     try {
+       _clampFormatToAllowed();
+ 
+-      _setProgress(currentRun, 0.15, 'Checking format...');
+-      await Future<void>.delayed(const Duration(milliseconds: 50));
+-
+-      _setProgress(currentRun, 0.35, 'Converting...');
++      _setProgress(currentRun, 0.2, AppStrings.statusConverting);
+       final converted = await _converter.convert(
+         inputFile: selectedImage!,
+         targetFormat: selectedFormat,
+@@ -319,14 +316,11 @@ class ConverterViewModel extends ChangeNotifier {
+         return;
+       }
+ 
+-      _setProgress(currentRun, 0.8, 'Finalizing...');
+-      await Future<void>.delayed(const Duration(milliseconds: 50));
+-
+       result = converted.copyWith(
+         customBaseName: outputBaseName,
+       );
+ 
+-      _setProgress(currentRun, 1.0, 'Done');
++      _setProgress(currentRun, 1.0, AppStrings.statusDone);
+     } catch (e) {
+       error = UserErrorMapper.message(e, fallback: AppStrings.conversionFailed);
+       dialogError = error;
+@@ -355,7 +349,7 @@ class ConverterViewModel extends ChangeNotifier {
+     error = null;
+     dialogError = null;
+     progress = 0;
+-    progressLabel = 'Preparing batch...';
++    progressLabel = AppStrings.statusPreparingBatch;
+     notifyListeners();
+ 
+     try {
+@@ -381,8 +375,11 @@ class ConverterViewModel extends ChangeNotifier {
+         );
+ 
+         progress = i / batchItems.length;
+-        progressLabel =
+-            'Converting ${i + 1}/${batchItems.length}: ${item.sourceName}';
++        progressLabel = AppStrings.statusBatchProgress(
++          i + 1,
++          batchItems.length,
++          item.sourceName,
++        );
+         notifyListeners();
+ 
+         try {
+@@ -573,9 +570,11 @@ class ConverterViewModel extends ChangeNotifier {
+       batchItems[index] =
+           batchItems[index].copyWith(status: BatchItemStatus.saved);
+     } catch (e) {
++      // ╨Э╨░ ╨╛╤И╨╕╨▒╨║╨╡ save ╤Б╨╛╤Е╤А╨░╨╜╤П╨╡╨╝ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В ╨║╨╛╨╜╨▓╨╡╤А╤Б╨╕╨╕ (status=done) ╨╕
++      // ╨┐╨╛╨║╨░╨╖╤Л╨▓╨░╨╡╨╝ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╡ ╨▓ [saveError], ╨░ ╨╜╨╡ ╨╖╨░╤В╨╕╤А╨░╨╡╨╝ `errorMessage`.
+       batchItems[index] = batchItems[index].copyWith(
+-        status: BatchItemStatus.failed,
+-        errorMessage: UserErrorMapper.message(
++        status: BatchItemStatus.done,
++        saveError: UserErrorMapper.message(
+           e,
+           fallback: AppStrings.saveFailed,
+         ),
+@@ -663,7 +662,7 @@ class ConverterViewModel extends ChangeNotifier {
+     _runId++;
+     isConverting = false;
+     isBatchConverting = false;
+-    progressLabel = 'Cancelled';
++    progressLabel = AppStrings.statusCancelled;
+     _stopConversionTimer();
+     notifyListeners();
+   }
+@@ -719,7 +718,9 @@ class ConverterViewModel extends ChangeNotifier {
+     outputBaseName = normalized.isEmpty ? null : normalized;
+ 
+     if (result != null) {
+-      result = result!.copyWith(customBaseName: outputBaseName);
++      result = outputBaseName == null
++          ? result!.copyWith(clearCustomBaseName: true)
++          : result!.copyWith(customBaseName: outputBaseName);
+     }
+ 
+     notifyListeners();
+@@ -917,10 +918,8 @@ class ConverterViewModel extends ChangeNotifier {
+       return converted.file;
+     }
+ 
+-    final bytes = await converted.file.readAsBytes();
+-    final renamed = File(newPath);
+-    await renamed.writeAsBytes(bytes, flush: true);
+-    return renamed;
++    // [File.copy] ╨╜╨░ ╤В╨╛╨╣ ╨╢╨╡ ╨д╨б ╨╛╨▒╤Л╤З╨╜╨╛ ╨┤╨╡╤И╨╡╨▓╨╗╨╡, ╤З╨╡╨╝ read+write ╤З╨╡╤А╨╡╨╖ ╨▒╤Г╤Д╨╡╤А.
++    return converted.file.copy(newPath);
+   }
+ 
+   Future<File?> _buildPreviewFile(File file) async {

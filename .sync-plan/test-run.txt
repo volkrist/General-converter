@@ -1,0 +1,543 @@
+﻿Resolving dependencies...
+Downloading packages...
+  async 2.13.0 (2.13.1 available)
+  cli_util 0.4.2 (0.5.1 available)
+  cupertino_icons 1.0.8 (1.0.9 available)
+  extension 0.6.0 (1.0.0 available)
+  file_picker 10.3.10 (11.0.2 available)
+  flutter_launcher_icons 0.13.1 (0.14.4 available)
+  flutter_plugin_android_lifecycle 2.0.33 (2.0.34 available)
+  heif_converter 1.0.1 (1.0.2 available)
+  hooks 1.0.2 (1.0.3 available)
+  image_picker 1.2.1 (1.2.2 available)
+  image_picker_android 0.8.13+14 (0.8.13+17 available)
+  matcher 0.12.19 (0.12.20 available)
+  meta 1.17.0 (1.18.2 available)
+  native_toolchain_c 0.17.6 (0.18.0 available)
+  package_info_plus 9.0.1 (10.1.0 available)
+  package_info_plus_platform_interface 3.2.1 (4.1.0 available)
+  path_provider_android 2.2.22 (2.3.1 available)
+  protobuf 3.1.0 (6.0.0 available)
+  saver_gallery 4.1.0 (4.1.1 available)
+  share_plus 12.0.1 (13.1.0 available)
+  share_plus_platform_interface 6.1.0 (7.1.0 available)
+  shared_preferences 2.5.4 (2.5.5 available)
+  shared_preferences_android 2.4.21 (2.4.23 available)
+  shared_preferences_platform_interface 2.4.1 (2.4.2 available)
+  sqflite 2.4.2 (2.4.2+1 available)
+  sqflite_common 2.5.6 (2.5.7 available)
+  synchronized 3.4.0 (3.4.0+1 available)
+  test_api 0.7.10 (0.7.12 available)
+  url_launcher_web 2.4.2 (2.4.3 available)
+  vector_math 2.2.0 (2.3.0 available)
+  vm_service 15.0.2 (15.2.0 available)
+  wakelock_plus 1.5.2 (1.6.0 available)
+  win32 5.15.0 (6.2.0 available)
+  xml 6.6.1 (7.0.1 available)
+Got dependencies!
+34 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading C:/Users/Volkr/Desktop/converter 2/test/app_test.dart
+00:00 +0: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +1: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +1: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> png produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d38cc26a\src_jpg_png.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.png size=617
+[GC] preShrink start
+00:01 +2: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +2: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> png produces a valid decodable file
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d38cc26a\src_jpg_png.jpg
+[GC] decode start
+[GC] decode done: 77
+00:01 +3: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +3: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> png produces a valid decodable file
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d38cc26a\src_jpg_png_1778482416036_2.png
+00:01 +4: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +5: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +6: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +7: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +7: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> gif produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_9692b998\src_jpg_gif.jpg
+00:01 +8: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +8: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> gif produces a valid decodable file
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.gif size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_9692b998\src_jpg_gif.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+00:01 +9: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +10: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +11: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +11: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> gif produces a valid decodable file
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_9692b998\src_jpg_gif_1778482416142_3.gif
+00:01 +12: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +12: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> tiff produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_100e04be\src_jpg_tiff.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.tiff size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_100e04be\src_jpg_tiff.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_100e04be\src_jpg_tiff_1778482416348_5.tiff
+00:01 +13: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:01 +13: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> bmp produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e25cdef5\src_jpg_bmp.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.bmp size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e25cdef5\src_jpg_bmp.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e25cdef5\src_jpg_bmp_1778482416540_6.bmp
+00:02 +14: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +14: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert jpg -> pdf produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_2fb27bae\src_jpg_pdf.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.pdf size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_2fb27bae\src_jpg_pdf.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_2fb27bae\src_jpg_pdf_1778482416699_8.pdf
+00:02 +15: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +15: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert png -> jpg produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d9f484b3\src_png_jpg.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.jpg size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d9f484b3\src_png_jpg.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d9f484b3\src_png_jpg_1778482417105_9.jpg
+00:02 +16: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +17: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +17: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert png -> gif produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_42b090f4\src_png_gif.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.gif size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_42b090f4\src_png_gif.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_42b090f4\src_png_gif_1778482417180_10.gif
+00:02 +18: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +18: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert png -> tiff produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_deeadbe7\src_png_tiff.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.tiff size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_deeadbe7\src_png_tiff.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_deeadbe7\src_png_tiff_1778482417261_12.tiff
+00:02 +19: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +19: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert png -> bmp produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_85d18908\src_png_bmp.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.bmp size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_85d18908\src_png_bmp.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_85d18908\src_png_bmp_1778482417468_13.bmp
+00:02 +20: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:02 +20: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert png -> pdf produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_efa81651\src_png_pdf.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.pdf size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_efa81651\src_png_pdf.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_efa81651\src_png_pdf_1778482417541_15.pdf
+00:03 +21: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +21: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert gif -> jpg produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a45b4523\src_gif_jpg.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.jpg size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a45b4523\src_gif_jpg.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a45b4523\src_gif_jpg_1778482417648_16.jpg
+00:03 +22: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +22: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert gif -> png produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3baeee85\src_gif_png.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.png size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3baeee85\src_gif_png.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3baeee85\src_gif_png_1778482417793_18.png
+00:03 +23: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +24: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +25: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +25: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert gif -> tiff produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_6b7b56a4\src_gif_tiff.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.tiff size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_6b7b56a4\src_gif_tiff.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_6b7b56a4\src_gif_tiff_1778482417895_20.tiff
+00:03 +26: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +26: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert gif -> bmp produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e34ad1dc\src_gif_bmp.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.bmp size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e34ad1dc\src_gif_bmp.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_e34ad1dc\src_gif_bmp_1778482417950_21.bmp
+00:03 +27: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +28: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +28: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert gif -> pdf produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c080e743\src_gif_pdf.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.pdf size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c080e743\src_gif_pdf.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c080e743\src_gif_pdf_1778482418053_23.pdf
+00:03 +29: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +29: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> jpg produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_4927159f\src_tiff_jpg.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.jpg size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_4927159f\src_tiff_jpg.tiff
+[GC] decode start
+00:03 +30: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +30: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> jpg produces a valid decodable file
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_4927159f\src_tiff_jpg_1778482418165_24.jpg
+00:03 +31: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:03 +32: C:/Users/Volkr/Desktop/converter 2/test/app_test.dart: App renders converter screen
+00:04 +32: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> png produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_806628d3\src_tiff_png.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.png size=218
+00:04 +33: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> png produces a valid decodable file
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_806628d3\src_tiff_png.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_806628d3\src_tiff_png_1778482418439_26.png
+00:04 +34: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> gif produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_5ccc4dea\src_tiff_gif.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.gif size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_5ccc4dea\src_tiff_gif.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_5ccc4dea\src_tiff_gif_1778482419361_27.gif
+00:04 +35: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: blocked tiff -> tiff throws formatPairNotSupported
+00:04 +36: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> bmp produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_32f6955e\src_tiff_bmp.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.bmp size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_32f6955e\src_tiff_bmp.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_32f6955e\src_tiff_bmp_1778482419408_28.bmp
+00:04 +37: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert tiff -> pdf produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3c1af253\src_tiff_pdf.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.pdf size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3c1af253\src_tiff_pdf.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_3c1af253\src_tiff_pdf_1778482419480_30.pdf
+00:05 +38: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert bmp -> jpg produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c085af36\src_bmp_jpg.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.jpg size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c085af36\src_bmp_jpg.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_c085af36\src_bmp_jpg_1778482419862_31.jpg
+00:05 +39: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert bmp -> png produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_be643d20\src_bmp_png.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.png size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_be643d20\src_bmp_png.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_be643d20\src_bmp_png_1778482419917_33.png
+00:05 +40: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert bmp -> gif produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a79fc488\src_bmp_gif.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.gif size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a79fc488\src_bmp_gif.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_a79fc488\src_bmp_gif_1778482419953_34.gif
+00:05 +41: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert bmp -> tiff produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_80769cf5\src_bmp_tiff.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.tiff size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_80769cf5\src_bmp_tiff.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_80769cf5\src_bmp_tiff_1778482419999_36.tiff
+00:05 +42: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: blocked bmp -> bmp throws formatPairNotSupported
+00:05 +43: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: convert bmp -> pdf produces a valid decodable file
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d7f0b829\src_bmp_pdf.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.pdf size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d7f0b829\src_bmp_pdf.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\cap_matrix_d7f0b829\src_bmp_pdf_1778482420077_38.pdf
+00:05 +44: C:/Users/Volkr/Desktop/converter 2/test/converter/capability_matrix_test.dart: platform output list aligns with matrix for synthetic inputs
+00:05 +45: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_blocked_pairs_test.dart: blocked matrix pair fails before PDF decode
+00:07 +46: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.jpg -> ImageFormat.png
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_25d5c543\sample.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.png size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_25d5c543\sample.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_25d5c543\sample_1778482422344_2.png
+00:07 +47: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.jpg -> ImageFormat.gif
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8e4d64c5\sample.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.gif size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8e4d64c5\sample.jpg
+[GC] decode start
+00:08 +48: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.jpg -> ImageFormat.gif
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8e4d64c5\sample_1778482422501_3.gif
+00:08 +49: C:/Users/Volkr/Desktop/converter 2/test/converter/image_save_service_logic_test.dart: PDF, HEIC, AVIF, TIFF, WebP, GIF, BMP use file export
+00:08 +50: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.jpg -> ImageFormat.bmp
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_a2f4328c\sample.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.bmp size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_a2f4328c\sample.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_a2f4328c\sample_1778482422798_4.bmp
+00:08 +51: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.jpg -> ImageFormat.tiff
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d638c133\sample.jpg
+[GC] sourceFormat=ImageFormat.jpg targetFormat=ImageFormat.tiff size=617
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d638c133\sample.jpg
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d638c133\sample_1778482423046_6.tiff
+00:08 +52: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.png -> ImageFormat.jpg
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c260b057\sample.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.jpg size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c260b057\sample.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c260b057\sample_1778482423179_7.jpg
+00:08 +53: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.png -> ImageFormat.gif
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59c86963\sample.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.gif size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59c86963\sample.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59c86963\sample_1778482423314_8.gif
+00:08 +54: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.png -> ImageFormat.bmp
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_92815db8\sample.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.bmp size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_92815db8\sample.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_92815db8\sample_1778482423365_9.bmp
+00:08 +55: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.png -> ImageFormat.tiff
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_655e2c83\sample.png
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.tiff size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_655e2c83\sample.png
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_655e2c83\sample_1778482423421_11.tiff
+00:08 +56: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.gif -> ImageFormat.jpg
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_6060003d\sample.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.jpg size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_6060003d\sample.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_6060003d\sample_1778482423514_12.jpg
+00:08 +57: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.gif -> ImageFormat.png
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d8ab1e3c\sample.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.png size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d8ab1e3c\sample.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d8ab1e3c\sample_1778482423590_14.png
+00:09 +58: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.gif -> ImageFormat.bmp
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d575ee58\sample.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.bmp size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d575ee58\sample.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_d575ee58\sample_1778482423688_15.bmp
+00:09 +59: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.gif -> ImageFormat.tiff
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c6581c3f\sample.gif
+[GC] sourceFormat=ImageFormat.gif targetFormat=ImageFormat.tiff size=831
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c6581c3f\sample.gif
+[GC] decode start
+[GC] decode done: 852
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_c6581c3f\sample_1778482423759_17.tiff
+00:09 +60: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.bmp -> ImageFormat.jpg
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_bb5d60cf\sample.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.jpg size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_bb5d60cf\sample.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_bb5d60cf\sample_1778482423858_18.jpg
+00:09 +61: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +61: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.bmp -> ImageFormat.png
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_138af5a4\sample.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.png size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_138af5a4\sample.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_138af5a4\sample_1778482423950_20.png
+00:09 +62: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +62: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.bmp -> ImageFormat.gif
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_b8431baa\sample.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.gif size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_b8431baa\sample.bmp
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_b8431baa\sample_1778482423996_21.gif
+00:09 +63: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +63: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.bmp -> ImageFormat.tiff
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_af368ead\sample.bmp
+[GC] sourceFormat=ImageFormat.bmp targetFormat=ImageFormat.tiff size=186
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_af368ead\sample.bmp
+[GC] decode start
+00:09 +63: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\img2pdf_6a4484f3\sample.png
+00:09 +63: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.bmp -> ImageFormat.tiff
+[GC] decode done: 77
+[GC] encode start: ImageFormat.tiff
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_af368ead\sample_1778482424061_23.tiff
+00:09 +64: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+[GC] sourceFormat=ImageFormat.png targetFormat=ImageFormat.pdf size=77
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\img2pdf_6a4484f3\sample.png
+[GC] decode start
+00:09 +64: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.tiff -> ImageFormat.jpg
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8d7ef492\sample.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.jpg size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8d7ef492\sample.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.jpg
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_8d7ef492\sample_1778482424128_24.jpg
+00:09 +65: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +65: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.tiff -> ImageFormat.png
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_9e6a37ef\sample.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.png size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_9e6a37ef\sample.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.png
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_9e6a37ef\sample_1778482424180_26.png
+00:09 +66: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +66: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.tiff -> ImageFormat.gif
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_1db48c20\sample.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.gif size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_1db48c20\sample.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.gif
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_1db48c20\sample_1778482424216_27.gif
+00:09 +67: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +67: C:/Users/Volkr/Desktop/converter 2/test/converter/image_converter_matrix_basic_test.dart: convert synthetic ImageFormat.tiff -> ImageFormat.bmp
+[GC] convert start: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59f88c3\sample.tiff
+[GC] sourceFormat=ImageFormat.tiff targetFormat=ImageFormat.bmp size=218
+[GC] preShrink start
+[GC] preShrink done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59f88c3\sample.tiff
+[GC] decode start
+[GC] decode done: 77
+[GC] encode start: ImageFormat.bmp
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\converter_matrix_basic_59f88c3\sample_1778482424271_28.bmp
+00:09 +68: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+00:09 +69: C:/Users/Volkr/Desktop/converter 2/test/converter/image_to_pdf_test.dart: synthetic PNG -> PDF (one page, valid PDF header)
+[GC] decode done: 77
+[GC] encode start: ImageFormat.pdf
+[GC] encode done: C:\Users\Volkr\AppData\Local\Temp\img2pdf_6a4484f3\sample_1778482424226_2.pdf
+00:10 +70: C:/Users/Volkr/Desktop/converter 2/test/converter/output_file_validator_test.dart: zero-length file throws outputFileEmpty
+00:10 +71: C:/Users/Volkr/Desktop/converter 2/test/converter/output_file_validator_test.dart: non-existent file throws outputFileEmpty
+00:11 +72: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: png -> jpg converts successfully
+00:12 +73: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: invalid bytes throw exception
+00:12 +74: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:12 +75: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:13 +76: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:13 +77: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:13 +78: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +79: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +80: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +81: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +82: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +83: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +84: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +85: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +86: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +87: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:15 +88: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:16 +89: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:16 +90: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:16 +91: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:17 +92: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:17 +93: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:17 +94: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:19 +95: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:20 +96: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:20 +97: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:20 +98: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:21 +99: C:/Users/Volkr/Desktop/converter 2/test/converter/services/web/web_image_converter_service_test.dart: large image png -> jpg converts successfully
+00:21 +100: C:/Users/Volkr/Desktop/converter 2/test/widget_test.dart: App smoke test
+00:22 +101: C:/Users/Volkr/Desktop/converter 2/test/widget_test.dart: App smoke test
+00:22 +102: C:/Users/Volkr/Desktop/converter 2/test/widget_test.dart: App smoke test
+00:23 +103: All tests passed!

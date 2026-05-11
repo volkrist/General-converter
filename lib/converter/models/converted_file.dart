@@ -29,11 +29,14 @@ class ConvertedFile {
     File? file,
     ImageFormat? format,
     String? customBaseName,
+    bool clearCustomBaseName = false,
   }) {
     return ConvertedFile(
       file: file ?? this.file,
       format: format ?? this.format,
-      customBaseName: customBaseName ?? this.customBaseName,
+      customBaseName: clearCustomBaseName
+          ? null
+          : (customBaseName ?? this.customBaseName),
     );
   }
 }

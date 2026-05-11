@@ -681,6 +681,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Prevent the device display from turning off while the app is active.'**
   String get keepScreenOnTooltip;
+
+  /// Status label when conversion is preparing
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing…'**
+  String get statusPreparing;
+
+  /// Status label when batch is preparing
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing batch…'**
+  String get statusPreparingBatch;
+
+  /// Status label during conversion
+  ///
+  /// In en, this message translates to:
+  /// **'Converting…'**
+  String get statusConverting;
+
+  /// Status label when conversion is done
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get statusDone;
+
+  /// Status label when conversion is cancelled
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusCancelled;
+
+  /// Progress line for batch conversion (current/total + current file name)
+  ///
+  /// In en, this message translates to:
+  /// **'Converting {current}/{total}: {name}'**
+  String statusBatchProgress(int current, int total, String name);
 }
 
 class _AppLocalizationsDelegate

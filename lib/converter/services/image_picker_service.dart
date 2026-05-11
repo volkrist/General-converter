@@ -72,13 +72,10 @@ class ImagePickerService {
     }
 
     final dir = Directory(dirPath);
-    if (!dir.existsSync()) return <File>[];
+    if (!await dir.exists()) return <File>[];
 
-    final files = dir
-        .listSync(recursive: false)
-        .whereType<File>()
-        .where(_isAllowedFile)
-        .toList();
+    final entries = await dir.list(recursive: false, followLinks: false).toList();
+    final files = entries.whereType<File>().where(_isAllowedFile).toList();
 
     files.sort((a, b) => a.path.compareTo(b.path));
     return files;

@@ -54,10 +54,12 @@ class BatchSummaryCard extends StatelessWidget {
                     value: total.toString(),
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: _StatChip(
                     label: l10n.batchSummaryDone,
                     value: done.toString(),
+                    accent: theme.colorScheme.primary,
                   ),
                 ),
               ],
@@ -69,8 +71,10 @@ class BatchSummaryCard extends StatelessWidget {
                   child: _StatChip(
                     label: l10n.batchSummaryFailed,
                     value: failed.toString(),
+                    accent: failed > 0 ? theme.colorScheme.error : null,
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: _StatChip(
                     label: l10n.batchSummaryQueued,
@@ -108,28 +112,39 @@ class BatchSummaryCard extends StatelessWidget {
 }
 
 class _StatChip extends StatelessWidget {
-  const _StatChip({required this.label, required this.value});
+  const _StatChip({required this.label, required this.value, this.accent});
 
   final String label;
   final String value;
+  final Color? accent;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
+    final scheme = theme.colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: scheme.outlineVariant.withValues(alpha: 0.6)),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+            style: theme.textTheme.bodySmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
+          const SizedBox(height: 2),
           Text(
             value,
-            style: theme.textTheme.titleMedium,
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: accent ?? scheme.onSurface,
+              fontFeatures: const [FontFeature.tabularFigures()],
+            ),
           ),
         ],
       ),

@@ -280,4 +280,24 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get keepScreenOnTooltip =>
       'ป้องกันไม่ให้หน้าจอปิดเมื่อแอปอยู่ในสถานะใช้งาน';
+
+  @override
+  String get statusPreparing => 'Preparing…';
+
+  @override
+  String get statusPreparingBatch => 'Preparing batch…';
+
+  @override
+  String get statusConverting => 'Converting…';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String statusBatchProgress(int current, int total, String name) {
+    return 'Converting $current/$total: $name';
+  }
 }

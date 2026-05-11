@@ -1,0 +1,396 @@
+﻿diff --git a/lib/converter/services/android/image_converter_service.dart b/lib/converter/services/android/image_converter_service.dart
+index c10b17d..c2f444f 100644
+--- a/lib/converter/services/android/image_converter_service.dart
++++ b/lib/converter/services/android/image_converter_service.dart
+@@ -99,6 +99,14 @@ class ImageConverterService {
+   /// ╨б╨╕╨╜╤Е╤А╨╛╨╜╨╜╨╛ ╤Б [ConversionPolicy.hardLimitBytes] ╨┤╨╗╤П ╨┐╤А╨╛╨▓╨╡╤А╨╛╨║ ╨▓╨╛ ViewModel.
+   static int get maxFileSizeBytes => ConversionPolicy.hardLimitBytes;
+ 
++  // ╨Ю╨┤╨╕╨╜ ╤Б╤З╤С╤В╤З╨╕╨║ ╨▓╨╜╤Г╤В╤А╨╕ ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨░ ╨╕╤Б╨║╨╗╤О╤З╨░╨╡╤В ╨║╨╛╨╗╨╗╨╕╨╖╨╕╨╕ ╨╕╨╝╤С╨╜ ╨▓ ╨▒╨░╤В╤З╨╡,
++  // ╨║╨╛╨│╨┤╨░ ╨╜╨╡╤Б╨║╨╛╨╗╤М╨║╨╛ `_buildOutputPath` ╤Б╤А╨░╨▒╨░╤В╤Л╨▓╨░╤О╤В ╨▓ ╨╛╨┤╨╜╤Г ╨╝╨╕╨╗╨╗╨╕╤Б╨╡╨║╤Г╨╜╨┤╤Г.
++  static int _outputCounter = 0;
++
++  // ╨Ъ╨╡╤И╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╡ ╨╛╤В╨▓╨╡╤В╤Л writable-probe тАФ ╤Н╨║╨╛╨╜╨╛╨╝╨╕╨╝ ╨╛╨┤╨╕╨╜ write+delete ╨╜╨░ ╨║╨╛╨╜╨▓╨╡╤А╤Б╨╕╤О.
++  bool? _tmpWritable;
++  Directory? _outputsDir;
++
+   Future<ConvertedFile> convert({
+     required File inputFile,
+     required ImageFormat targetFormat,
+@@ -164,7 +172,7 @@ class ImageConverterService {
+         );
+       }
+ 
+-      final outPath = _buildOutputPath(
++      final outPath = await _buildOutputPath(
+         inputPath: inputFile.path,
+         targetFormat: targetFormat,
+       );
+@@ -255,16 +263,32 @@ class ImageConverterService {
+     }
+   }
+ 
++  /// ╨Ъ╨╡╤И╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╣ writable-probe ╨┤╨╗╤П temp dir (╨░╨║╤В╤Г╨░╨╗╤М╨╜╨╛ ╨┤╨╗╤П batch).
++  Future<bool> _isTempWritable() async {
++    final cached = _tmpWritable;
++    if (cached != null) return cached;
++    try {
++      final tmp = await getTemporaryDirectory();
++      final ok = await _isDirectoryWritableProbe(Directory(tmp.path));
++      _tmpWritable = ok;
++      return ok;
++    } catch (_) {
++      _tmpWritable = false;
++      return false;
++    }
++  }
++
+   /// ╨б╨╜╨░╤З╨░╨╗╨░ [getTemporaryDirectory], ╨╕╨╜╨░╤З╨╡ ╨║╨░╤В╨░╨╗╨╛╨│ ╨▓╤Е╨╛╨┤╨╜╨╛╨│╨╛ ╤Д╨░╨╣╨╗╨░, ╨╕╨╜╨░╤З╨╡ тАФ ╨║╨╛╨╜╤В╤А╨╛╨╗╨╕╤А╤Г╨╡╨╝╨░╤П ╨╛╤И╨╕╨▒╨║╨░.
+   Future<String> _resolvePolicyPreJpegFullPath(File inputFile) async {
+-    final name = '_policy_pre_${DateTime.now().microsecondsSinceEpoch}.jpg';
++    final name =
++        '_policy_pre_${DateTime.now().microsecondsSinceEpoch}_${++_outputCounter}.jpg';
+ 
+-    try {
+-      final tmp = await getTemporaryDirectory();
+-      if (await _isDirectoryWritableProbe(Directory(tmp.path))) {
++    if (await _isTempWritable()) {
++      try {
++        final tmp = await getTemporaryDirectory();
+         return p.join(tmp.path, name);
+-      }
+-    } catch (_) {}
++      } catch (_) {}
++    }
+ 
+     try {
+       final parent = inputFile.parent;
+@@ -503,14 +527,15 @@ class ImageConverterService {
+   /// PDF тЖТ ╤А╨░╤Б╤В╤А: ╤В╨╛╨╗╤М╨║╨╛ **╨┐╨╡╤А╨▓╨░╤П ╤Б╤В╤А╨░╨╜╨╕╤Ж╨░** ([pdfx]).
+   Future<Uint8List> _decodePdfToPngBytes(File file) async {
+     PdfDocument? doc;
++    PdfPage? page;
+     PdfPageImage? pageImage;
+     try {
+       doc = await PdfDocument.openFile(file.path);
+       if (doc.pagesCount < 1) {
+         throw Exception(AppStrings.invalidOrCorruptImage);
+       }
+-      final page = await doc.getPage(1);
+-      
++      page = await doc.getPage(1);
++
+       var w = page.width;
+       var h = page.height;
+       const maxSide = 2048.0;
+@@ -528,7 +553,7 @@ class ImageConverterService {
+         format: PdfPageImageFormat.png,
+         quality: 100,
+       );
+-      
++
+       if (pageImage == null) {
+         throw Exception(AppStrings.invalidOrCorruptImage);
+       }
+@@ -546,9 +571,12 @@ class ImageConverterService {
+     } on MissingPluginException {
+       throw Exception(AppStrings.pdfRenderUnavailable);
+     } finally {
+-      if (doc != null) {
+-        await doc.close();
+-      }
++      try {
++        await page?.close();
++      } catch (_) {}
++      try {
++        await doc?.close();
++      } catch (_) {}
+     }
+   }
+ 
+@@ -727,13 +755,45 @@ class ImageConverterService {
+     }
+   }
+ 
+-  String _buildOutputPath({
++  /// ╨У╨░╤А╨░╨╜╤В╨╕╤А╨╛╨▓╨░╨╜╨╜╨╛ ╨┐╨╕╤И╨╡╨╝ ╨▓ **╨╖╨░╨┐╨╕╤Б╤Л╨▓╨░╨╡╨╝╤Г╤О** ╨▓╤А╨╡╨╝╨╡╨╜╨╜╤Г╤О ╨┤╨╕╤А╨╡╨║╤В╨╛╤А╨╕╤О ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П,
++  /// ╨╕╨╜╨░╤З╨╡ fallback ╨▓ ╨║╨░╤В╨░╨╗╨╛╨│ ╨╕╤Б╤Е╨╛╨┤╨╜╨╕╨║╨░. ╨н╤В╨╛ ╤Г╨▒╨╕╤А╨░╨╡╤В ╨┐╨░╨┤╨╡╨╜╨╕╤П, ╨║╨╛╨│╨┤╨░ ╨▓╤Е╨╛╨┤ ╨╗╨╡╨╢╨╕╤В
++  /// ╨▓ read-only ╨╝╨╡╤Б╤В╨╡ (SAF / `content://` cache, OTG).
++  ///
++  /// ╨Ш╨╝╤П ╨┐╨╛╨╗╤Г╤З╨░╨╡╤В ╤Б╤З╤С╤В╤З╨╕╨║ ╨▓╨╜╤Г╤В╤А╨╕ ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨░ тАФ ╤Н╤В╨╛ ╨╕╤Б╨║╨╗╤О╤З╨░╨╡╤В ╨║╨╛╨╗╨╗╨╕╨╖╨╕╨╕ ╨▓ ╨▒╨░╤В╤З╨╡,
++  /// ╨║╨╛╨│╨┤╨░ ╨╜╨╡╤Б╨║╨╛╨╗╤М╨║╨╛ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╨╛╨▓ ╤А╨╛╨╢╨┤╨░╤О╤В╤Б╤П ╨▓ ╨╛╨┤╨╜╤Г ╨╝╨╕╨╗╨╗╨╕╤Б╨╡╨║╤Г╨╜╨┤╤Г.
++  Future<String> _buildOutputPath({
+     required String inputPath,
+     required ImageFormat targetFormat,
+-  }) {
+-    final dir = p.dirname(inputPath);
++  }) async {
+     final base = p.basenameWithoutExtension(inputPath);
+     final ts = DateTime.now().millisecondsSinceEpoch;
+-    return p.join(dir, '${base}_$ts.${targetFormat.extension}');
++    final id = ++_outputCounter;
++    final fileName = '${base}_${ts}_$id.${targetFormat.extension}';
++
++    final dir = await _resolveOutputDir(inputPath);
++    return p.join(dir, fileName);
++  }
++
++  Future<String> _resolveOutputDir(String inputPath) async {
++    final cached = _outputsDir;
++    if (cached != null) {
++      return cached.path;
++    }
++
++    if (!kIsWeb) {
++      try {
++        final tmp = await getTemporaryDirectory();
++        final dir = Directory(p.join(tmp.path, 'gc_outputs'));
++        if (!await dir.exists()) {
++          await dir.create(recursive: true);
++        }
++        if (await _isDirectoryWritableProbe(dir)) {
++          _outputsDir = dir;
++          return dir.path;
++        }
++      } catch (_) {}
++    }
++
++    return p.dirname(inputPath);
+   }
+ }
+diff --git a/lib/converter/services/common/preview_thumbnail_service.dart b/lib/converter/services/common/preview_thumbnail_service.dart
+index 7f13532..a41969b 100644
+--- a/lib/converter/services/common/preview_thumbnail_service.dart
++++ b/lib/converter/services/common/preview_thumbnail_service.dart
+@@ -1,9 +1,11 @@
+ import 'dart:io';
+-import 'dart:typed_data';
++import 'dart:isolate';
+ 
++import 'package:flutter/foundation.dart';
+ import 'package:image/image.dart' as img;
+ import 'package:path/path.dart' as p;
+ 
++/// Decoded ╨┐╤А╨╡╨▓╤М╤О ╤Б ╤В╤П╨╢╤С╨╗╨╛╨╣ ╤А╨░╨▒╨╛╤В╨╛╨╣ ╨▓ [Isolate], ╤З╤В╨╛╨▒╤Л ╨╜╨╡ ╨╗╨╛╤З╨╕╤В╤М UI.
+ class PreviewThumbnailService {
+   static Future<File?> createPreviewForFile({
+     required File sourceFile,
+@@ -12,13 +14,8 @@ class PreviewThumbnailService {
+   }) async {
+     try {
+       final bytes = await sourceFile.readAsBytes();
+-      final decoded = img.decodeImage(bytes);
+-      if (decoded == null) return null;
+-
+-      final resized = _resize(decoded, maxSide: maxSide);
+-      final jpgBytes = Uint8List.fromList(
+-        img.encodeJpg(resized, quality: 82),
+-      );
++      final jpgBytes = await _runResizeToJpg(bytes, maxSide);
++      if (jpgBytes == null) return null;
+ 
+       final unique = sourceFile.path.hashCode.abs();
+       final outPath = p.join(
+@@ -34,17 +31,31 @@ class PreviewThumbnailService {
+     }
+   }
+ 
+-  static img.Image _resize(img.Image image, {required int maxSide}) {
+-    final width = image.width;
+-    final height = image.height;
+-
+-    if (width <= maxSide && height <= maxSide) {
+-      return image;
++  static Future<Uint8List?> _runResizeToJpg(Uint8List bytes, int maxSide) {
++    if (kIsWeb) {
++      return Future.value(_resizeToJpgSync(bytes, maxSide));
+     }
++    return Isolate.run(() => _resizeToJpgSync(bytes, maxSide));
++  }
++}
+ 
+-    if (width >= height) {
+-      return img.copyResize(image, width: maxSide);
+-    }
+-    return img.copyResize(image, height: maxSide);
++Uint8List? _resizeToJpgSync(Uint8List bytes, int maxSide) {
++  final decoded = img.decodeImage(bytes);
++  if (decoded == null || decoded.width <= 0 || decoded.height <= 0) {
++    return null;
++  }
++  final resized = _resize(decoded, maxSide: maxSide);
++  return Uint8List.fromList(img.encodeJpg(resized, quality: 82));
++}
++
++img.Image _resize(img.Image image, {required int maxSide}) {
++  final width = image.width;
++  final height = image.height;
++  if (width <= maxSide && height <= maxSide) {
++    return image;
++  }
++  if (width >= height) {
++    return img.copyResize(image, width: maxSide);
+   }
++  return img.copyResize(image, height: maxSide);
+ }
+diff --git a/lib/converter/services/image_picker_service.dart b/lib/converter/services/image_picker_service.dart
+index bfa4a0b..7383629 100644
+--- a/lib/converter/services/image_picker_service.dart
++++ b/lib/converter/services/image_picker_service.dart
+@@ -72,13 +72,10 @@ class ImagePickerService {
+     }
+ 
+     final dir = Directory(dirPath);
+-    if (!dir.existsSync()) return <File>[];
++    if (!await dir.exists()) return <File>[];
+ 
+-    final files = dir
+-        .listSync(recursive: false)
+-        .whereType<File>()
+-        .where(_isAllowedFile)
+-        .toList();
++    final entries = await dir.list(recursive: false, followLinks: false).toList();
++    final files = entries.whereType<File>().where(_isAllowedFile).toList();
+ 
+     files.sort((a, b) => a.path.compareTo(b.path));
+     return files;
+diff --git a/lib/screens/converter_screen.dart b/lib/screens/converter_screen.dart
+index 82b10fb..de906bc 100644
+--- a/lib/screens/converter_screen.dart
++++ b/lib/screens/converter_screen.dart
+@@ -191,7 +191,19 @@ class _ConverterViewState extends State<_ConverterView> {
+                   label: Text(l10n.cancel),
+                 ),
+               IconButton(
+-                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
++                icon: AnimatedSwitcher(
++                  duration: const Duration(milliseconds: 220),
++                  switchInCurve: Curves.easeOut,
++                  switchOutCurve: Curves.easeIn,
++                  transitionBuilder: (child, anim) => RotationTransition(
++                    turns: Tween<double>(begin: 0.75, end: 1).animate(anim),
++                    child: FadeTransition(opacity: anim, child: child),
++                  ),
++                  child: Icon(
++                    isDark ? Icons.light_mode : Icons.dark_mode,
++                    key: ValueKey<bool>(isDark),
++                  ),
++                ),
+                 onPressed: () {
+                   context.read<ThemeViewModel>().toggleTheme();
+                 },
+@@ -266,9 +278,30 @@ Widget _buildBody(BuildContext context, ConverterViewModel vm) {
+           ),
+         ),
+       Expanded(
+-        child: vm.screenMode == ConverterScreenMode.batch && vm.hasBatchItems
+-            ? _buildBatchSection(context, vm)
+-            : _buildSingleSection(context, vm),
++        child: AnimatedSwitcher(
++          duration: const Duration(milliseconds: 220),
++          switchInCurve: Curves.easeOutCubic,
++          switchOutCurve: Curves.easeIn,
++          transitionBuilder: (child, anim) => FadeTransition(
++            opacity: anim,
++            child: SlideTransition(
++              position: Tween<Offset>(
++                begin: const Offset(0, 0.02),
++                end: Offset.zero,
++              ).animate(anim),
++              child: child,
++            ),
++          ),
++          child: KeyedSubtree(
++            key: ValueKey<bool>(
++              vm.screenMode == ConverterScreenMode.batch && vm.hasBatchItems,
++            ),
++            child:
++                vm.screenMode == ConverterScreenMode.batch && vm.hasBatchItems
++                    ? _buildBatchSection(context, vm)
++                    : _buildSingleSection(context, vm),
++          ),
++        ),
+       ),
+     ],
+   );
+@@ -306,11 +339,15 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
+         ],
+         const SizedBox(height: 24),
+         ConvertButton(
+-          onPressed: vm.selectedImage != null && !vm.isBatchConverting
++          onPressed: vm.selectedImage != null &&
++                  !vm.isBatchConverting &&
++                  vm.allowedTargetFormats.isNotEmpty
+               ? () => vm.convert()
+               : null,
+           isLoading: vm.isConverting,
+-          enabled: vm.selectedImage != null && !vm.isBatchConverting,
++          enabled: vm.selectedImage != null &&
++              !vm.isBatchConverting &&
++              vm.allowedTargetFormats.isNotEmpty,
+           loadingLabel: convertingLine,
+         ),
+         if (vm.result != null) ...[
+@@ -374,7 +411,8 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
+         onPressed: vm.batchItems.isEmpty ||
+                 vm.isConverting ||
+                 vm.isBatchConverting ||
+-                vm.isBatchSavingAll
++                vm.isBatchSavingAll ||
++                vm.allowedTargetFormats.isEmpty
+             ? null
+             : () => vm.convertBatch(),
+         icon: const Icon(Icons.layers),
+@@ -419,23 +457,44 @@ class _EmptyState extends StatelessWidget {
+   @override
+   Widget build(BuildContext context) {
+     final theme = Theme.of(context);
++    final scheme = theme.colorScheme;
+ 
+     return Container(
+-      padding: const EdgeInsets.symmetric(vertical: 48),
++      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
+       alignment: Alignment.center,
++      decoration: BoxDecoration(
++        color: scheme.surfaceContainerLow,
++        borderRadius: BorderRadius.circular(16),
++        border: Border.all(color: scheme.outlineVariant.withValues(alpha: 0.6)),
++      ),
+       child: Column(
+         children: [
+-          Icon(
+-            Icons.add_photo_alternate_outlined,
+-            size: 64,
+-            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
++          Container(
++            width: 72,
++            height: 72,
++            decoration: BoxDecoration(
++              shape: BoxShape.circle,
++              color: scheme.primaryContainer.withValues(alpha: 0.55),
++            ),
++            child: Icon(
++              Icons.add_photo_alternate_outlined,
++              size: 36,
++              color: scheme.onPrimaryContainer,
++            ),
+           ),
+-          const SizedBox(height: 12),
++          const SizedBox(height: 16),
+           Text(
+             context.l10n.tapToPick,
+-            style: theme.textTheme.bodyLarge?.copyWith(
+-              color: theme.colorScheme.onSurfaceVariant,
++            style: theme.textTheme.titleSmall?.copyWith(
++              color: scheme.onSurface,
+             ),
++            textAlign: TextAlign.center,
++          ),
++          const SizedBox(height: 4),
++          Text(
++            context.l10n.emptyStateHint,
++            style: theme.textTheme.bodySmall,
++            textAlign: TextAlign.center,
+           ),
+         ],
+       ),

@@ -1,1 +1,316 @@
-{}
+{
+  "ar": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "bg": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "bn": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ca": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "cs": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "da": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "de": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "el": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "es": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "fa": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "fi": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "fr": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "he": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "hi": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "hr": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "hu": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "id": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "it": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ja": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ko": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ms": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "nb": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "nl": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "pl": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "pt": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ro": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "ru": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "sk": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "sr": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "sv": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "th": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "tr": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "uk": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "vi": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ],
+
+  "zh": [
+    "statusPreparing",
+    "statusPreparingBatch",
+    "statusConverting",
+    "statusDone",
+    "statusCancelled",
+    "statusBatchProgress"
+  ]
+}

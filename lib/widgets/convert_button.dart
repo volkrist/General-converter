@@ -24,23 +24,30 @@ class ConvertButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: FilledButton.icon(
         onPressed: isLoading
-            ? (onCancel)
+            ? onCancel
             : (enabled && !isLoading ? onPressed : null),
-        icon: isLoading
-            ? const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Colors.white,
-                ),
-              )
-            : const Icon(Icons.transform),
+        icon: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          transitionBuilder: (child, anim) =>
+              ScaleTransition(scale: anim, child: child),
+          child: isLoading
+              ? SizedBox(
+                  key: const ValueKey('loading'),
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: scheme.onPrimary,
+                  ),
+                )
+              : const Icon(Icons.transform, key: ValueKey('icon')),
+        ),
         label: Text(
           isLoading
               ? (showCancelWhileLoading
@@ -52,10 +59,3 @@ class ConvertButton extends StatelessWidget {
     );
   }
 }
-
-// if (vm.isConverting || vm.isBatchConverting)
-//                 TextButton.icon(
-//                   onPressed: vm.cancelConvert,
-//                   icon: const Icon(Icons.close),
-//                   label: Text(l10n.cancel),
-//                 )

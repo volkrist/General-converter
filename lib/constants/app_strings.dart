@@ -96,4 +96,11 @@ abstract final class AppStrings {
   static String get language => _en.language;
   static String get systemLanguage => _en.systemLanguage;
   static String get pickedFileCaption => _en.pickedFileCaption;
+  static String get statusPreparing => _en.statusPreparing;
+  static String get statusPreparingBatch => _en.statusPreparingBatch;
+  static String get statusConverting => _en.statusConverting;
+  static String get statusDone => _en.statusDone;
+  static String get statusCancelled => _en.statusCancelled;
+  static String statusBatchProgress(int current, int total, String name) =>
+      _en.statusBatchProgress(current, total, name);
 }

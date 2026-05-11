@@ -286,5 +286,34 @@
         "type": "int"
       }
     }
+  },
+  "statusPreparing": "Preparing…",
+  "@statusPreparing": {
+    "description": "Status label when conversion is preparing"
+  },
+  "statusPreparingBatch": "Preparing batch…",
+  "@statusPreparingBatch": {
+    "description": "Status label when batch is preparing"
+  },
+  "statusConverting": "Converting…",
+  "@statusConverting": {
+    "description": "Status label during conversion"
+  },
+  "statusDone": "Done",
+  "@statusDone": {
+    "description": "Status label when conversion is done"
+  },
+  "statusCancelled": "Cancelled",
+  "@statusCancelled": {
+    "description": "Status label when conversion is cancelled"
+  },
+  "statusBatchProgress": "Converting {current}/{total}: {name}",
+  "@statusBatchProgress": {
+    "description": "Progress line for batch conversion (current/total + current file name)",
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"},
+      "name": {"type": "String"}
+    }
   }
 }

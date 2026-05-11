@@ -283,4 +283,24 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get keepScreenOnTooltip =>
       'Spriječite gašenje zaslona dok je aplikacija aktivna.';
+
+  @override
+  String get statusPreparing => 'Preparing…';
+
+  @override
+  String get statusPreparingBatch => 'Preparing batch…';
+
+  @override
+  String get statusConverting => 'Converting…';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String statusBatchProgress(int current, int total, String name) {
+    return 'Converting $current/$total: $name';
+  }
 }

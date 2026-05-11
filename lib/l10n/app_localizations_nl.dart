@@ -284,4 +284,24 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get keepScreenOnTooltip =>
       'Prevent the device display from turning off while the app is active.';
+
+  @override
+  String get statusPreparing => 'Preparing…';
+
+  @override
+  String get statusPreparingBatch => 'Preparing batch…';
+
+  @override
+  String get statusConverting => 'Converting…';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String statusBatchProgress(int current, int total, String name) {
+    return 'Converting $current/$total: $name';
+  }
 }

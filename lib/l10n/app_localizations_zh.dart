@@ -267,4 +267,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get keepScreenOnTooltip => '在应用处于活动状态时阻止设备显示器关闭。';
+
+  @override
+  String get statusPreparing => 'Preparing…';
+
+  @override
+  String get statusPreparingBatch => 'Preparing batch…';
+
+  @override
+  String get statusConverting => 'Converting…';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String statusBatchProgress(int current, int total, String name) {
+    return 'Converting $current/$total: $name';
+  }
 }

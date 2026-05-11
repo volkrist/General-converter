@@ -285,4 +285,24 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get keepScreenOnTooltip =>
       'Предотвратява изключването на дисплея на устройството, докато приложението е активно.';
+
+  @override
+  String get statusPreparing => 'Preparing…';
+
+  @override
+  String get statusPreparingBatch => 'Preparing batch…';
+
+  @override
+  String get statusConverting => 'Converting…';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String statusBatchProgress(int current, int total, String name) {
+    return 'Converting $current/$total: $name';
+  }
 }

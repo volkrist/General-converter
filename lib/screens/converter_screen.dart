@@ -199,7 +199,19 @@ class _ConverterViewState extends State<_ConverterView> {
               ),
 
               IconButton(
-                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                icon: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  switchInCurve: Curves.easeOut,
+                  switchOutCurve: Curves.easeIn,
+                  transitionBuilder: (child, anim) => RotationTransition(
+                    turns: Tween<double>(begin: 0.75, end: 1).animate(anim),
+                    child: FadeTransition(opacity: anim, child: child),
+                  ),
+                  child: Icon(
+                    isDark ? Icons.light_mode : Icons.dark_mode,
+                    key: ValueKey<bool>(isDark),
+                  ),
+                ),
                 onPressed: () {
                   context.read<ThemeViewModel>().toggleTheme();
                 },
@@ -316,11 +328,17 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
         ],
         const SizedBox(height: 24),
         ConvertButton(
-          onPressed: vm.selectedImage != null && !vm.isBatchConverting
+          onPressed:
+              vm.selectedImage != null &&
+                  !vm.isBatchConverting &&
+                  vm.allowedTargetFormats.isNotEmpty
               ? () => vm.convert()
               : null,
           isLoading: vm.isConverting,
-          enabled: vm.selectedImage != null && !vm.isBatchConverting,
+          enabled:
+              vm.selectedImage != null &&
+              !vm.isBatchConverting &&
+              vm.allowedTargetFormats.isNotEmpty,
           loadingLabel: convertingLine,
           onCancel: vm.cancelConvert,
         ),
@@ -386,7 +404,8 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
             vm.batchItems.isEmpty ||
                 vm.isConverting ||
                 vm.isBatchConverting ||
-                vm.isBatchSavingAll
+                vm.isBatchSavingAll ||
+                vm.allowedTargetFormats.isEmpty
             ? null
             : () => vm.convertBatch(),
         icon: const Icon(Icons.layers),
@@ -429,23 +448,44 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 48),
+      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
       alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: scheme.outlineVariant.withValues(alpha: 0.6)),
+      ),
       child: Column(
         children: [
-          Icon(
-            Icons.add_photo_alternate_outlined,
-            size: 64,
-            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
+          Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: scheme.primaryContainer.withValues(alpha: 0.55),
+            ),
+            child: Icon(
+              Icons.add_photo_alternate_outlined,
+              size: 36,
+              color: scheme.onPrimaryContainer,
+            ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Text(
             context.l10n.tapToPick,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: scheme.onSurface,
             ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            context.l10n.emptyStateHint,
+            style: theme.textTheme.bodySmall,
+            textAlign: TextAlign.center,
           ),
         ],
       ),

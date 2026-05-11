@@ -1,0 +1,58 @@
+﻿M  lib/app_theme.dart
+ M lib/constants/app_strings.dart
+M  lib/converter/models/converted_file.dart
+M  lib/converter/services/android/image_converter_service.dart
+M  lib/converter/services/common/preview_thumbnail_service.dart
+M  lib/converter/services/image_picker_service.dart
+M  lib/converter/viewmodels/converter_view_model.dart
+ M lib/l10n/app_en.arb
+ M lib/l10n/app_localizations.dart
+ M lib/l10n/app_localizations_ar.dart
+ M lib/l10n/app_localizations_bg.dart
+ M lib/l10n/app_localizations_bn.dart
+ M lib/l10n/app_localizations_ca.dart
+ M lib/l10n/app_localizations_cs.dart
+ M lib/l10n/app_localizations_da.dart
+ M lib/l10n/app_localizations_de.dart
+ M lib/l10n/app_localizations_el.dart
+ M lib/l10n/app_localizations_en.dart
+ M lib/l10n/app_localizations_es.dart
+ M lib/l10n/app_localizations_fa.dart
+ M lib/l10n/app_localizations_fi.dart
+ M lib/l10n/app_localizations_fr.dart
+ M lib/l10n/app_localizations_he.dart
+ M lib/l10n/app_localizations_hi.dart
+ M lib/l10n/app_localizations_hr.dart
+ M lib/l10n/app_localizations_hu.dart
+ M lib/l10n/app_localizations_id.dart
+ M lib/l10n/app_localizations_it.dart
+ M lib/l10n/app_localizations_ja.dart
+ M lib/l10n/app_localizations_ko.dart
+ M lib/l10n/app_localizations_ms.dart
+ M lib/l10n/app_localizations_nb.dart
+ M lib/l10n/app_localizations_nl.dart
+ M lib/l10n/app_localizations_pl.dart
+ M lib/l10n/app_localizations_pt.dart
+ M lib/l10n/app_localizations_ro.dart
+ M lib/l10n/app_localizations_ru.dart
+ M lib/l10n/app_localizations_sk.dart
+ M lib/l10n/app_localizations_sr.dart
+ M lib/l10n/app_localizations_sv.dart
+ M lib/l10n/app_localizations_th.dart
+ M lib/l10n/app_localizations_tr.dart
+ M lib/l10n/app_localizations_uk.dart
+ M lib/l10n/app_localizations_vi.dart
+ M lib/l10n/app_localizations_zh.dart
+ M lib/screens/converter_screen.dart
+M  lib/theme_view_model.dart
+M  lib/widgets/batch_result_tile.dart
+M  lib/widgets/batch_summary_card.dart
+M  lib/widgets/conversion_status_banner.dart
+ M lib/widgets/convert_button.dart
+M  lib/widgets/result_preview_card.dart
+M  lib/widgets/selected_file_card.dart
+ M macos/Flutter/GeneratedPluginRegistrant.swift
+ M pubspec.yaml
+A  test/converter/capability_matrix_test.dart
+ M untranslated_messages.json
+?? .sync-plan/

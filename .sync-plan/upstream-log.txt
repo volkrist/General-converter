@@ -1,0 +1,15 @@
+﻿72132e0 feat: implement system window insets handling in MainActivity
+8ec0a1d fix: update app version to 1.2.0+5 and wrap IncomingSharedFilesListener in SafeArea
+1481133 Add translations and metadata propagation script
+6ef0da5 Localize app strings for Ukrainian, Vietnamese, and Chinese languages; add scripts for cleaning and truncating ARB files; create untranslated messages JSON for Turkish.
+f32575c refactor: improve code formatting and organization in localization and provider files
+3c8a818 feat: add wakelock functionality to keep screen on
+85ab2f2 fix: update wakelock package to wakelock_plus and adjust imports
+d95b20c Refactor code structure for improved readability and maintainability
+08d6a92 fix: standardize quotes in pubspec.yaml
+02576dd feat: update app icons and improve conversion button functionality
+6eaeb9a close testing release
+ff8e66a chore: rename app to Generic Converter and clean up manifest and plist
+f134f37 bump version to 1.0.1+3 and update Windows company metadata + hz what will mext
+4ac1196 update application ID and package name to com.tfd.general_converter
+bef1f8d Add Flutter l10n, locale controller, and localized UI
