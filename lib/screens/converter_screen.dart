@@ -13,6 +13,7 @@ import '../widgets/batch_result_tile.dart';
 import '../widgets/batch_summary_card.dart';
 import '../widgets/conversion_status_banner.dart';
 import '../widgets/convert_button.dart';
+import '../widgets/feedback_sheet.dart';
 import '../widgets/format_dropdown.dart';
 import '../widgets/pick_image_fab.dart';
 import '../widgets/result_preview_card.dart';
@@ -342,6 +343,14 @@ Widget _buildSingleSection(BuildContext context, ConverterViewModel vm) {
           loadingLabel: convertingLine,
           onCancel: vm.cancelConvert,
         ),
+        const SizedBox(height: 4),
+        Center(
+          child: TextButton.icon(
+            onPressed: () => showFeedbackSheet(context),
+            icon: const Icon(Icons.feedback_outlined),
+            label: const Text('Feedback'),
+          ),
+        ),
         if (vm.result != null) ...[
           const SizedBox(height: 24),
           ResultPreviewCard(
@@ -441,6 +450,7 @@ Widget _buildBatchSection(BuildContext context, ConverterViewModel vm) {
     ],
   );
 }
+
 
 class _EmptyState extends StatelessWidget {
   const _EmptyState();

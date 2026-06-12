@@ -2,7 +2,7 @@ name: general_converter
 description: "Image converter app — pick, convert, and save images between formats."
 publish_to: "none"
 
-version: 1.2.1+6
+version: 1.2.2+7
 
 environment:
   sdk: ^3.11.1
@@ -17,6 +17,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.5.3
   provider: ^6.1.2
+  http: ^1.2.2
   image: ^4.7.2
   path: ^1.9.1
   path_provider: ^2.1.5
@@ -33,6 +34,10 @@ dependencies:
   receive_sharing_intent: ^1.8.1
   open_file: ^3.5.10
   wakelock_plus: ^1.1.4
+
+dependency_overrides:
+  flutter_avif_android:
+    path: third_party/flutter_avif_android
 
 dev_dependencies:
   flutter_test:

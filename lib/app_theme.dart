@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Material 3 тема: один seed для светлой и тёмной, единая шкала радиусов и
@@ -48,12 +49,8 @@ abstract final class AppTheme {
           fontWeight: FontWeight.w600,
           letterSpacing: -0.1,
         ),
-        titleSmall: textTheme.titleSmall?.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
-        bodyMedium: textTheme.bodyMedium?.copyWith(
-          height: 1.35,
-        ),
+        titleSmall: textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+        bodyMedium: textTheme.bodyMedium?.copyWith(height: 1.35),
         bodySmall: textTheme.bodySmall?.copyWith(
           color: scheme.onSurfaceVariant,
           height: 1.35,
@@ -78,9 +75,7 @@ abstract final class AppTheme {
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_radiusMd),
-          side: BorderSide(
-            color: scheme.outlineVariant.withValues(alpha: 0.6),
-          ),
+          side: BorderSide(color: scheme.outlineVariant.withValues(alpha: 0.6)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -133,8 +128,10 @@ abstract final class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surfaceContainerHighest.withValues(alpha: 0.6),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(_radiusSm),
           borderSide: BorderSide(color: scheme.outlineVariant),
@@ -152,9 +149,7 @@ abstract final class AppTheme {
         backgroundColor: scheme.surface,
         surfaceTintColor: scheme.surfaceTint,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(_radiusLg),
-          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(_radiusLg)),
         ),
         showDragHandle: true,
         dragHandleColor: scheme.outline,
